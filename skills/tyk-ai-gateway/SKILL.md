@@ -19,7 +19,7 @@ Edition.
 | Real LLM providers or stand-ins? | The two stand-in backends in the stack (no provider keys, no spend) |
 | Which version? | 2.3: step 1 looks up the 2.3 image tag on Docker Hub and puts it in `.env` as `AISTUDIO_TAG`. Both images use the same tag |
 | Do the LLMs run on your own network (Ollama, an in-cluster server)? | No. If yes, add their host names to `LLM_UPSTREAM_ALLOWED_INTERNAL_HOSTS` in both env files |
-| Evaluation or a real installation? | Evaluation on a workstation. Anything long-lived goes to the `tyk-deployment-planner` skill |
+| Evaluation or a real installation? | Evaluation on a workstation. Anything long-lived goes to the `tyk-deployment` skill |
 
 ## Workflow
 
@@ -198,7 +198,7 @@ workspace (`${TYK_WORKSPACE:-~/tyk-workspace}/<project>/demos/ai-gateway`).
 ## Hand-offs
 
 - Licences, packaging, pricing, versions and images: the `tyk-facts` skill.
-- Production or long-lived installation: the `tyk-deployment-planner` skill.
+- Production or long-lived installation: the `tyk-deployment` skill.
 - MCP proxies, REST to MCP and MCP policies on Tyk Gateway: the `tyk-mcp-gateway` skill.
 - A full demo bundle with proofs, including AI Studio beside Tyk Gateway: the
   `tyk-demo-builder` skill.

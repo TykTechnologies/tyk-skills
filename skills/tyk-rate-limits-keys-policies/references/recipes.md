@@ -13,7 +13,7 @@ API id and organisation id.
 ## Lab: one or two open source Gateways
 
 A throwaway stack for testing limits: Redis, a test upstream, one Gateway, and a second
-Gateway on demand. For anything long-lived use the `tyk-deployment-planner` skill.
+Gateway on demand. For anything long-lived use the `tyk-deployment` skill.
 
 ```bash
 LAB=${TYK_WORKSPACE:-$HOME/tyk-workspace}/limits/demos/limits-lab

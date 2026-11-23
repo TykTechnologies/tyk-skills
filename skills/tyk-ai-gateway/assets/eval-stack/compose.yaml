@@ -1,6 +1,6 @@
 # Tyk AI Studio evaluation stack: control plane (hub), one edge gateway and two
 # stand-in LLM backends. For evaluation on a workstation only. Install for
-# anything long-lived with the tyk-deployment-planner skill.
+# anything long-lived with the tyk-deployment skill.
 #
 # Set the image tag first (both Tyk images run at one tag): look up the AI Studio
 # 2.3 tag on Docker Hub as step 1 of the tyk-ai-gateway skill does, and put it in

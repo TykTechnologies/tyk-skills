@@ -141,7 +141,7 @@ too (the `compose.postgres.yaml` override plus a second `studio` service with th
   keep answering `200`, and an App created on the remaining replica during the outage is served.
 - An admin API token minted on one replica works on the other.
 
-Production topology belongs to the `tyk-deployment-planner` skill, sizing to the
+Production topology belongs to the `tyk-deployment` skill, sizing to the
 `tyk-infra-sizing` skill; the database's own failover is the user's database design.
 
 ## Transport security
@@ -149,4 +149,4 @@ Production topology belongs to the `tyk-deployment-planner` skill, sizing to the
 The evaluation stack uses plain-text gRPC (`GRPC_TLS_INSECURE=true` on the hub,
 `EDGE_TLS_ENABLED=false` and `EDGE_ALLOW_INSECURE=true` on the edge). On the control plane
 `GRPC_TLS_INSECURE` defaults to `false`, so its gRPC server expects TLS unless told otherwise
-(see [control plane variables](https://tyk.io/docs/ai-management/ai-studio/ai-studio-env)). Certificates and production topology are the `tyk-deployment-planner` skill's job.
+(see [control plane variables](https://tyk.io/docs/ai-management/ai-studio/ai-studio-env)). Certificates and production topology are the `tyk-deployment` skill's job.

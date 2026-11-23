@@ -24,7 +24,7 @@ Kafka 4.4.0, plus a definition checker, a WebSocket probe and a webhook receiver
   commercially licensed; whether and how you may run it, packaging and trials: the `tyk-facts`
   skill.
 - A stack: `references/lab.md` (copy `assets/streams-lab/`), the `tyk-demo-builder` skill (module
-  `streams`) for a Dashboard demo, or the `tyk-deployment-planner` skill for an installation.
+  `streams`) for a Dashboard demo, or the `tyk-deployment` skill for an installation.
 
 ## Clarify first
 
@@ -193,4 +193,4 @@ Before reporting success:
   explain: the `tyk-troubleshooting` skill. JavaScript event handlers and plugins: the
   `tyk-custom-plugins` skill.
 - Licensing and editions: the `tyk-facts` skill. A Dashboard demo: the `tyk-demo-builder` skill.
-  An installation: the `tyk-deployment-planner` skill.
+  An installation: the `tyk-deployment` skill.

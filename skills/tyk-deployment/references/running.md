@@ -1,30 +1,11 @@
----
-name: tyk-deployment-runner
-description: Start a planned Tyk deployment from a checkout of the public tyk-install repository with Docker Compose, Helm or rpm/deb packages, bootstrap the organisation, admin user and first API, and prove it works with a real request through the gateway, a rerun that changes nothing and a restart that keeps state. Use when running, restarting or bootstrapping a Tyk install, or when a fresh install will not come up - gateway not starting, Dashboard licence errors, Redis or PostgreSQL connection failures, MDCB RPC login errors. Not for choosing the topology, which is the `tyk-deployment-planner` skill, or for diagnosing an established stack, which is the `tyk-troubleshooting` skill.
----
+# Running a deployment
 
-# Tyk Deployment Runner
+Apply a deployment and prove it works. Start from the plan (`planning.md`); without one, resolve
+the target to exactly one row of `docs/topology-matrix.md` and confirm it with the user before
+starting anything.
 
-Apply a deployment and prove it works. Start from a plan written by the `tyk-deployment-planner`
-skill; without one, resolve the target to exactly one row of `docs/topology-matrix.md` in the
-tyk-install checkout and confirm it with the user before starting anything.
-
-Everything here works on a checkout of the public tyk-install repository
-(https://github.com/TykTechnologies/tyk-install): its deployment directories, the guides in
-`docs/` and the tools in `tools/`. This skill carries no copy of them.
-
-## Get the tyk-install repository
-
-Use the checkout the plan names. Otherwise use the user's existing clone (confirm it with
-`git -C <dir> remote get-url origin`), or clone it where the user chooses, suggesting
-`${TYK_WORKSPACE:-~/tyk-workspace}/tyk-install`:
-
-```bash
-git clone --depth 1 https://github.com/TykTechnologies/tyk-install <dir>
-```
-
-Never clone it inside a customer repository, another project, or this plugin's folder. Below,
-every path is relative to that checkout, and every command runs from its root.
+Every path is relative to the tyk-install checkout the plan names (`SKILL.md`, "Get the
+tyk-install repository"), and every command runs from its root.
 
 ## Workflow
 
@@ -46,7 +27,7 @@ every path is relative to that checkout, and every command runs from its root.
 9. Report the versions running (read back from the deployment), URLs, evidence, rerun commands
    and anything left unverified.
 
-## Running
+## Starting the stack
 
 ```bash
 # Docker (not docker/getting-started, which starts with ./start.sh)
@@ -107,38 +88,14 @@ name the check and the reason. An unverified deployment is reported as unverifie
 ## When a step fails
 
 Read `docs/debugging.md` in the checkout before changing configuration, and report the actual
-error rather than a summary of it. MDCB and Hybrid RPC errors have their own table in
-`docker/mdcb/README.md`, "Troubleshooting". Once the stack has been up and something stops
-working, the `tyk-troubleshooting` skill takes over.
+error rather than a summary of it. MDCB and Hybrid RPC errors, such as a new data plane logging
+`RPC Login incorrect` and receiving no APIs, have their own table in `docker/mdcb/README.md`,
+"Troubleshooting". Once the stack has been up and something stops working, the
+`tyk-troubleshooting` skill takes over.
 
-## Safety
+## Done when
 
-- Never delete, upgrade or reconfigure resources the user did not ask you to touch. Ask before
-  reusing a namespace, project or Compose stack that already exists.
-- Do not use direct database access for bootstrap or credential recovery; use the APIs
-  (`docs/bootstrap.md`, `docs/debugging.md`).
-- Never print or commit a licence, token, generated credential or certificate.
-- Prefer an overlay over editing a tracked config file. If a tracked file must change, say so and
-  show the diff.
-- `docker compose down -v` destroys data. Confirm before running it, and never run it against a
-  stack you did not create in this session.
-- The PostgreSQL and Redis passwords, `TYK_GW_SECRET` and `TYK_GW_NODESECRET` committed in
-  tyk-install are development defaults. Never call a deployment that uses them production-ready,
-  and say why; the `tyk-production-readiness` skill lists them.
-
-## Hand-offs
-
-- Choosing the topology and writing the plan: the `tyk-deployment-planner` skill.
-- Hardening the configuration before it carries real traffic: the `tyk-production-readiness`
-  skill.
-- An established stack that misbehaves: the `tyk-troubleshooting` skill.
-- Upgrading what you deployed: the `tyk-upgrades` skill.
-- APIs, keys and policies beyond the bootstrap test API: the `tyk-api-definitions-routing` and
-  `tyk-rate-limits-keys-policies` skills.
-
-## Completion contract
-
-Finish when every evidence item above has real command output behind it, idempotency and
-persistence are demonstrated, and the report lists the deployed versions read from the running
-stack, URLs, the tyk-install commit, the exact rerun commands, and every check that could not be
-performed with its reason.
+Every evidence item above has real command output behind it, idempotency and persistence are
+demonstrated, and the report lists the deployed versions read from the running stack, URLs, the
+tyk-install commit, the exact rerun commands, and every check that could not be performed with its
+reason.

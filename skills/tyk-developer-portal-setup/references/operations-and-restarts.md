@@ -3,7 +3,7 @@
 Last verified: 2026-11-19 against Tyk Developer Portal 1.20.1 (`tykio/portal:v1.20.1`) and 1.20.0 (`tykio/portal:v1.20.0`) with Tyk Dashboard and Gateway 5.16.0
 
 Public page: https://tyk.io/docs/product-stack/tyk-enterprise-developer-portal/deploy/configuration.
-Installing and scaling the Portal: the `tyk-deployment-planner` skill; upgrading it: the `tyk-upgrades` skill.
+Installing and scaling the Portal: the `tyk-deployment` skill; upgrading it: the `tyk-upgrades` skill.
 
 ## Where the state lives
 

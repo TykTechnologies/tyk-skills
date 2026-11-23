@@ -28,7 +28,7 @@ the path each one resolved to and the version of the plugin it came from.
 | `tyk-demo-builder` skill | the PoC stack and its module proofs (C1 to C4 prerequisites) | this plugin | stop; reinstall this plugin |
 | `tyk-infra-sizing` skill | C4 hardware class and C5 infrastructure rows | this plugin | leave those rows `unknown` |
 | `tyk-excalidraw-diagrams` skill | architecture drawings in the report | this plugin | optional; a plain list of components and connections is enough |
-| `tyk-deployment-planner` and `tyk-deployment-runner` skills, with a checkout of the tyk-install repository | a production-like topology: Hybrid or MDCB for C3, the intended hardware for C4 | this plugin; the skills clone https://github.com/TykTechnologies/tyk-install where the user chooses | install it by hand from the public guides (https://tyk.io/docs/tyk-self-managed, https://tyk.io/docs/deployment-options/tyk-hybrid, https://tyk.io/docs/api-management/mdcb), or mark the dependent criteria `blocked (no topology)` |
+| `tyk-deployment` skill, with a checkout of the tyk-install repository | a production-like topology: Hybrid or MDCB for C3, the intended hardware for C4 | this plugin; the skill clones https://github.com/TykTechnologies/tyk-install where the user chooses | install it by hand from the public guides (https://tyk.io/docs/tyk-self-managed, https://tyk.io/docs/deployment-options/tyk-hybrid, https://tyk.io/docs/api-management/mdcb), or mark the dependent criteria `blocked (no topology)` |
 | A Dashboard licence (trial) | every builder stack; scopes such as `streams` or `governance` for those features | the `tyk-facts` skill, `references/deployment-paths.md` | `blocked (licence)` |
 
 Locate a sibling skill with
@@ -91,15 +91,15 @@ Collect before planning; ask for what is missing rather than assuming. Defaults 
    newer run that is partial or failed replaces the verdict of an older passing run; it never
    inherits it.
 7. **Load testing.** A single-host Compose stack proves behaviour, not capacity. Run C4 on the
-   intended hardware class; deploy that topology with the `tyk-deployment-planner` and `tyk-deployment-runner` skills.
+   intended hardware class; deploy that topology with the `tyk-deployment` skill.
 8. **Report.** Write `docs/poc-report.md` from the outline in the template: one line per
    criterion with status, the run ID it rests on and its evidence kind, findings, open points,
    next steps. Quote licensing and pricing only through `tyk-facts`.
-9. **Hand off.** Production topology: the `tyk-deployment-planner` skill (Docker Compose, Helm,
-   OpenShift, bare metal; Self-Managed, Hybrid, MDCB, AI Studio), then the
-   `tyk-deployment-runner` and `tyk-production-readiness` skills. Capacity and cost inputs: the
-   `tyk-infra-sizing` skill. Moving traffic from the incumbent: the `tyk-migration-planner`
-   skill. Architecture drawings: the `tyk-excalidraw-diagrams` skill.
+9. **Hand off.** Production topology: the `tyk-deployment` skill (Docker Compose, Helm,
+   OpenShift, bare metal; Self-Managed, Hybrid, MDCB, AI Studio), which plans, runs and reviews
+   it. Capacity and cost inputs: the `tyk-infra-sizing` skill. Moving traffic from the
+   incumbent: the `tyk-migration-planner` skill. Architecture drawings: the
+   `tyk-excalidraw-diagrams` skill.
 
 ## Rules
 

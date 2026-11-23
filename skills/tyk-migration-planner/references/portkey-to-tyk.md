@@ -67,5 +67,5 @@ Building the Gateway side: the `tyk-mcp-gateway` skill. Publishing in the Develo
   admin API. For MCP servers and REST APIs as MCP tools on Tyk Gateway, use the
   `tyk-mcp-gateway` skill. The `tyk-demo-builder` skill's `ai-studio` module (with `mcp` for the
   Dashboard integration) generates an AI Studio companion stack beside a Tyk demo and needs an
-  Enterprise licence; production installs use the `tyk-deployment-planner` skill (tyk-install repository
+  Enterprise licence; production installs use the `tyk-deployment` skill (tyk-install repository
   `docker/ai-studio/`, `kubernetes/helm-ai-studio/`).

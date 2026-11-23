@@ -11,8 +11,9 @@ installed skill can therefore be seen by name only, so the names have to route o
 
 ### What is measured
 
-- `routing/prompts.jsonl` holds 138 prompts, six per skill: four that should load the skill
-  (`"kind": "positive"`) and two near-misses that look like it but belong to a named sibling or to
+- `routing/prompts.jsonl` holds 138 prompts, six per skill (eighteen for `tyk-deployment`, which
+  kept the prompts of the three skills it replaced under their old id prefixes): four that should
+  load the skill (`"kind": "positive"`) and two near-misses that look like it but belong to a named sibling or to
   no skill in this plugin (`"kind": "near_miss"`, `"expected"` is the sibling or `null`). The prompts
   are written as a developer would type them and never contain a skill name.
 - `routing/run_routing.py` sends each prompt once to `claude -p` with this repository loaded as a
@@ -54,7 +55,26 @@ cost and time) and a Markdown table next to it. Useful options:
 A full 120-prompt run takes about three minutes. The CLI reported $8.80 to $8.90 for a names-only run
 and $12.95 for a descriptions run on 2026-11-19.
 
-### Latest results (2026-11-19)
+### Latest results (2026-11-23): deployment skills merged
+
+`tyk-deployment-planner`, `tyk-deployment-runner` and `tyk-production-readiness` became one
+`tyk-deployment` skill, 21 skills in all. In the run before the merge (23 skills) the names-only
+misses clustered in those three. The prompt `demo-builder-n2` (a production EKS install) now expects
+`tyk-deployment` instead of no skill, because a production install has had a skill since the
+deployment skills were added. Claude Code 2.1.319, default model `claude-opus-5-5`.
+
+| Mode | Before the merge (23 skills) | After (21 skills) |
+| --- | --- | --- |
+| Descriptions | 137/138 | 138/138 |
+| Names only | 133/138 | 133/138 |
+
+After the merge, `tyk-deployment` routed 12/12 of its own prompts with descriptions and 11/12 by
+name alone (an MDCB `RPC Login incorrect` on a new data plane went to `tyk-troubleshooting`). By
+name alone it also drew one `tyk-facts` prompt about deployment options, and one near-miss flipped
+between `tyk-facts` and `tyk-upgrades` as it did in earlier runs. The skill listing shrank from about
+13,500 to about 12,500 characters of names and descriptions.
+
+### Earlier results (2026-11-19)
 
 Claude Code 2.1.319, default model `claude-opus-5-5`, 20 skills. Each cell is: own prompts right,
 near-misses right, times chosen for another skill's prompt.

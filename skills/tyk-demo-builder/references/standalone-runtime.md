@@ -3,7 +3,7 @@
 Last verified: 2026-11-19 against Tyk Gateway and Dashboard 5.16.0, Pump 1.18.0, Developer Portal 1.20.1, Tyk Sync 2.3.0 and Tyk Operator 1.6.0.
 
 This page covers how a generated bundle runs. For installing Tyk for production or long-lived
-use, hand the user to the `tyk-deployment-planner` skill; for diagnosing a component, the
+use, hand the user to the `tyk-deployment` skill; for diagnosing a component, the
 `tyk-troubleshooting` skill.
 
 ## Ownership

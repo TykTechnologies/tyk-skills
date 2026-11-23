@@ -1,7 +1,7 @@
 # Throwaway lab for WebSocket and SSE proxying, Tyk Streams and Gateway webhooks.
 # tyk-gateway is the open source Gateway; tyk-gateway-ee is the Enterprise Edition build with
 # Tyk Streams switched on. They share Redis but load APIs from separate folders.
-# Not for production: use the tyk-deployment-planner skill.
+# Not for production: use the tyk-deployment skill.
 name: tyk-streams-lab
 
 services:

@@ -24,7 +24,7 @@ from there: the same files are in the `default` theme your own Portal serves
 
 Things this skill does not do, and where they belong:
 
-- Install the Portal, its database or storage: the `tyk-deployment-planner` skill; upgrade it: the
+- Install the Portal, its database or storage: the `tyk-deployment` skill; upgrade it: the
   `tyk-upgrades` skill.
 - Create products, plans, catalogues, providers or dynamic client registration: the
   `tyk-developer-portal-setup` skill. The Portal must already run with its products.

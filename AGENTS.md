@@ -27,7 +27,7 @@ Both the Codex CLI and the Claude Code CLI are supported. Invoke a skill with `$
 - Treat the supplied requirements as the source of truth. Select only the modules needed to prove the requested behaviour.
 - Never mark a requirement `live` without executable or browser-visible evidence from the deployed stack. Architecture-only capabilities stay talk track. Report blockers honestly.
 - Run static validation, idempotent configuration, restart verification, full rehearsal and sanitisation when prerequisites allow.
-- The builder needs a Tyk Dashboard licence (a free trial key is available; the `tyk-facts` skill has the current path). Every production or long-lived installation, including the open source Gateway alone, goes through the `tyk-deployment-planner`, `tyk-deployment-runner` and `tyk-production-readiness` skills, which work on a checkout of the public tyk-install repository (https://github.com/TykTechnologies/tyk-install).
+- The builder needs a Tyk Dashboard licence (a free trial key is available; the `tyk-facts` skill has the current path). Every production or long-lived installation, including the open source Gateway alone, goes through the `tyk-deployment` skill, which works on a checkout of the public tyk-install repository (https://github.com/TykTechnologies/tyk-install).
 
 ## Changing The Skills
 

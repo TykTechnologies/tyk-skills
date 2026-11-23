@@ -212,7 +212,7 @@ for the next refresh before reading it.
    (it should not reach the gateway); start the Dashboard; note recovery.
 6. For Hybrid or MDCB evaluations, repeat step 5 by cutting the data plane's connection to the
    control plane instead (the builder does not deploy MDCB; use the tyk-install repository's
-   `docker/mdcb/` or `docker/hybrid/` deployment through the `tyk-deployment-planner` skill).
+   `docker/mdcb/` or `docker/hybrid/` deployment through the `tyk-deployment` skill).
 
 **Pass/fail.** Agree the expected behaviour per combination and per fault before the run (the
 list above), and the longest acceptable recovery time. Pass when observed behaviour matches the
@@ -237,7 +237,7 @@ methodology is public: https://github.com/TykTechnologies/tyk-ansible-performanc
 Vendor figures are context; the project's own run is the evidence.
 
 **Builder modules.** `otel` for OpenTelemetry traces through the gateway (pair with the
-tyk-install repository's observability overlay, planned with the `tyk-deployment-planner` skill, for metrics on a real topology); the auth module
+tyk-install repository's observability overlay, planned with the `tyk-deployment` skill, for metrics on a real topology); the auth module
 the project will use in production (`api-key`, `jwt`, `oauth`, `mtls`); `rate-limit` set high
 enough not to interfere, or off. The Gateway exports its own metrics and traces over OTLP
 ("Tyk Gateway produces all three signals. It exports metrics and traces through the

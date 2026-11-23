@@ -74,7 +74,7 @@ Record the answers in the deployment plan; several change the topology, not just
 ## Planning notes
 
 - **Start with one data plane.** Stand up the control plane and one data plane, prove the RPC link
-  and a proxied request (the `tyk-deployment-runner` skill), then add the next site.
+  and a proxied request (`running.md`), then add the next site.
 - **Port and protocol.** MDCB serves its RPC service on port 9091 by default
   (https://tyk.io/docs/api-management/mdcb). Every data-plane network must reach it. The
   tyk-install `kubernetes/helm-mdcb/README.md` exposes it with a LoadBalancer Service and notes

@@ -29,9 +29,7 @@ SKILLS=(
   tyk-websockets-streams-webhooks
   tyk-api-governance
   tyk-upgrades
-  tyk-deployment-planner
-  tyk-deployment-runner
-  tyk-production-readiness
+  tyk-deployment
 )
 
 usage() {

@@ -19,7 +19,7 @@ each kind on the open source Gateway 5.16.0, plus a checker and a latency tool.
   Python added; gRPC needs your server. Details: `references/choose-the-kind.md`. Editions and
   licences: the `tyk-facts` skill.
 - A stack: `references/lab.md` (copy `assets/plugin-lab/`), the `tyk-demo-builder` skill for a
-  Dashboard demo, or the `tyk-deployment-planner` skill for a real installation.
+  Dashboard demo, or the `tyk-deployment` skill for a real installation.
 
 ## Clarify first
 
@@ -194,4 +194,4 @@ Before reporting success:
 - Planning a Gateway upgrade (order, rollback, when to ship the rebuilt `.so` or bundle): the
   `tyk-upgrades` skill.
 - Licensing and editions: the `tyk-facts` skill. A demo: the `tyk-demo-builder` skill. A real
-  installation: the `tyk-deployment-planner` skill.
+  installation: the `tyk-deployment` skill.

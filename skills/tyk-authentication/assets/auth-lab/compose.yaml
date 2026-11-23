@@ -1,7 +1,7 @@
 # Throwaway lab for client authentication on the open source Tyk Gateway.
 # Two Gateways share one Redis and one apps folder: tyk-gateway listens on HTTP,
 # tyk-gateway-tls on HTTPS (needed for client certificates). `--profile idp` adds
-# Keycloak and Ory Hydra as identity providers. Not for production: use the tyk-deployment-planner skill.
+# Keycloak and Ory Hydra as identity providers. Not for production: use the tyk-deployment skill.
 name: tyk-auth-lab
 
 x-gateway: &gateway

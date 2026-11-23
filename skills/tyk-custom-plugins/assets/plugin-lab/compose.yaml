@@ -2,7 +2,7 @@
 # tyk-gateway: stock image, Go, JavaScript and gRPC plugins, bundles from the bundles service.
 # grpc-plugin: a Python gRPC plugin server built from the Gateway image's own .proto files.
 # --profile python adds tyk-gateway-python: the same Gateway with Python added, for Python plugins.
-# Not for production: install with the tyk-deployment-planner skill.
+# Not for production: install with the tyk-deployment skill.
 name: tyk-plugin-lab
 
 x-gateway: &gateway

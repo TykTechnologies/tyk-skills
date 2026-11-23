@@ -1,6 +1,6 @@
 ---
 name: tyk-demo-builder
-description: Generate, run and prove a self-managed Tyk demo or proof of concept as an isolated Docker Compose bundle built from modules (APIs, authentication, traffic controls, Developer Portal, MCP, OpenTelemetry, governance, plugins, Operator, Tyk Sync, AI Studio), with an executable proof for every requirement. Use when asked to build a Tyk demo, POC or evaluation stack from requirements, an RFP or OpenAPI files. Not for production installs, which the tyk-deployment-planner skill owns.
+description: Generate, run and prove a self-managed Tyk demo or proof of concept as an isolated Docker Compose bundle built from modules (APIs, authentication, traffic controls, Developer Portal, MCP, OpenTelemetry, governance, plugins, Operator, Tyk Sync, AI Studio), with an executable proof for every requirement. Use when asked to build a Tyk demo, POC or evaluation stack from requirements, an RFP or OpenAPI files. Not for production installs, which the tyk-deployment skill owns.
 ---
 
 # Tyk Demo Builder
@@ -12,7 +12,7 @@ except Docker, `jq`, `curl`, Python 3 and the licence values the user supplies.
 
 It needs a Tyk Dashboard licence (the Portal, AI Studio and governance need theirs too; which
 licence covers what, and trial routes, belong to the `tyk-facts` skill). For production or
-long-lived installs, hand over to the `tyk-deployment-planner` skill; for acceptance criteria on top of a
+long-lived installs, hand over to the `tyk-deployment` skill; for acceptance criteria on top of a
 bundle, the `tyk-poc-runbook` skill.
 
 ## Ask First (Each Has A Default)

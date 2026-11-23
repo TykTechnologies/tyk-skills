@@ -5,8 +5,7 @@ Last verified: 2026-11-19 against the `tyk-helm/tyk-oss` chart 5.4.1 and 5.5.0, 
 This file covers the Gateway in the open source umbrella chart. The `tyk-stack` chart 5.5.0
 uses the same layout, one block per component chart (`tyk-gateway:`, `tyk-dashboard:`,
 `tyk-pump:`, `tyk-dev-portal:`, ...), each with its own `image.tag`; the examples here use the
-Gateway block. Installing and running the charts belongs to the `tyk-deployment-planner` and
-`tyk-deployment-runner` skills.
+Gateway block. Installing and running the charts belongs to the `tyk-deployment` skill.
 
 Chart release notes: https://tyk.io/docs/developer-support/release-notes/helm-chart. Upgrade
 command in the docs: `helm upgrade [RELEASE_NAME] tyk-helm/[CHART_NAME]`.

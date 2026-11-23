@@ -1,6 +1,6 @@
 # Throwaway lab for testing rate limits and quotas on the open source Tyk Gateway.
 # One Gateway by default; `--profile two` adds a second Gateway on the same Redis.
-# Not for production or anything long-lived: use the tyk-deployment-planner skill for that.
+# Not for production or anything long-lived: use the tyk-deployment skill for that.
 name: tyk-limits-lab
 
 x-gateway: &gateway

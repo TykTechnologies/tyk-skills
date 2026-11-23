@@ -176,4 +176,4 @@ Commands and responses are those of the versions named in the references.
 - Analytics storage and Pump capacity: the `tyk-infra-sizing` skill.
 - A demo stack with a Dashboard: the `tyk-demo-builder` skill. A structured proof of concept:
   the `tyk-poc-runbook` skill.
-- Installing Tyk, Pump and the data-plane charts for real: the `tyk-deployment-planner` skill.
+- Installing Tyk, Pump and the data-plane charts for real: the `tyk-deployment` skill.

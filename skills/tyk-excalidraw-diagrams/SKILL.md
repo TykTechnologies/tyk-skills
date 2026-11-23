@@ -162,4 +162,4 @@ Use `note(..., tone=)`: `bad` (red) for what breaks, `good` (green) for what a d
   which generates its own diagrams with this library.
 - Licensing or which components a topology needs a licence for: the `tyk-facts` skill.
 - Building the drawn topology as a runnable demo: the `tyk-demo-builder` skill.
-- Installing Tyk: the `tyk-deployment-planner` skill.
+- Installing Tyk: the `tyk-deployment` skill.

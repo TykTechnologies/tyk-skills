@@ -59,7 +59,7 @@ Optional keys, from the install page: `TYK_TLS_INSECURE_SKIP_VERIFY`,
 `WATCH_NAMESPACE` (comma-separated; empty watches every namespace), `WATCH_INGRESS_CLASS`.
 The umbrella charts (`tyk-stack`, `tyk-control-plane`, `tyk-oss`) install the Operator too and
 take the licence as `global.license.operator` (install page); installing Tyk itself is the
-`tyk-deployment-planner` skill's job.
+`tyk-deployment` skill's job.
 
 A healthy start logs `License validated successfully. Valid till: <date>`. Licensing itself
 (who needs a key, what a key covers) is the `tyk-facts` skill's subject.

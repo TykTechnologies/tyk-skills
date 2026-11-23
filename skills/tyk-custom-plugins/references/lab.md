@@ -3,7 +3,7 @@
 Last verified: 2026-11-19 against Tyk Gateway 5.16.0 (`tykio/tyk-gateway:v5.16.0`, open source), `tykio/tyk-plugin-compiler:v5.16.0-ng`, Redis 7.2, go-httpbin 2.25.0
 
 A throwaway stack that proves every kind of plugin on the open source Gateway, with no licence.
-For anything long-lived install with the `tyk-deployment-planner` skill; for a Dashboard demo use the
+For anything long-lived install with the `tyk-deployment` skill; for a Dashboard demo use the
 `tyk-demo-builder` skill.
 
 ## Start it

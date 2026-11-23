@@ -79,4 +79,4 @@ https://tyk.io/docs/tyk-dashboard/configuration (the settings above, by name).
 ## Scope
 
 This file covers Gateways connected straight to a Dashboard. For Gateways connected through MDCB
-(hybrid), use https://tyk.io/docs/api-management/mdcb and the `tyk-deployment-runner` skill.
+(hybrid), use https://tyk.io/docs/api-management/mdcb and the `tyk-deployment` skill.

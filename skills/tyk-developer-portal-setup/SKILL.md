@@ -14,7 +14,7 @@ Public docs: https://tyk.io/docs/portal/overview/intro
 
 The Portal and the Dashboard are licensed components, and the Portal needs a Dashboard (its
 provider). For licensing and editions, use the `tyk-facts` skill. Installing the Portal is the
-`tyk-deployment-planner` skill; a disposable stack to try this on is the `tyk-demo-builder` skill.
+`tyk-deployment` skill; a disposable stack to try this on is the `tyk-demo-builder` skill.
 
 ## Ask first
 
@@ -195,6 +195,6 @@ The costly ones; all 22 are in `references/pitfalls-and-limitations.md`.
 - Rate limits, quotas and keys outside the Portal: the `tyk-rate-limits-keys-policies` skill.
 - MCP proxies themselves: the `tyk-mcp-gateway` skill.
 - Policies and APIs in Git or Kubernetes: the `tyk-gitops-sync-operator` skill.
-- Installing or scaling the Portal: the `tyk-deployment-planner` skill; upgrades: the `tyk-upgrades` skill.
+- Installing or scaling the Portal: the `tyk-deployment` skill; upgrades: the `tyk-upgrades` skill.
 - A demo stack with a Portal: the `tyk-demo-builder` skill. Licensing: the `tyk-facts` skill.
 - Errors this skill does not explain: the `tyk-troubleshooting` skill.

@@ -32,9 +32,7 @@ SKILL_NAMES = (
     "tyk-websockets-streams-webhooks",
     "tyk-api-governance",
     "tyk-upgrades",
-    "tyk-deployment-planner",
-    "tyk-deployment-runner",
-    "tyk-production-readiness",
+    "tyk-deployment",
 )
 SKILLS = {name: ROOT / "skills" / name for name in SKILL_NAMES}
 BUILDER = SKILLS["tyk-demo-builder"]
@@ -42,7 +40,7 @@ SIZING = SKILLS["tyk-infra-sizing"]
 
 # Skill names a SKILL.md may mention that do not ship in this repository: the optional
 # document theme the sizing pack uses when it is installed. The tyk-install repository is a
-# deployment repository the deployment skills clone, not a skill.
+# deployment repository the `tyk-deployment` skill clones, not a skill.
 EXTERNAL_SKILLS = {"tyk-" + "docx-theme"}
 
 SKIPPED_DIRECTORIES = {".git", ".runtime", "__pycache__"}

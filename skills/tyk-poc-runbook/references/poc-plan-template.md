@@ -46,7 +46,7 @@ proof ID is a prerequisite for running a criterion; it never sets the criterion'
 
 - Plugin and skills: `tyk-skills` plugin version <x.y.z>; resolved paths of `tyk-facts`,
   `tyk-demo-builder` and any other skill used (the output of `resolve_skill_dir.py <name>`); the
-  tyk-install repository commit used by the `tyk-deployment-runner` skill, or `not used` and the
+  tyk-install repository commit used by the `tyk-deployment` skill, or `not used` and the
   manual install guide used instead
 - PoC stack: `tyk-demo-builder` bundle `<slug>` with modules `<list>`, at
   `${TYK_WORKSPACE:-~/tyk-workspace}/<project>/demos/<slug>/`
@@ -55,7 +55,7 @@ proof ID is a prerequisite for running a criterion; it never sets the criterion'
   of each (`docker image inspect --format '{{index .RepoDigests 0}}' <image:tag>`)
 - Load-test environment for C4: <hardware class, region, network path>
 - Production-like topology, if any part of the PoC needs one (Hybrid, MDCB, Kubernetes): the
-  `tyk-deployment-planner` skill's plan, tyk-install path <docker/... or kubernetes/...>
+  `tyk-deployment` skill's plan, tyk-install path <docker/... or kubernetes/...>
 - Licences: <trial key requested / received date; scopes needed (for example `streams`,
   `governance`)>
 
@@ -169,5 +169,5 @@ the migration, add its cost for that period to the Tyk side.
    the evidence kind (runtime observation, documentation, static check, vendor quote or
    estimate). Only a runtime observation can pass C1 to C4.
 4. Findings and open points, each with an owner.
-5. Next steps: production topology (`tyk-deployment-planner`), capacity (`tyk-infra-sizing`), migration
+5. Next steps: production topology (`tyk-deployment`), capacity (`tyk-infra-sizing`), migration
    (`tyk-migration-planner`).
