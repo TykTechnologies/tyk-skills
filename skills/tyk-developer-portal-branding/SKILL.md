@@ -11,7 +11,7 @@ also works from the 1.19.0 default theme; the references say where behaviour dif
 releases. Public docs: https://tyk.io/docs/portal/customization/themes.
 
 The Portal must already be installed and running with its products (installation is the
-`tyk-deployment-planner` skill; products, plans and catalogues are the `tyk-developer-portal-setup`
+`tyk-deployment` skill; products, plans and catalogues are the `tyk-developer-portal-setup`
 skill). The Developer Portal is a licensed component; for what a licence includes, use the
 `tyk-facts` skill.
 
@@ -150,7 +150,7 @@ Portal. Details and evidence: `references/limitations.md`.
 
 ## Hand-offs
 
-- Installing or scaling the Portal: the `tyk-deployment-planner` and `tyk-deployment-runner` skills.
+- Installing or scaling the Portal: the `tyk-deployment` skill.
 - Products, plans, catalogues, sign-up, access requests and credentials: the
   `tyk-developer-portal-setup` skill.
 - Planning a Portal upgrade: the `tyk-upgrades` skill (re-basing the theme afterwards is here).

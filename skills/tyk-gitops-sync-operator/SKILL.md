@@ -185,7 +185,7 @@ Run before reporting success, and show the output of each line you rely on:
 ## Hand-offs
 
 - Installing Tyk, the Operator's production install, cert-manager, charts: the
-  `tyk-deployment-planner` skill.
+  `tyk-deployment` skill.
 - Writing the API definitions themselves: the `tyk-api-definitions-routing` skill.
 - Policy content, rate limits, quotas and keys: the `tyk-rate-limits-keys-policies` skill.
 - Licences, packages, versions and images: the `tyk-facts` skill.

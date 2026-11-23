@@ -1,6 +1,0 @@
-interface:
-  display_name: "Tyk Production Readiness"
-  short_description: "Audit a Tyk configuration against the tyk-install production guidance"
-  default_prompt: "Use $tyk-production-readiness to audit the Tyk configuration with tools/profiles.py from the tyk-install checkout, including the sibling .env.example on a Helm path, work through the hardening checks, and report what is already correct, what needs changing with file:line, and what needs a decision, without printing any secret."
-policy:
-  allow_implicit_invocation: true

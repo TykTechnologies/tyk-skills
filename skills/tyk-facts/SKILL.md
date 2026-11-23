@@ -1,6 +1,6 @@
 ---
 name: tyk-facts
-description: Answer factual questions about Tyk accurately and with citations - which components are open source and which need a licence, editions (open source Gateway, Enterprise Edition gateway build, Dashboard, Developer Portal, Operator, Tyk Sync, MDCB, AI Studio Community and Enterprise), pricing model, free trial path, support, current component versions and Docker images, long-term support, deployment options (Tyk Cloud, Hybrid, Self-Managed, open source only, air-gapped) and where to install from. Use whenever someone asks what Tyk costs or includes, whether a Tyk feature is open source or paid, which version or image tag to use, how to get a trial licence, or how Tyk can be deployed, and before writing any of those facts into a document, comparison or proof of concept. Not for configuring or installing Tyk, which the tyk-api-definitions-routing and tyk-deployment-planner skills cover.
+description: Answer factual questions about Tyk accurately and with citations - which components are open source and which need a licence, editions (open source Gateway, Enterprise Edition gateway build, Dashboard, Developer Portal, Operator, Tyk Sync, MDCB, AI Studio Community and Enterprise), pricing model, free trial path, support, current component versions and Docker images, long-term support, deployment options (Tyk Cloud, Hybrid, Self-Managed, open source only, air-gapped) and where to install from. Use whenever someone asks what Tyk costs or includes, whether a Tyk feature is open source or paid, which version or image tag to use, how to get a trial licence, or how Tyk can be deployed, and before writing any of those facts into a document, comparison or proof of concept. Not for configuring or installing Tyk, which the tyk-api-definitions-routing and tyk-deployment skills cover.
 ---
 
 # Tyk Facts
@@ -83,9 +83,9 @@ these facts, in chat or in a deliverable.
 ## Hand-offs
 
 - **Install for real** (production, staging, anything long-lived; open source Gateway alone;
-  Hybrid; MDCB; AI Studio): the `tyk-deployment-planner` skill, then the `tyk-deployment-runner`
-  and `tyk-production-readiness` skills. Give the user the tyk-install directory for their option
-  from `references/deployment-paths.md`.
+  Hybrid; MDCB; AI Studio): the `tyk-deployment` skill, which plans, runs and reviews the
+  install. Give the user the tyk-install directory for their option from
+  `references/deployment-paths.md`.
 - **Prove a capability working**: the `tyk-demo-builder` skill builds a self-contained Docker
   Compose demo with evidence. It needs a Dashboard licence (trial path in
   `references/deployment-paths.md`).

@@ -212,7 +212,7 @@ Say these plainly when they matter to the request:
   skill.
 - **A Dashboard-managed stack to try this on**: the `tyk-demo-builder` skill.
 - **Installing Tyk for real, including the open source Gateway alone**: the
-  `tyk-deployment-planner` skill.
+  `tyk-deployment` skill.
 - **Limits under load, with acceptance criteria and evidence**: the `tyk-poc-runbook` skill.
 - **Licensing, editions and versions**: the `tyk-facts` skill.
 - **How many Gateways and how much Redis**: the `tyk-infra-sizing` skill.

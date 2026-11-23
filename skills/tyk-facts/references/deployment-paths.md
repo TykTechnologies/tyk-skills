@@ -3,17 +3,16 @@
 Last verified: 2026-11-20 against the tyk-install repository (README, tree, `.env.example` files, `docs/topology-matrix.md`, CI runs), the Tyk documentation, and Gateway `tykio/tyk-gateway:v5.16.0` (open source, file mode)
 
 Which way Tyk can be deployed, what each needs, and where to install it from. Production and
-long-lived installs go through the `tyk-deployment-planner` skill (then the
-`tyk-deployment-runner` and `tyk-production-readiness` skills), which work on a checkout of the
-public tyk-install repository (https://github.com/TykTechnologies/tyk-install); a time-boxed
+long-lived installs go through the `tyk-deployment` skill, which plans, runs and reviews them on a
+checkout of the public tyk-install repository (https://github.com/TykTechnologies/tyk-install); a time-boxed
 proof goes through the `tyk-demo-builder` skill.
 
 ## The tyk-install repository
 
 It holds the deployment files for every option below, the guides in `docs/` (topology matrix,
 prerequisites, runtime, bootstrap, debugging) and the tools in `tools/` (preflight, deployment
-verification, production-guidance audit), which also run without an agent. The deployment skills
-use the user's existing clone or clone it where the user chooses:
+verification, production-guidance audit), which also run without an agent. The `tyk-deployment`
+skill uses the user's existing clone or clone it where the user chooses:
 
 ```bash
 git clone --depth 1 https://github.com/TykTechnologies/tyk-install <dir>
@@ -47,7 +46,7 @@ Notes, each from the cited source:
   created on other Gateways"; the Synchroniser, which pushes keys, certificates and OAuth clients
   to the data planes in advance, "is disabled by default"
   (https://tyk.io/docs/api-management/mdcb). Planning a multi-site layout: the
-  `tyk-deployment-planner` skill.
+  `tyk-deployment` skill.
 - Hybrid: "you host the Gateways (the data plane) in your own environment, so all API traffic and
   the critical runtime parts stay with you. Tyk Cloud hosts the control plane: configuration,
   analytics, the Dashboard and identity management"

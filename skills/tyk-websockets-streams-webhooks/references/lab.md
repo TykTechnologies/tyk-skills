@@ -8,7 +8,7 @@ side by side, plus Kafka, an SSE and HTTP echo, a WebSocket echo and a webhook r
 Dashboard. Tyk Streams is an Enterprise Edition feature, and the Enterprise Edition image is
 commercially licensed; whether and how you may run it is a licensing question for the `tyk-facts`
 skill. For a Dashboard-managed demo use the `tyk-demo-builder` skill
-(module `streams`); for an installation, the `tyk-deployment-planner` skill.
+(module `streams`); for an installation, the `tyk-deployment` skill.
 
 ## Start it
 

@@ -4,7 +4,7 @@ Last verified: 2026-11-19 against Tyk Gateway 5.16.0 (`tykio/tyk-gateway:v5.16.0
 
 A throwaway stack to prove each method before it reaches a real environment. Open source
 Gateway only: no licence. The examples in this skill assume it. For anything
-long-lived, install with the `tyk-deployment-planner` skill; for a Dashboard-managed demo, the
+long-lived, install with the `tyk-deployment` skill; for a Dashboard-managed demo, the
 `tyk-demo-builder` skill.
 
 ## Start it

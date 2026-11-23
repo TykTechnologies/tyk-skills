@@ -18,7 +18,7 @@ v26.2.0, plus a checker and two test tools.
   adds a UI and API over the same objects and needs a licence; token exchange needs the
   Enterprise Edition Gateway. Editions and trials: the `tyk-facts` skill.
 - A stack: `references/lab.md` (copy `assets/auth-lab/`), the `tyk-demo-builder` skill for a
-  Dashboard demo, or the `tyk-deployment-planner` skill for a real installation.
+  Dashboard demo, or the `tyk-deployment` skill for a real installation.
 
 ## Clarify first
 
@@ -209,4 +209,4 @@ Before reporting success:
 - Developer Portal credentials and client registration: the `tyk-developer-portal-setup` skill.
 - Errors you cannot explain from the tables: the `tyk-troubleshooting` skill.
 - Licensing and editions: the `tyk-facts` skill. A demo: the `tyk-demo-builder` skill. A real
-  installation: the `tyk-deployment-planner` skill.
+  installation: the `tyk-deployment` skill.

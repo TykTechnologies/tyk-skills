@@ -73,8 +73,7 @@ Single-instance Redis or PostgreSQL is a data-loss and availability risk; rank i
   the tyk-install `helm-oss` and `helm-mdcb` values means none), whether autoscaling is on
   (`autoscaling.enabled` in `helm-self-managed`), and whether replicas can land on the same node.
   The numbers come from the `tyk-infra-sizing` skill; see `sizing.md`.
-- MDCB control planes: more than one MDCB instance; see the `tyk-deployment-planner` skill's
-  `references/multi-site.md`.
+- MDCB control planes: more than one MDCB instance; see `multi-site.md`.
 
 ## Analytics and logging
 

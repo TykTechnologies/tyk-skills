@@ -236,5 +236,5 @@ Two more settings keep an evaluation stack quiet:
 ## Installing for real
 
 This stack is for evaluation: plain-text gRPC, loopback ports, stand-in backends. For
-production or anything long-lived use the `tyk-deployment-planner` skill. For a full demo with proofs and
+production or anything long-lived use the `tyk-deployment` skill. For a full demo with proofs and
 a Tyk Gateway beside it, use the `tyk-demo-builder` skill.

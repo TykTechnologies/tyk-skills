@@ -171,7 +171,7 @@ Say these plainly when they matter:
   the node limit; the Gateway's log is the only place.
 - The failures here are those of a deployment with one Redis and Gateways reading files or
   managed by a Dashboard. For MDCB or hybrid links, Redis Sentinel, Cluster or TLS, Tyk Cloud
-  and Kubernetes, work from the public documentation and the `tyk-deployment-runner` skill, and tell the
+  and Kubernetes, work from the public documentation and the `tyk-deployment` skill, and tell the
   user which answers come from the documentation and which from their stack.
 
 ## Before reporting success
@@ -200,5 +200,5 @@ Say these plainly when they matter:
 - Metrics, traces and dashboards: the `tyk-observability` skill. Portal configuration: the
   `tyk-developer-portal-setup` skill. Version upgrades: the `tyk-upgrades` skill.
 - Licensing, editions and what a lapsed licence means: the `tyk-facts` skill. Installing:
-  the `tyk-deployment-planner` skill. A stack to reproduce on: the `tyk-demo-builder` skill. Capacity:
+  the `tyk-deployment` skill. A stack to reproduce on: the `tyk-demo-builder` skill. Capacity:
   the `tyk-infra-sizing` skill.

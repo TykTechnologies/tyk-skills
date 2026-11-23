@@ -19,8 +19,8 @@ API; the classic format is needed only for GraphQL and TCP (`references/limits-a
 - **Dashboard-managed Gateway**: write through the Dashboard API. The Dashboard needs a licence;
   the `tyk-facts` skill has the detail and the trial path. Upstream authentication also needs
   the Enterprise Edition Gateway.
-- No stack yet: the `tyk-demo-builder` skill builds a licensed one, the `tyk-deployment-planner`
-  skill plans an open source Gateway install.
+- No stack yet: the `tyk-demo-builder` skill builds a licensed one, the `tyk-deployment`
+  skill installs the open source Gateway.
 
 ## Clarify first
 
@@ -216,5 +216,5 @@ Before reporting success:
 - Definitions through Git, Tyk Sync or Tyk Operator: the `tyk-gitops-sync-operator` skill.
 - MCP proxies: the `tyk-mcp-gateway` skill.
 - Licensing, editions and versions: the `tyk-facts` skill. A stack to try this on: the
-  `tyk-demo-builder` skill, or the `tyk-deployment-planner` skill for the open source Gateway. Moving an
+  `tyk-demo-builder` skill, or the `tyk-deployment` skill for the open source Gateway. Moving an
   API from another gateway: the `tyk-migration-planner` skill.

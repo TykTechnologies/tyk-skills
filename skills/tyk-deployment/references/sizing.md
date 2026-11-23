@@ -9,7 +9,7 @@ there for any number, and record its output (or "not sized yet") in the report.
 
 ## What to check in the configuration
 
-Each item is a finding for the report, in the bucket `SKILL.md` describes.
+Each item is a finding for the report, in the bucket `production-readiness.md` describes.
 
 | Check | Where | Bucket when it fails |
 | --- | --- | --- |

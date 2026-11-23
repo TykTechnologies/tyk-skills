@@ -29,7 +29,7 @@ skill resolved to and the version of the plugin it came from.
 | `tyk-poc-runbook` and `tyk-demo-builder` skills | Phase 3 | this plugin | stop; reinstall this plugin |
 | `tyk-api-definitions-routing`, `tyk-authentication`, `tyk-rate-limits-keys-policies`, `tyk-gitops-sync-operator`, `tyk-developer-portal-setup`, `tyk-observability`, `tyk-mcp-gateway`, `tyk-ai-gateway` skills | the Tyk side of each mapping row, as named below | this plugin | the row keeps its documentation link; mark its coverage `unassessed` |
 | `tyk-infra-sizing` skill | sizing the target topology | this plugin | sizing stays an open point |
-| `tyk-deployment-planner`, `tyk-deployment-runner` and `tyk-production-readiness` skills, with a checkout of the tyk-install repository | deploying the production topology in Phase 4 | this plugin; the skills clone https://github.com/TykTechnologies/tyk-install where the user chooses | install by hand from the public guides (https://tyk.io/docs/tyk-self-managed, https://tyk.io/docs/deployment-options/tyk-hybrid, https://tyk.io/docs/api-management/mdcb) and say so in the plan |
+| `tyk-deployment` skill, with a checkout of the tyk-install repository | deploying the production topology in Phase 4 | this plugin; the skill clones https://github.com/TykTechnologies/tyk-install where the user chooses | install by hand from the public guides (https://tyk.io/docs/tyk-self-managed, https://tyk.io/docs/deployment-options/tyk-hybrid, https://tyk.io/docs/api-management/mdcb) and say so in the plan |
 
 Locate a sibling skill with
 `python3 <tyk-demo-builder-dir>/scripts/resolve_skill_dir.py <name>`. It looks in the Claude Code
@@ -142,9 +142,8 @@ delivery pipeline have their own skills: `tyk-rate-limits-keys-policies` and
 
 ## Phase 4: Cut-over
 
-1. Plan the production topology with the `tyk-deployment-planner` skill (Docker Compose, Helm,
-   OpenShift, bare metal; Self-Managed, Hybrid, MDCB, AI Studio), deploy it with the
-   `tyk-deployment-runner` skill and review it with the `tyk-production-readiness` skill. Size it with the
+1. Plan, deploy and review the production topology with the `tyk-deployment` skill (Docker
+   Compose, Helm, OpenShift, bare metal; Self-Managed, Hybrid, MDCB, AI Studio). Size it with the
    `tyk-infra-sizing` skill. Pin image tags (`tyk-facts`, `references/versions-and-images.md`).
 2. Import API definitions and policies through the chosen GitOps path, never by hand.
 3. Carry credentials over by class, following the Phase 1 inventory. Opaque API keys whose

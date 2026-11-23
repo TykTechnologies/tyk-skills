@@ -8,19 +8,18 @@ repository. The version in `plugin.json` and every other manifest matches the ne
 
 ### Skills
 
-- `tyk-deployment-planner`: choose an edition, platform and topology from the public tyk-install
-  repository's topology matrix, run its preflight, and write a deployment plan with pinned
-  versions, licences by name and the OpenShift overlay, including multi-site and MDCB questions.
-- `tyk-deployment-runner`: start, bootstrap and prove a tyk-install deployment with a real request
-  through the gateway, idempotency and persistence evidence.
-- `tyk-production-readiness`: audit a Tyk configuration against tyk-install's production,
-  performance, security and OpenShift guidance, reported as already correct, needs changing and
-  needs a decision.
+- `tyk-deployment`: plan, run and review a production or long-lived install from the public
+  tyk-install repository. Plan: choose an edition, platform and topology from its topology matrix,
+  run its preflight, and write a deployment plan with pinned versions, licences by name and the
+  OpenShift overlay, including multi-site and MDCB questions. Run: start, bootstrap and prove the
+  deployment with a real request through the gateway, idempotency and persistence evidence.
+  Review: audit a configuration against tyk-install's production, performance, security and
+  OpenShift guidance, reported as already correct, needs changing and needs a decision.
 
 ### Changed
 
-- Every hand-off to the separate `tyk-install` plugin now names the deployment skills above; the
-  tyk-install repository keeps the deployment files, guides and tools they run.
+- Every hand-off to the separate `tyk-install` plugin now names the `tyk-deployment` skill above;
+  the tyk-install repository keeps the deployment files, guides and tools it runs.
 - `tyk-facts`: `references/deployment-paths.md` describes the tyk-install repository instead of
   its former plugin, and adds the MDCB port, data-plane behaviour without the control plane and
   the Synchroniser default.

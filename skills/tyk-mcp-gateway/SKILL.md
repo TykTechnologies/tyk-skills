@@ -46,7 +46,7 @@ the reference files.
 
 2. **Get a Gateway 5.16.0 and set the variables.** For a demo stack with a Dashboard, generate
    one with the `tyk-demo-builder` skill (module `mcp`). For a lasting install use the
-   `tyk-deployment-planner` skill.
+   `tyk-deployment` skill.
 
    ```bash
    SKILL=<folder of this skill>; probe() { python3 "$SKILL/scripts/mcp_probe.py" "$@"; }
@@ -217,4 +217,4 @@ Run these before reporting success, and paste the status and the relevant line o
 - Publishing an MCP proxy as a Developer Portal product: the `tyk-developer-portal-setup` skill.
   Portal theming: the `tyk-developer-portal-branding` skill.
 - MCP and LLM governance inside Tyk AI Studio: the `tyk-ai-gateway` skill.
-- Installing Tyk for real: the `tyk-deployment-planner` skill.
+- Installing Tyk for real: the `tyk-deployment` skill.

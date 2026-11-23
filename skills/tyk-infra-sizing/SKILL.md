@@ -139,4 +139,4 @@ labelled "Assumed" in the report and becomes an open question.
 - Building a demo or proof-of-concept stack to load-test the sizing: the `tyk-demo-builder`
   skill, with acceptance criteria from the `tyk-poc-runbook` skill.
 - Migration planning from another gateway: the `tyk-migration-planner` skill.
-- Installing Tyk on the chosen platform: the `tyk-deployment-planner` skill.
+- Installing Tyk on the chosen platform: the `tyk-deployment` skill.

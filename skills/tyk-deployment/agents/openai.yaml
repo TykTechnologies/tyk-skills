@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Deployment"
+  short_description: "Plan, run and review a real Tyk install from the tyk-install repository"
+  default_prompt: "Use $tyk-deployment to do the phase the user asked for from a checkout of the tyk-install repository: plan against one row of docs/topology-matrix.md with preflight and pinned versions and write deployment-plan.md outside tracked paths; run only after the user approves the plan, confirming the target, proving it with tools/verify_deployment.sh --stack or --namespace, idempotency and persistence; or review the configuration with tools/profiles.py, including the sibling .env.example on a Helm path, reporting what is correct, what needs changing with file:line and what needs a decision, without printing any secret."
+policy:
+  allow_implicit_invocation: true

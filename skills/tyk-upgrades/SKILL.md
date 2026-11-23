@@ -194,7 +194,7 @@ Run before reporting success.
 ## Hand-offs
 
 - Versions, LTS lines, release dates, licences: the `tyk-facts` skill.
-- Installing a new environment or production deployment: the `tyk-deployment-planner` skill.
+- Installing a new environment or production deployment: the `tyk-deployment` skill.
 - A rehearsal stack from scratch: the `tyk-demo-builder` skill.
 - Operator and Tyk Sync upgrades and CRDs: the `tyk-gitops-sync-operator` skill.
 - Portal theme re-basing after an upgrade: the `tyk-developer-portal-branding` skill.

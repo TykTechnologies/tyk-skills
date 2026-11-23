@@ -118,4 +118,4 @@ Docs: https://tyk.io/docs/planning-for-production/ensure-high-availability/healt
 This file covers one standalone Redis. For Redis Sentinel or Cluster,
 TLS to Redis and Redis settings, use
 https://tyk.io/docs/tyk-configuration-reference/redis-cluster-sentinel and the
-`tyk-production-readiness` skill.
+`tyk-deployment` skill.
