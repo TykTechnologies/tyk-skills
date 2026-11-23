@@ -1,4 +1,16 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tyk-logo-light.svg">
+    <img alt="Tyk" src="assets/tyk-logo.svg" width="200">
+  </picture>
+</p>
+
 # Tyk Skills
+
+[![Licence: MPL-2.0](https://img.shields.io/badge/licence-MPL--2.0-8836FB)](LICENSE)
+[![Claude Code: plugin](https://img.shields.io/badge/Claude_Code-plugin-8836FB)](#install)
+[![Codex: plugin](https://img.shields.io/badge/Codex-plugin-8836FB)](#install)
+[![Other agents: skills](https://img.shields.io/badge/other_agents-skills-8836FB)](#install)
 
 Skills for AI coding agents that are evaluating or using [Tyk](https://tyk.io), an API gateway, API management platform and AI gateway. They give Claude Code, Codex and other agents Tyk's current facts, a builder that proves capabilities on a real stack, and the planning tools around it, so the agent answers from verified sources instead of memory.
 
