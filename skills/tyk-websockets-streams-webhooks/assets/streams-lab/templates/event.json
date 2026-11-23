@@ -1,0 +1,1 @@
+{"event": "{{.Type}}", "api_path": "{{.Meta.Path}}", "origin": "{{.Meta.Origin}}", "message": "{{.Meta.Message}}", "at": "{{.TimeStamp}}"}

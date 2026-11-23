@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "__DISPLAY_NAME__ REST as MCP",
+    "version": "1.0.0",
+    "description": "An MCP proxy whose upstream is an existing REST API on this same gateway, turning its OAS operations into MCP tools. No second toolchain and no code change to the REST API: the OAS document that already describes it becomes the tool catalogue."
+  },
+  "servers": [
+    {
+      "url": "/demo/__SLUG__/rest-as-mcp"
+    }
+  ],
+  "security": [
+    {
+      "authToken": []
+    }
+  ],
+  "paths": {},
+  "components": {
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "x-demo-owner": "__SLUG__",
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "__SLUG__-rest-as-mcp",
+      "name": "__DISPLAY_NAME__ REST as MCP",
+      "state": {
+        "active": true,
+        "internal": false
+      }
+    },
+    "upstream": {
+      "url": "tyk://__SLUG__-core/mcp"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/demo/__SLUG__/rest-as-mcp/",
+        "strip": true
+      },
+      "detailedTracing": {
+        "enabled": true
+      },
+      "authentication": {
+        "enabled": true,
+        "stripAuthorizationData": true,
+        "securitySchemes": {
+          "authToken": {
+            "enabled": true,
+            "header": {
+              "enabled": true,
+              "name": "Authorization"
+            }
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "contextVariables": {
+          "enabled": true
+        },
+        "trafficLogs": {
+          "enabled": true
+        }
+      }
+    }
+  }
+}

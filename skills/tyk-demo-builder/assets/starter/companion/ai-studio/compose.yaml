@@ -1,0 +1,107 @@
+# Tyk AI Studio companion stack for the __DISPLAY_NAME__ demo bundle.
+#
+# THIS IS A SEPARATE PRODUCT FROM THE TYK GATEWAY BUNDLE IN THE PARENT
+# DIRECTORY. Tyk AI Studio has its own licence, its own images, its own compose
+# project, its own network and its own lifecycle. Nothing here is required to
+# run the Gateway stack, and it is not required to run this. Start, stop and
+# reset the two independently. The only link is optional and read-only: when the
+# bundle also selected the mcp module, AISTUDIO-TYKMCP-001 imports the Gateway
+# bundle's MCP proxies from its Dashboard.
+#
+# Both Tyk images run at one pinned tag, __AISTUDIO_VERSION__ (AI Studio 2.3).
+
+name: __SLUG__-aistudio
+
+networks:
+  aistudio:
+
+services:
+  # Control plane, admin UI, AI Portal and admin API. All configuration lives
+  # here (/api/v1/llms, /model-routers, /apps, /filters, /catalogues,
+  # /tyk-connections, the audit trail and compliance events) but the DATA PLANE
+  # does not - see mgw below.
+  ai-studio:
+    image: tykio/tyk-ai-studio-ent:__AISTUDIO_VERSION__
+    networks: [aistudio]
+    volumes:
+      # The images run as uid 65532 with WORKDIR /opt/tyk-ai-studio/. Relative
+      # paths in the conf files (./data, ./keys) resolve under that WORKDIR, so
+      # it is mounted there; /app/data/db holds the absolute DATABASE_URL.
+      - ./keys/plugins/plugin-live.pub:/opt/tyk-ai-studio/keys/plugins/plugin-live.pub:ro
+      - ./data/appdata:/opt/tyk-ai-studio/data
+      - ./data/ai-studio/:/app/data/db
+    # secret.env holds only what the containers need. The admin login lives in
+    # admin.env, which only the host scripts read, so it is deliberately not an
+    # env_file here or below and never appears in docker inspect.
+    env_file:
+      - ./secret.env
+      - ./confs/ai-studio-ent.env
+    # Published on loopback only: the admin UI and API sit behind a demo password,
+    # and start.sh makes ./data world-writable for the distroless container user.
+    ports:
+      - "127.0.0.1:__AISTUDIO_ADMIN_PORT__:8080"
+      - "127.0.0.1:__AISTUDIO_PROXY_PORT__:9090"
+    # AISTUDIO-TYKMCP-001 dials the Gateway bundle's Dashboard on the host.
+    # Docker Desktop and OrbStack forward this name to the host's loopback, where
+    # the bundle publishes the Dashboard (BIND_ADDRESS, 127.0.0.1 by default). On a
+    # Linux engine the mapping is the bridge gateway, which a loopback bind does not
+    # answer: connect this container to the bundle's network and set
+    # TYK_DASHBOARD_URL=http://tyk-dashboard:3000 instead of widening BIND_ADDRESS.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Edge microgateway. THIS is the data plane:
+  #   POST /v1/chat/completions   model "{llm-slug}/{model}" or "{router-slug}/{model}"
+  #   GET  /v1/models             the models the calling App may use
+  #   POST /router/{slug}/v1/chat/completions   Model Router alias of /ai/{slug}/v1/...
+  #   /ai/{llm-slug}/v1/...  and  /llm/call/{llm-slug}/...
+  # The unified path is GATEWAY_UNIFIED_ROUTER_PATH in confs/mgw-ent.env.
+  # Configuration is authored on the control plane and pushed here over gRPC;
+  # configure-ai-studio.sh forces an edge reload after every change.
+  mgw:
+    image: tykio/tyk-microgateway-ent:__AISTUDIO_VERSION__
+    networks: [aistudio]
+    volumes:
+      - ./confs/mgw-analytics.yaml:/opt/tyk-microgateway/mgw-analytics.yaml:ro
+      - ./data/mgw:/app/data
+      - ./data/cache/plugins:/data/cache/plugins
+    env_file:
+      - ./secret.env
+      - ./confs/mgw-ent.env
+    ports:
+      - "127.0.0.1:__AISTUDIO_ROUTER_PORT__:9091"
+    restart: unless-stopped
+    depends_on:
+      ai-studio:
+        condition: service_started
+
+  # Two stub OpenAI-compatible backends standing in for real LLM vendors, so the
+  # routing, failover and guardrail decisions are observable without provider
+  # credentials or spend. Each names itself in the response body, the `model`
+  # field and an x-backend-name header. Internal only - no host ports, so they
+  # cannot collide with anything on the workstation.
+  #
+  # AISTUDIO-FAILOVER-001 stops llm-alpha (docker compose stop llm-alpha) to
+  # force the failover and always starts it again afterwards.
+  llm-alpha:
+    image: python:3.12-alpine
+    networks: [aistudio]
+    environment:
+      BACKEND_NAME: alpha
+      PORT: "8080"
+    volumes:
+      - ./mock-llm/backend.py:/srv/backend.py:ro
+    command: ["python3", "/srv/backend.py"]
+    restart: unless-stopped
+
+  llm-beta:
+    image: python:3.12-alpine
+    networks: [aistudio]
+    environment:
+      BACKEND_NAME: beta
+      PORT: "8080"
+    volumes:
+      - ./mock-llm/backend.py:/srv/backend.py:ro
+    command: ["python3", "/srv/backend.py"]
+    restart: unless-stopped

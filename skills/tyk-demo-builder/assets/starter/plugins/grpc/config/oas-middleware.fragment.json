@@ -1,0 +1,15 @@
+{
+  "middleware": {
+    "global": {
+      "pluginConfig": {
+        "driver": "grpc"
+      },
+      "postPlugins": [
+        {
+          "enabled": true,
+          "functionName": "RequestEnrichmentHook"
+        }
+      ]
+    }
+  }
+}

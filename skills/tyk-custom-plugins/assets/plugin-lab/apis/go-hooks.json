@@ -1,0 +1,85 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "go-hooks",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "go-hooks",
+      "orgId": "default",
+      "name": "go-hooks",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/go-hooks/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "securitySchemes": {
+          "apiKey": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "pluginConfig": {
+          "driver": "goplugin",
+          "data": {
+            "enabled": true,
+            "value": {
+              "region": "eu"
+            }
+          }
+        },
+        "prePlugins": [
+          {
+            "enabled": true,
+            "functionName": "Deny",
+            "path": "/opt/tyk-gateway/plugins/go/demo.so"
+          }
+        ],
+        "postPlugins": [
+          {
+            "enabled": true,
+            "functionName": "AddContext",
+            "path": "/opt/tyk-gateway/plugins/go/demo.so",
+            "requireSession": true
+          }
+        ],
+        "responsePlugins": [
+          {
+            "enabled": true,
+            "functionName": "StampResponse",
+            "path": "/opt/tyk-gateway/plugins/go/demo.so",
+            "requireSession": true
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

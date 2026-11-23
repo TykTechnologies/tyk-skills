@@ -1,0 +1,18 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Orders", "version": "1.0.0"},
+  "paths": {
+    "/anything/orders": {"get": {"operationId": "listOrders", "responses": {"200": {"description": "ok"}}}},
+    "/anything/reports": {"get": {"operationId": "getReports", "responses": {"200": {"description": "ok"}}}}
+  },
+  "components": {"securitySchemes": {"apiKey": {"type": "apiKey", "in": "header", "name": "Authorization"}}},
+  "security": [{"apiKey": []}],
+  "x-tyk-api-gateway": {
+    "info": {"id": "orders", "orgId": "default", "name": "Orders", "state": {"active": true}},
+    "upstream": {"url": "http://upstream:8080"},
+    "server": {
+      "listenPath": {"value": "/orders/", "strip": true},
+      "authentication": {"enabled": true, "securitySchemes": {"apiKey": {"enabled": true}}}
+    }
+  }
+}

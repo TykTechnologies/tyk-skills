@@ -1,0 +1,51 @@
+# Throwaway lab for custom plugins on the open source Tyk Gateway (no licence).
+# tyk-gateway: stock image, Go, JavaScript and gRPC plugins, bundles from the bundles service.
+# grpc-plugin: a Python gRPC plugin server built from the Gateway image's own .proto files.
+# --profile python adds tyk-gateway-python: the same Gateway with Python added, for Python plugins.
+# Not for production: install with the tyk-deployment-planner skill.
+name: tyk-plugin-lab
+
+x-gateway: &gateway
+  image: tykio/tyk-gateway:${TYK_GATEWAY_VERSION:?set TYK_GATEWAY_VERSION in .env}
+  # Your own uid:gid (lab.md writes it to .env), so the Gateway can write to the bind-mounted
+  # apps, policies and middleware folders. Without it the image's user (65532) is used.
+  user: "${LAB_USER:-65532:65532}"
+  environment:
+    TYK_GW_SECRET: ${TYK_GW_SECRET:?set TYK_GW_SECRET in .env}
+    TYK_GW_PUBLICKEYPATH: ${TYK_GW_PUBLICKEYPATH:-}
+  depends_on: [redis, upstream, bundles]
+  volumes:
+    - ./tyk.conf:/opt/tyk-gateway/tyk.conf:ro
+    - ./apps:/opt/tyk-gateway/apps
+    - ./policies:/opt/tyk-gateway/policies
+    - ./middleware:/opt/tyk-gateway/middleware
+    - ./plugins:/opt/tyk-gateway/plugins:ro
+
+services:
+  redis:
+    image: redis:7.2-alpine
+  upstream:
+    image: mccutchen/go-httpbin:2.25.0
+  bundles:   # serves ./bundles at http://bundles:8000/ (bundle_base_url)
+    image: python:3.12-slim
+    command: ["python", "-m", "http.server", "8000", "--directory", "/srv"]
+    volumes: ["./bundles:/srv:ro"]
+  grpc-plugin:
+    build: ./grpc
+  tyk-gateway:
+    <<: *gateway
+    ports: ["127.0.0.1:${GATEWAY_PORT:-8080}:8080"]
+  tyk-gateway-python:
+    <<: *gateway
+    image: tyk-gateway-python:${TYK_GATEWAY_VERSION:?}
+    build:
+      context: ./python-gw
+      args: {BASE_IMAGE: "tykio/tyk-gateway:${TYK_GATEWAY_VERSION:?}"}
+    volumes:   # its own middleware folder: each Gateway unpacks and checks its own bundles
+      - ./tyk.conf:/opt/tyk-gateway/tyk.conf:ro
+      - ./apps:/opt/tyk-gateway/apps
+      - ./policies:/opt/tyk-gateway/policies
+      - ./middleware-python:/opt/tyk-gateway/middleware
+      - ./plugins:/opt/tyk-gateway/plugins:ro
+    ports: ["127.0.0.1:${PYTHON_GATEWAY_PORT:-8081}:8080"]
+    profiles: ["python"]

@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "js-hooks",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "js-hooks",
+      "orgId": "default",
+      "name": "js-hooks",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/js-hooks/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "securitySchemes": {
+          "apiKey": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "transformRequestHeaders": {
+          "enabled": true,
+          "add": [
+            {
+              "name": "X-Builtin",
+              "value": "yes"
+            }
+          ]
+        },
+        "pluginConfig": {
+          "driver": "javascript"
+        },
+        "prePlugins": [
+          {
+            "enabled": true,
+            "functionName": "orderPre",
+            "path": "/opt/tyk-gateway/plugins/js/order.js"
+          }
+        ],
+        "postAuthenticationPlugins": [
+          {
+            "enabled": true,
+            "functionName": "orderPostAuth",
+            "path": "/opt/tyk-gateway/plugins/js/order.js",
+            "requireSession": true
+          }
+        ],
+        "postPlugins": [
+          {
+            "enabled": true,
+            "functionName": "orderPost",
+            "path": "/opt/tyk-gateway/plugins/js/order.js",
+            "requireSession": true
+          }
+        ],
+        "responsePlugins": [
+          {
+            "enabled": true,
+            "functionName": "orderResponse",
+            "path": "/opt/tyk-gateway/plugins/js/order.js",
+            "requireSession": true
+          }
+        ]
+      }
+    }
+  }
+}

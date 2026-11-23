@@ -1,0 +1,35 @@
+name: Wrong fact
+description: A statement in a skill is contradicted by a running Tyk stack or a public page.
+title: "[wrong fact] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Facts are corrected only against something anyone can check: a run on a Tyk stack or a public page. Do not paste licences, credentials or private keys.
+  - type: input
+    id: skill
+    attributes:
+      label: Skill and file
+      description: For example `tyk-facts`, `references/licensing-and-packaging.md`.
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: The statement as written
+      description: Quote the line or lines.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: What is true instead, and how you know
+      description: The public page (URL), or the command you ran with its real response, the image tag and the date.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Tyk versions
+      description: For example Gateway 5.16.0, Dashboard 5.16.0.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Demo Builder"
+  short_description: "Build and prove a Tyk demo or proof of concept"
+  default_prompt: "Use $tyk-demo-builder to build and fully verify a Tyk demo or proof of concept bundle from the provided requirements."
+policy:
+  allow_implicit_invocation: true

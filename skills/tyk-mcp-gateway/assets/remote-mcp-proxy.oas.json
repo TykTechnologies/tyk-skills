@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Orders MCP",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "authToken": []
+    }
+  ],
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "orders-mcp",
+      "name": "Orders MCP",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "__MCP_SERVER_URL__"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/orders-mcp/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "stripAuthorizationData": true,
+        "securitySchemes": {
+          "authToken": {
+            "enabled": true,
+            "header": {
+              "enabled": true,
+              "name": "Authorization"
+            }
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "trafficLogs": {
+          "enabled": true
+        }
+      },
+      "mcpTools": {
+        "delete_user": {
+          "block": {
+            "enabled": true
+          }
+        },
+        "create_user": {
+          "rateLimit": {
+            "enabled": true,
+            "rate": 1,
+            "per": "5s"
+          }
+        }
+      }
+    }
+  }
+}

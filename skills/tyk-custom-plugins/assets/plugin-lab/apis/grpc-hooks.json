@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "grpc-hooks",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "grpc-hooks",
+      "orgId": "default",
+      "name": "grpc-hooks",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/grpc-hooks/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "securitySchemes": {
+          "apiKey": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "pluginConfig": {
+          "driver": "grpc",
+          "data": {
+            "enabled": true,
+            "value": {
+              "region": "eu"
+            }
+          }
+        },
+        "prePlugins": [
+          {
+            "enabled": true,
+            "functionName": "GrpcPre"
+          }
+        ],
+        "postPlugins": [
+          {
+            "enabled": true,
+            "functionName": "GrpcPost",
+            "requireSession": true
+          }
+        ],
+        "responsePlugins": [
+          {
+            "enabled": true,
+            "functionName": "GrpcResponse",
+            "requireSession": true
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

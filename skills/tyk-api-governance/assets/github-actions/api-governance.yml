@@ -1,0 +1,49 @@
+# Pull-request gate for Tyk OAS and OpenAPI files under apis/.
+# Copy to .github/workflows/api-governance.yml, copy scripts/governance_check.py to ci/,
+# and export the rulesets you lint offline into governance/rulesets/ with
+#   python3 ci/governance_check.py export --ruleset-ids <id>,<id> --out governance/rulesets
+# Secrets: TYK_DASHBOARD_URL, TYK_DASHBOARD_TOKEN (a dedicated CI user; the public CI page asks
+# for apis: write, apis: read was enough on Dashboard 5.16.0; grant write if the sandbox answers 403).
+name: API governance
+
+on:
+  pull_request:
+    paths: ["apis/**", "governance/rulesets/**"]
+
+jobs:
+  offline-lint:
+    # Same rules, no Dashboard access. vacuum v0.26.7 matched the Dashboard 5.16.0 sandbox on
+    # every comparison in the skill's ci-gates reference; newer vacuum releases did not.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: vacuum lint
+        run: |
+          for spec in apis/*.json; do
+            for ruleset in governance/rulesets/*; do
+              docker run --rm -v "$PWD:/work:ro" -w /work dshanley/vacuum:v0.26.7 \
+                lint -r "$ruleset" -d -b "$spec"
+            done
+          done
+
+  dashboard-gate:
+    # The authoritative check: the Dashboard's own engine and the rulesets it holds today.
+    runs-on: ubuntu-latest
+    env:
+      TYK_DASHBOARD_URL: ${{ secrets.TYK_DASHBOARD_URL }}
+      TYK_DASHBOARD_TOKEN: ${{ secrets.TYK_DASHBOARD_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tyk Governance sandbox
+        # Two calls per file: the Dashboard's rulesets for the category as they are, then the
+        # OWASP template by ID, so the HTTPS rule stays at error in CI even when the Dashboard
+        # ruleset has it at warn. Each call exits non-zero on its own; the step fails on either.
+        run: |
+          set -e
+          for spec in apis/*.json; do
+            id="$(basename "$spec" .json)"
+            python3 ci/governance_check.py check "$spec" --strictness standard \
+              --categories payments --api-id "$id"
+            python3 ci/governance_check.py check "$spec" --strictness standard \
+              --ruleset-ids spectral-owasp --api-id "$id"
+          done

@@ -1,0 +1,179 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Orders API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/orders": {
+      "get": {
+        "operationId": "listOrders",
+        "summary": "List orders",
+        "description": "Return the orders, optionally filtered by status.",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by order status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "open",
+                "shipped"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Orders"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrder",
+        "summary": "Create an order",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sku",
+                  "quantity"
+                ],
+                "properties": {
+                  "sku": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "operationId": "getOrder",
+        "summary": "Get one order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Tenant",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Cancel an order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Cancelled"
+          }
+        }
+      }
+    }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "orders-api",
+      "name": "Orders API",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "__REST_UPSTREAM_URL__"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/orders-api/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "securitySchemes": {
+          "authToken": {
+            "enabled": true,
+            "header": {
+              "enabled": true,
+              "name": "Authorization"
+            }
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "trafficLogs": {
+          "enabled": true
+        },
+        "transformRequestHeaders": {
+          "enabled": true,
+          "add": [
+            {
+              "name": "X-Backend-Key",
+              "value": "kv://env/ORDERS_BACKEND_KEY"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "authToken": []
+    }
+  ]
+}

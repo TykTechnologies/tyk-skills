@@ -1,0 +1,29 @@
+# Adds Elasticsearch 7 and an Elasticsearch pump to the one Tyk Pump in compose.yaml.
+# Keep one Pump per Redis: two Pump processes reading the same Redis split the records
+# between them instead of copying them.
+#   docker compose -p tyk-obs-lab -f compose.yaml -f compose.elasticsearch.yaml up -d
+services:
+  tyk-pump:
+    environment:
+      TYK_PMP_PUMPS_ES_TYPE: elasticsearch
+      TYK_PMP_PUMPS_ES_META_ELASTICSEARCHURL: http://elasticsearch:9200
+      # Pump 1.18 accepts 3, 5, 6 or 7 here.
+      TYK_PMP_PUMPS_ES_META_VERSION: "7"
+      TYK_PMP_PUMPS_ES_META_INDEXNAME: tyk_analytics
+      # Send a batch every second. Without it a batch waits for 1,000 records.
+      TYK_PMP_PUMPS_ES_META_BULKCONFIG_FLUSHINTERVAL: "1"
+    depends_on:
+      elasticsearch: {condition: service_healthy}
+
+  elasticsearch:
+    image: ${ES_IMAGE:-elasticsearch:7.17.28}
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    ports: ["127.0.0.1:${ES_PORT:-9200}:9200"]
+    healthcheck:
+      test: [CMD-SHELL, "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 40

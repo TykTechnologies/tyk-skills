@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Proof of Concept Runbook"
+  short_description: "Plan, run and report a Tyk proof of concept against agreed acceptance criteria"
+  default_prompt: "Use $tyk-poc-runbook to plan the Tyk proof of concept from the stated requirements, map each acceptance criterion to demo builder modules, run the tests, keep the evidence and write the report."
+policy:
+  allow_implicit_invocation: true

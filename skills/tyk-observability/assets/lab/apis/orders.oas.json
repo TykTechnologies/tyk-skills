@@ -1,0 +1,140 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Orders API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/anything/orders": {
+      "get": {
+        "operationId": "listOrders",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/anything/orders/{id}": {
+      "get": {
+        "operationId": "getOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/status/{code}": {
+      "get": {
+        "operationId": "getStatus",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "The status asked for"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "authToken": []
+    }
+  ],
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "orders",
+      "name": "Orders API",
+      "orgId": "default",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/orders-api/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "securitySchemes": {
+          "authToken": {
+            "enabled": true
+          }
+        }
+      },
+      "detailedTracing": {
+        "enabled": true
+      }
+    },
+    "middleware": {
+      "global": {
+        "trafficLogs": {
+          "enabled": true,
+          "tagHeaders": [
+            "X-Team"
+          ]
+        },
+        "contextVariables": {
+          "enabled": true
+        },
+        "pluginConfig": {
+          "data": {
+            "enabled": true,
+            "value": {
+              "team": "payments"
+            }
+          }
+        },
+        "transformRequestHeaders": {
+          "enabled": true,
+          "add": [
+            {
+              "name": "X-Cost-Centre",
+              "value": "$tyk_meta.cost_centre"
+            }
+          ]
+        }
+      },
+      "operations": {
+        "getOrder": {
+          "trackEndpoint": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  }
+}

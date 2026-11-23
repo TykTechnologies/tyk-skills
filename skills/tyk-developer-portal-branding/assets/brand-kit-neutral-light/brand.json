@@ -1,0 +1,30 @@
+{
+  "placeholder": true,
+  "name": "Example Labs",
+  "portal_name": "Example Labs API Portal",
+  "theme_name": "example-labs",
+  "nav_label": "API Portal",
+  "lang": "en",
+  "portal_url": "https://developers.example.org",
+  "support_email": "api-support@example.org",
+  "logo": {
+    "on_light": "logo.svg",
+    "alt": "Example Labs",
+    "height": 30
+  },
+  "favicon": "favicon.svg",
+  "images": {
+    "hero": "hero.svg",
+    "about": "about.svg"
+  },
+  "colors": {
+    "primary": "#F59E0B",
+    "nav_bg": "#FFFFFF",
+    "dark": "#1F2937"
+  },
+  "footer_text": "© 2026 Example Labs",
+  "sources": {
+    "logo": "Placeholder drawn for this kit. Replace with the organisation's own files, unmodified.",
+    "colors": "Placeholder palette: a light primary colour and a white navigation bar."
+  }
+}

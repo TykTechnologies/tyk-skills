@@ -1,0 +1,71 @@
+{
+  "id": "__POLICY_ID__",
+  "name": "MCP reader agent",
+  "org_id": "__ORG_ID__",
+  "active": true,
+  "rate": 1000,
+  "per": 60,
+  "quota_max": -1,
+  "quota_renewal_rate": 3600,
+  "access_rights": {
+    "orders-mcp": {
+      "api_id": "orders-mcp",
+      "api_name": "Orders MCP",
+      "versions": [
+        "Default"
+      ],
+      "mcp_access_rights": {
+        "tools": {
+          "allowed": [
+            "get_.*",
+            "generate_uuid"
+          ],
+          "blocked": [
+            "get_analytics"
+          ]
+        },
+        "resources": {},
+        "prompts": {}
+      },
+      "mcp_primitives": [
+        {
+          "type": "tool",
+          "name": "generate_uuid",
+          "limit": {
+            "rate": 2,
+            "per": 60
+          }
+        }
+      ],
+      "json_rpc_methods_access_rights": {
+        "blocked": [
+          "prompts/list",
+          "prompts/get"
+        ]
+      },
+      "json_rpc_methods": [
+        {
+          "name": "tools/list",
+          "limit": {
+            "rate": 30,
+            "per": 60
+          }
+        }
+      ]
+    },
+    "orders-rest-mcp": {
+      "api_id": "orders-rest-mcp",
+      "api_name": "Orders as MCP",
+      "versions": [
+        "Default"
+      ]
+    },
+    "orders-mcp-oauth": {
+      "api_id": "orders-mcp-oauth",
+      "api_name": "Orders MCP (OAuth)",
+      "versions": [
+        "Default"
+      ]
+    }
+  }
+}

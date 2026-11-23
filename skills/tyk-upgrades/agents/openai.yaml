@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Upgrades"
+  short_description: "Plan, run and prove a Tyk upgrade with backups, ordering and a state diff"
+  default_prompt: "Use $tyk-upgrades to plan and run the Tyk upgrade in the documented order, take backups first, check the breaking changes between the two versions, snapshot the stack's APIs, policies, keys and Portal products before and after, and prove the result or roll back."
+policy:
+  allow_implicit_invocation: true

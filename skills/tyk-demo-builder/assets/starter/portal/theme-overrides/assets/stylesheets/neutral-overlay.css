@@ -1,0 +1,12 @@
+/*
+ * Overlay loaded after the default theme's stylesheets. Colours do not belong here: the
+ * default theme paints the navigation, buttons, links, hero and footer from its --tdp-*
+ * CSS variables, so element selectors (even with !important) have no visible effect.
+ * portal/build-theme.py appends a :root block that overrides those variables from
+ * portal/brand/brand.json, plus the brand's button, font and logo rules.
+ */
+
+.navbar,
+.portal-navigation {
+  box-shadow: 0 1px 0 rgba(23, 35, 61, 0.12);
+}

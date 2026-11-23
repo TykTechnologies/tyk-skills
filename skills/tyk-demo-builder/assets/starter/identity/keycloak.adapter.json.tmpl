@@ -1,0 +1,7 @@
+{
+  "mode": "keycloak",
+  "issuer": "${KEYCLOAK_BASE_URL}/realms/${KEYCLOAK_REALM}",
+  "audience": "${KEYCLOAK_AUDIENCE}",
+  "jwks_url": "${KEYCLOAK_BASE_URL}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs",
+  "registration_endpoint": "${KEYCLOAK_BASE_URL}/realms/${KEYCLOAK_REALM}/clients-registrations/openid-connect"
+}

@@ -1,0 +1,41 @@
+name: Skill does not trigger, or triggers wrongly
+description: An agent did not use a skill when it should have, or used one when it should not.
+title: "[triggering] "
+labels: [bug]
+body:
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Your prompt
+      description: The exact words you typed. Remove anything confidential.
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: The skill you expected
+      description: Or "none" if no skill should have run.
+    validations:
+      required: true
+  - type: input
+    id: actual
+    attributes:
+      label: What happened
+      description: The skill that ran instead, or "none".
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agent
+      options:
+        - Claude Code
+        - Codex
+        - Another agent through the skills CLI
+    validations:
+      required: true
+  - type: input
+    id: install
+    attributes:
+      label: How you installed the skills, and the plugin version
+      description: For example "plugin marketplace, v0.1.0" or "install-skill.sh from a clone at commit abc1234".

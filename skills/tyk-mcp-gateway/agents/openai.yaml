@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk MCP Gateway"
+  short_description: "Put MCP servers behind Tyk Gateway and expose REST APIs as MCP tools"
+  default_prompt: "Use $tyk-mcp-gateway to put an MCP server behind Tyk Gateway or expose a REST API as MCP tools, with authentication, per-tool access and limits, and to say which edition each part needs, proving every step with an MCP client."
+policy:
+  allow_implicit_invocation: true

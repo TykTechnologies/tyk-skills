@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk API Definitions and Routing"
+  short_description: "Write, import and change Tyk OAS API definitions that load and behave as intended"
+  default_prompt: "Use $tyk-api-definitions-routing to write or import the Tyk OAS API definition, check it with the bundled script, load it through the Gateway API or the Dashboard API, and verify the listen path, path matching and per-operation middleware against real responses."
+policy:
+  allow_implicit_invocation: true

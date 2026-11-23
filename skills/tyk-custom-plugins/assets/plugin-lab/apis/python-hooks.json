@@ -1,0 +1,66 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "python-hooks",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "python-hooks",
+      "orgId": "default",
+      "name": "python-hooks",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/python-hooks/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "securitySchemes": {
+          "apiKey": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "pluginConfig": {
+          "driver": "python",
+          "bundle": {
+            "enabled": true,
+            "path": "py-v1.zip"
+          },
+          "data": {
+            "enabled": true,
+            "value": {
+              "region": "eu"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

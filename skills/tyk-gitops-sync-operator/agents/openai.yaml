@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk GitOps: Sync, Operator, Files"
+  short_description: "Put Tyk APIs and policies under version control and deliver them through CI"
+  default_prompt: "Use $tyk-gitops-sync-operator to choose between Tyk Sync, Tyk Operator and plain files for the open source Gateway, put the Tyk configuration under version control, deliver it through CI, and prove promotion, drift correction and rollback on the running stack."
+policy:
+  allow_implicit_invocation: true

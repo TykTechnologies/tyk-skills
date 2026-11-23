@@ -1,0 +1,7 @@
+{
+  "file_list": ["stamp.js"],
+  "custom_middleware": {
+    "driver": "javascript",
+    "pre": [{"name": "bundleStamp", "path": "stamp.js"}]
+  }
+}

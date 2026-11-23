@@ -1,0 +1,77 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "virtual",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/hello": {
+      "get": {
+        "operationId": "hello",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/aggregate": {
+      "get": {
+        "operationId": "aggregate",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "virtual",
+      "orgId": "default",
+      "name": "virtual",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/virtual/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "global": {
+        "pluginConfig": {
+          "data": {
+            "enabled": true,
+            "value": {
+              "region": "eu"
+            }
+          },
+          "driver": "javascript"
+        }
+      },
+      "operations": {
+        "hello": {
+          "virtualEndpoint": {
+            "enabled": true,
+            "functionName": "veHello",
+            "path": "/opt/tyk-gateway/plugins/js/virtual.js"
+          }
+        },
+        "aggregate": {
+          "virtualEndpoint": {
+            "enabled": true,
+            "functionName": "veAggregate",
+            "path": "/opt/tyk-gateway/plugins/js/virtual.js"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+FROM python:3.12-alpine
+COPY requirements-graphql.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY graphql_server.py /app/server.py
+CMD ["python", "/app/server.py"]

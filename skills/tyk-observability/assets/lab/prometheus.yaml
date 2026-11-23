@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 10s
+scrape_configs:
+  # Gateway metrics, through the OpenTelemetry Collector.
+  - job_name: otel-collector
+    # Keep the job (service.name) and instance (Gateway id) that the Gateway sends.
+    honor_labels: true
+    static_configs:
+      - targets: [otel-collector:8889]
+  # Tyk Pump's Prometheus pump (built from analytics records).
+  - job_name: tyk-pump
+    static_configs:
+      - targets: [tyk-pump:9090]

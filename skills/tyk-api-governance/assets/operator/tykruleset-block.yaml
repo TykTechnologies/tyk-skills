@@ -1,0 +1,36 @@
+# A Governance ruleset managed by Tyk Operator 1.6.0. action: block makes the Operator's
+# admission webhook deny a TykOasApiDefinition in the same namespace whose categories
+# intersect this ruleset's and that has at least one error-severity finding.
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykRuleset
+metadata:
+  name: payments-standards
+  namespace: tyk
+spec:
+  name: Payments standards
+  description: Operations need an operationId and the Gateway must authenticate.
+  active: true
+  action: block
+  resourceType: oas-api
+  categories: [payments]
+  ruleset:
+    raw: |
+      rules:
+        tyk-operation-id-required:
+          description: Tyk keys per-operation middleware by operationId.
+          message: Operation has no operationId.
+          severity: error
+          given: "$.paths[*][get,put,post,patch,delete,head,options]"
+          then:
+            field: operationId
+            function: truthy
+          howToFix: Add a unique operationId to every operation.
+        tyk-authentication-enabled:
+          description: The Gateway must authenticate every request to this API.
+          message: x-tyk-api-gateway.server.authentication.enabled is not true.
+          severity: error
+          given: "$['x-tyk-api-gateway'].server"
+          then:
+            field: authentication.enabled
+            function: truthy
+          howToFix: Set x-tyk-api-gateway.server.authentication.enabled to true.

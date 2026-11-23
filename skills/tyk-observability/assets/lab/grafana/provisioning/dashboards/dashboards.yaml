@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: tyk
+    folder: Tyk
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

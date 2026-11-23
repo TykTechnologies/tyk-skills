@@ -1,0 +1,36 @@
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: __SLUG__-operator-policy
+  namespace: default
+  labels:
+    demo.tyk.io/owner: platform
+    demo.tyk.io/team: api-platform
+  annotations:
+    demo.tyk.io/purpose: neutral-operator-proof
+spec:
+  contextRef:
+    name: __SLUG__-team-context
+    namespace: default
+  name: __DISPLAY_NAME__ Operator Policy
+  state: active
+  active: true
+  rate: 60
+  per: 60
+  quota_max: 1000
+  quota_renewal_rate: 3600
+  partitions:
+    acl: true
+    quota: true
+    rate_limit: true
+  access_rights_array:
+    # kind defaults to ApiDefinition (classic); an OAS API must say so or the policy never links.
+    - kind: TykOasApiDefinition
+      name: __SLUG__-operator-api
+      namespace: default
+      versions:
+        - Default
+  meta_data:
+    owner: platform
+    team: api-platform
+    source: tyk-operator

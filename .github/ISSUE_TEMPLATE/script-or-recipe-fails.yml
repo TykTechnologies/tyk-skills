@@ -1,0 +1,38 @@
+name: Script or recipe fails
+description: A script, generated bundle, lab stack or documented step does not work.
+title: "[fails] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove licences, credentials, tokens, private keys and customer names from anything you paste.
+  - type: input
+    id: skill
+    attributes:
+      label: Skill and script or step
+      description: For example `tyk-demo-builder`, `scripts/verify-demo.sh`, or a numbered step in a reference.
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: The error and the lines just before it.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system and architecture, Docker and Compose versions, Python version, Tyk image tags, plugin version.
+    validations:
+      required: true

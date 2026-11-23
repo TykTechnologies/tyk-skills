@@ -1,0 +1,63 @@
+# Operator-side hard block. This is the only enforcement that refuses a non-compliant API
+# outright: the Dashboard and REST paths are warn-only and save successfully.
+#
+# Requires tyk-operator v1.5.0 or later (the release that added TykRuleset); proved on
+# v1.6.0 with Dashboard and Gateway 5.16.0.
+#
+# `action: block` is Operator-only and is stored as `warn` on the Dashboard. It is enforced
+# by a validating admission webhook on TykOasApiDefinition create and update only: editing
+# the referenced OAS ConfigMap bypasses it, and the preflight sees only TykRuleset CRs, not
+# Dashboard-created rulesets.
+#
+# The category is __SLUG__-gitops, deliberately separate from the __SLUG__-payments category
+# the Dashboard OWASP and Gateway Standards rulesets use, so each plane governs its own APIs
+# and the Operator preflight (which sees only TykRuleset CRs) never disagrees with the
+# Dashboard view. The Dashboard rejects a ruleset whose category no API carries, so
+# verify-governance.sh applies the compliant twin (which creates the category) first.
+#
+# Apply the namespace-substituted copy that apply-operator.sh renders, not this source file:
+# the namespace below is still the literal default, so applying this file unrendered would
+# create the ruleset in the wrong namespace whenever TYK_OPERATOR_NAMESPACE is set.
+#
+#   ./operator/apply-operator.sh
+#   ./operator/verify-governance.sh   # applies .runtime/operator/tyk-ruleset.yaml, proves GOV-003
+#
+# or by hand: ./operator/kubectl.sh apply -f .runtime/operator/tyk-ruleset.yaml
+# (a bare kubectl would hit your own current context: the kind cluster's credentials live
+# only in .runtime/operator-kubeconfig; see operator/README.md).
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykRuleset
+metadata:
+  name: __SLUG__-governed-standards
+  namespace: default
+  labels:
+    demo.tyk.io/owner: platform
+    demo.tyk.io/team: api-platform
+  annotations:
+    demo.tyk.io/purpose: neutral-governance-hard-block
+spec:
+  name: __DISPLAY_NAME__ Operator Hard Block
+  description: Admission-time hard block for the __SLUG__-gitops category.
+  active: true
+  action: block
+  resourceType: oas-api
+  categories:
+    - __SLUG__-gitops
+  # A self-contained rule, not `extends: [["spectral:oas", "off"]]` plus a severity override:
+  # on Dashboard 5.16.0 that shape found 0 errors in a spec with no operationIds, so it would
+  # silently block nothing. The message is literal because `{{description}}` is returned
+  # verbatim, and would appear that way in the kubectl denial and the Dashboard.
+  ruleset:
+    raw: |-
+      {
+        "rules": {
+          "operation-operationid-required": {
+            "description": "Every operation must declare an operationId",
+            "message": "Operation has no operationId.",
+            "severity": "error",
+            "given": "$.paths[*][get,put,post,delete,options,head,patch,trace]",
+            "then": {"field": "operationId", "function": "truthy"},
+            "howToFix": "Add a unique operationId to every operation so generated clients and change tracking stay stable."
+          }
+        }
+      }

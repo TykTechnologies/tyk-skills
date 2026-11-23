@@ -1,0 +1,19 @@
+.DS_Store
+.env
+.runtime/
+generated/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.so
+*.dylib
+*.dll
+__pycache__/
+*.py[cod]
+.claude/settings.local.json
+.claude/worktrees/
+
+# Local archives
+*.zip

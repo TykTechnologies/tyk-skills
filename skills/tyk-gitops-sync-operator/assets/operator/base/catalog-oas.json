@@ -1,0 +1,15 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Catalog", "version": "1.0.0"},
+  "paths": {"/items": {"get": {"operationId": "listItems", "responses": {"200": {"description": "ok"}}}}},
+  "components": {"securitySchemes": {"apiKey": {"type": "apiKey", "in": "header", "name": "Authorization"}}},
+  "security": [{"apiKey": []}],
+  "x-tyk-api-gateway": {
+    "info": {"name": "Catalog", "state": {"active": true}},
+    "server": {
+      "listenPath": {"value": "/catalog/", "strip": true},
+      "authentication": {"enabled": true, "securitySchemes": {"apiKey": {"enabled": true}}}
+    },
+    "upstream": {"url": "kv://env/ORDERS_UPSTREAM"}
+  }
+}

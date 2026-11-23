@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Developer Portal Setup"
+  short_description: "Set up the Tyk Developer Portal so developers can sign up, get credentials and call your APIs"
+  default_prompt: "Use $tyk-developer-portal-setup to connect the Tyk Developer Portal to the Dashboard, publish products and plans in catalogues, set sign-up and approval, issue auth tokens or OAuth clients by DCR, and prove that a developer can sign up and call an API with the issued credential."
+policy:
+  allow_implicit_invocation: true

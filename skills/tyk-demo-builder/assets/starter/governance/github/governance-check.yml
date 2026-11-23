@@ -1,0 +1,97 @@
+name: Neutral Tyk governance check
+
+on:
+  pull_request:
+    paths:
+      - "apis/**"
+  workflow_dispatch:
+    inputs:
+      spec_path:
+        description: Relative path of a single OAS document to evaluate
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    env:
+      TYK_DASHBOARD_URL: ${{ secrets.TYK_DASHBOARD_URL }}
+      TYK_DASHBOARD_TOKEN: ${{ secrets.TYK_DASHBOARD_TOKEN }}
+      # Workflow inputs reach the script through the environment, never through ${{ }}
+      # interpolation inside run:, so a crafted value cannot be spliced into the shell.
+      SPEC_PATH: ${{ inputs.spec_path }}
+      CATEGORIES: __SLUG__-payments
+      API_NAME: __DISPLAY_NAME__ pull request check
+      # The demo ships one deliberately non-compliant specification as its "before" state.
+      # Linting it in the gating loop would make this workflow red on a fresh bundle, so it
+      # is excluded here and asserted to fail in its own step below.
+      NEGATIVE_EXAMPLE: apis/__SLUG__-governed-legacy.oas.json
+    steps:
+      - uses: actions/checkout@v4
+
+      # The sandbox persists nothing and needs only the apis:read permission, so a
+      # read-scoped Dashboard token is enough for a pull-request gate.
+      #
+      # Exit codes: 0 compliant, 1 warnings only, 2 non-compliant, 3 could not evaluate.
+      # Warnings are reported without failing the job; both 2 and 3 fail it, because a
+      # specification that could not be evaluated has not been shown to be compliant.
+      - name: Evaluate API compliance
+        run: |
+          set -uo pipefail
+          if [ -n "${SPEC_PATH}" ]; then
+            specs="${SPEC_PATH}"
+          else
+            # Deterministic order so a failure is reproducible and reviewable.
+            specs="$(find apis -maxdepth 1 -name '*.oas.json' \
+              ! -name '*-governed-legacy.oas.json' | sort)"
+          fi
+          if [ -z "${specs}" ]; then
+            echo "No OAS documents found under apis/." >&2
+            exit 1
+          fi
+          # api_id must be stable across commits so issue IDs stay comparable between runs;
+          # the spec filename is stable, the commit SHA is not.
+          overall=0
+          for spec in ${specs}; do
+            echo "::group::${spec}"
+            status=0
+            ./governance/governance-check.sh "${spec}" \
+              --categories "${CATEGORIES}" \
+              --api-id "$(basename "${spec}" .oas.json)" \
+              --api-name "${API_NAME}" || status=$?
+            echo "::endgroup::"
+            case "${status}" in
+              0) echo "${spec}: compliant" ;;
+              1) echo "::warning file=${spec}::Compliant with warning-severity findings." ;;
+              2) echo "::error file=${spec}::Non-compliant."; overall=1 ;;
+              *) echo "::error file=${spec}::Could not evaluate (exit ${status})."; overall=1 ;;
+            esac
+          done
+          exit "${overall}"
+
+      # Proving the gate can fail is as important as proving it can pass: a check that never
+      # rejects anything is indistinguishable from a broken one. This step passes only when
+      # the known-bad specification is rejected with exit 2, and fails if it is somehow
+      # accepted or could not be evaluated at all.
+      - name: Assert the gate rejects the known-bad specification
+        if: ${{ inputs.spec_path == '' }}
+        run: |
+          set -uo pipefail
+          if [ ! -f "${NEGATIVE_EXAMPLE}" ]; then
+            echo "${NEGATIVE_EXAMPLE} is absent; nothing to assert."
+            exit 0
+          fi
+          status=0
+          ./governance/governance-check.sh "${NEGATIVE_EXAMPLE}" \
+            --categories "${CATEGORIES}" \
+            --api-id "${GITHUB_REPOSITORY##*/}-negative" \
+            --api-name "${API_NAME} negative control" || status=$?
+          if [ "${status}" -eq 2 ]; then
+            echo "${NEGATIVE_EXAMPLE}: correctly rejected (exit 2)."
+            exit 0
+          fi
+          echo "::error::Expected exit 2 for ${NEGATIVE_EXAMPLE}, got ${status}." >&2
+          exit 1

@@ -1,0 +1,20 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Order events out", "version": "1.0.0"},
+  "paths": {},
+  "components": {"securitySchemes": {"key": {"type": "apiKey", "in": "header", "name": "Authorization"}}},
+  "security": [{"key": []}],
+  "x-tyk-api-gateway": {
+    "info": {"id": "order-events-out", "orgId": "default", "name": "Order events out", "state": {"active": true}},
+    "upstream": {"url": ""},
+    "server": {"listenPath": {"value": "/order-events/", "strip": true},
+      "authentication": {"enabled": true, "stripAuthorizationData": true, "securitySchemes": {"key": {"enabled": true}}}},
+    "middleware": {"global": {"contextVariables": {"enabled": true}}}
+  },
+  "x-tyk-streaming": {"streams": {"subscribe": {
+    "input": {"kafka": {"addresses": ["kafka:9092"], "topics": ["orders"],
+      "consumer_group": "order-feed-$tyk_meta.partner", "start_from_oldest": false}},
+    "output": {"http_server": {"path": "/next", "stream_path": "/sse", "stream_format": "event_source",
+      "ws_path": "/ws", "allowed_verbs": ["GET"]}}
+  }}}
+}

@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Realtime", "version": "1.0.0"},
+  "paths": {},
+  "components": {"securitySchemes": {"key": {"type": "apiKey", "in": "header", "name": "Authorization"}}},
+  "security": [{"key": []}],
+  "x-tyk-api-gateway": {
+    "info": {"id": "realtime", "orgId": "default", "name": "Realtime", "state": {"active": true}},
+    "upstream": {"url": "http://upstream:8080"},
+    "server": {"listenPath": {"value": "/realtime/", "strip": true},
+      "authentication": {"enabled": true, "stripAuthorizationData": true, "securitySchemes": {"key": {"enabled": true}}}}
+  }
+}

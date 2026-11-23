@@ -1,0 +1,41 @@
+{
+  "placeholder": true,
+  "name": "Example Corp",
+  "portal_name": "Example Corp Developers",
+  "theme_name": "example-corp",
+  "nav_label": "Developers",
+  "lang": "en",
+  "portal_url": "https://developers.example.com",
+  "support_email": "developers@example.com",
+  "logo": {
+    "on_light": "logo.svg",
+    "on_dark": "logo-on-dark.svg",
+    "email": "logo-email.png",
+    "alt": "Example Corp",
+    "height": 30
+  },
+  "favicon": "favicon.svg",
+  "images": {
+    "hero": "hero.svg",
+    "about": "about.svg"
+  },
+  "colors": {
+    "primary": "#0F766E",
+    "dark": "#0B1F1D"
+  },
+  "footer_text": "© 2026 Example Corp",
+  "footer_links": [
+    {
+      "label": "Terms",
+      "href": "/terms"
+    },
+    {
+      "label": "Contact",
+      "href": "mailto:developers@example.com"
+    }
+  ],
+  "sources": {
+    "logo": "Placeholder drawn for this kit. Replace with the organisation's own files, unmodified.",
+    "colors": "Placeholder palette."
+  }
+}

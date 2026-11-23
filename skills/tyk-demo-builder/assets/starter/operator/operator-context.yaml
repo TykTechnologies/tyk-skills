@@ -1,0 +1,15 @@
+apiVersion: tyk.tyk.io/v1alpha1
+kind: OperatorContext
+metadata:
+  name: __SLUG__-team-context
+  namespace: default
+  labels:
+    demo.tyk.io/owner: platform
+    demo.tyk.io/team: api-platform
+spec:
+  secretRef:
+    name: __SLUG__-operator-connection
+    namespace: default
+  env:
+    mode: pro
+    insecureSkipVerify: false

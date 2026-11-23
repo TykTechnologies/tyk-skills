@@ -1,0 +1,53 @@
+{
+  "name": "tyk-skills",
+  "version": "0.1.0",
+  "description": "Evaluate and use Tyk with an AI coding agent: verified facts, Tyk OAS API definitions, rate limits and policies, GitOps delivery, MCP and AI gateways, Developer Portal branding, a working proof of concept, architecture diagrams, infrastructure sizing, production deployment and migration planning.",
+  "author": {
+    "name": "Tyk Technologies",
+    "url": "https://github.com/TykTechnologies/tyk-skills"
+  },
+  "repository": "https://github.com/TykTechnologies/tyk-skills",
+  "keywords": [
+    "tyk",
+    "api-gateway",
+    "api-management",
+    "ai-gateway",
+    "mcp",
+    "proof-of-concept",
+    "sizing",
+    "migration",
+    "rate-limiting",
+    "gitops",
+    "tyk-sync",
+    "tyk-operator",
+    "developer-portal",
+    "openapi",
+    "llm-gateway"
+  ],
+  "interface": {
+    "displayName": "Tyk Skills",
+    "developerName": "Tyk Technologies",
+    "shortDescription": "Evaluate Tyk with an AI coding agent.",
+    "longDescription": "Check any Tyk fact against the public documentation and a running stack; write Tyk OAS API definitions that load and behave as intended; give each consumer its own rate limit and quota; deliver configuration through CI with Tyk Sync, Tyk Operator or plain files; put MCP servers behind Tyk Gateway and turn REST APIs into MCP tools; run Tyk AI Studio as an AI gateway; brand the Developer Portal end to end; build and verify a Docker Compose proof of concept; draw the deployment; size the infrastructure; plan, run and audit a production install from the public tyk-install repository; and map a Kong, Apigee or other gateway estate onto Tyk.",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Is Tyk Gateway open source, and which parts need a licence?",
+      "Give partner A 100 requests a second and partner B 10 on the same Tyk API, and prove it.",
+      "Expose our Orders OpenAPI as MCP tools through Tyk Gateway with OAuth.",
+      "We run Kong today. Map our plugins and workflow onto Tyk."
+    ],
+    "websiteURL": "https://tyk.io/docs/",
+    "supportURL": "https://github.com/TykTechnologies/tyk-skills/issues",
+    "privacyPolicyURL": "https://tyk.io/privacy-policy/",
+    "termsOfServiceURL": "https://tyk.io/terms-conditions/",
+    "logo": "./assets/tyk-icon.png",
+    "composerIcon": "./assets/tyk-icon.png"
+  },
+  "skills": "./skills/",
+  "homepage": "https://tyk.io/docs/",
+  "license": "MPL-2.0"
+}

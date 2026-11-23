@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Observability"
+  short_description: "Make Tyk Gateway traffic visible with OpenTelemetry, Tyk Pump, Dashboard analytics, logs and Grafana"
+  default_prompt: "Use $tyk-observability to choose and set up the right Tyk observability path (OpenTelemetry traces and metrics, Tyk Pump back ends, Dashboard analytics, access logs, health checks) and prove one request end to end."
+policy:
+  allow_implicit_invocation: true

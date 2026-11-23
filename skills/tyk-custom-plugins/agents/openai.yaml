@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Custom Plugins"
+  short_description: "Choose, write, build, deploy and prove Tyk Gateway plugins in Go, JavaScript, gRPC or Python"
+  default_prompt: "Use $tyk-custom-plugins to decide whether configuration is enough, then write the plugin of the right kind, build it for the exact Gateway version, check the definition with the bundled script, deploy it by file or signed bundle, and prove each hook's effect, its failures and its cost against a running Gateway."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Migration Planner"
+  short_description: "Plan a move to Tyk from Kong, Apigee, Portkey or another gateway"
+  default_prompt: "Use $tyk-migration-planner to inventory the current gateway, map each concept and plugin or policy to its documented Tyk equivalent, record whether each incumbent configuration is actually covered, plan the proof of concept, the cut-over (keeping existing URLs, and existing keys where the credential type allows it) and its rollback, and decommission."
+policy:
+  allow_implicit_invocation: true

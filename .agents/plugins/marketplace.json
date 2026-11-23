@@ -1,0 +1,20 @@
+{
+  "name": "tyk-skills",
+  "interface": {
+    "displayName": "Tyk Skills"
+  },
+  "plugins": [
+    {
+      "name": "tyk-skills",
+      "category": "Developer Tools",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "source": "local",
+        "path": "./"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "coprocess_options": {
+    "enable_coprocess": true,
+    "coprocess_grpc_server": "tcp://grpc-plugin:5555"
+  }
+}

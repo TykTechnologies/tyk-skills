@@ -1,0 +1,16 @@
+{
+  "middleware": {
+    "global": {
+      "pluginConfig": {
+        "driver": "goplugin"
+      },
+      "postPlugins": [
+        {
+          "enabled": true,
+          "functionName": "PostEnrich",
+          "path": "/opt/tyk-gateway/plugins/go/build/post_enrich.so"
+        }
+      ]
+    }
+  }
+}

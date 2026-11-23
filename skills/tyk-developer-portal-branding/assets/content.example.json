@@ -1,0 +1,119 @@
+{
+  "$comment": "Example content for a portal named Example Corp Developers. Run apply_content.py --export first: pages are matched by path, products, plans and catalogues by their Name on your Portal. Every Home block of the default theme is listed, so no stock copy survives.",
+  "pages": {
+    "/": {
+      "title": "Build with Example Corp APIs",
+      "blocks": {
+        "HeaderDescription": "Orders, payments and reference data from Example Corp, ready for your product. Create an app, pick a plan and make your first call in minutes.",
+        "HeaderButtonLabel": "Browse the APIs",
+        "HeaderButtonLink": "/portal/catalogue-products",
+        "UseCasesTitle": "What you can build",
+        "UseCasesDescription": "Three common ways teams use Example Corp APIs.",
+        "UseCase1Title": "Customer apps",
+        "UseCase1Description": "Show order status and account data inside your own web and mobile apps.",
+        "UseCase2Title": "Back-office integration",
+        "UseCase2Description": "Keep your ERP and billing systems in step with Example Corp, without manual exports.",
+        "UseCase3Title": "Reporting",
+        "UseCase3Description": "Pull reference data into your warehouse for reporting and planning.",
+        "FlipFlopRightImageTitle1": "From sign-up to first call",
+        "FlipFlopRightImageSubTitle1": "Six steps, most of them one click.",
+        "FlipFlopRightImageDescription1": "<ol><li class=\"step active\">Create an account</li><li class=\"step\">Browse the catalogue</li><li class=\"step\">Add an API to your cart</li><li class=\"step\">Request access</li><li class=\"step\">Wait for approval</li><li class=\"step\">Use your credentials</li></ol>",
+        "FlipFlopRightImageInnerTitle1": "Create an account",
+        "FlipFlopRightImageInnerDescription1": "Sign up with your work email. You can invite colleagues to your organisation later.",
+        "FlipFlopRightImageInnerTitle2": "Browse the catalogue",
+        "FlipFlopRightImageInnerDescription2": "Each API has a description, a reference you can try, and the plans it is offered on.",
+        "FlipFlopRightImageInnerTitle3": "Add an API to your cart",
+        "FlipFlopRightImageInnerDescription3": "Pick the plan that fits. APIs that share an authentication method can be requested together.",
+        "FlipFlopRightImageInnerTitle4": "Request access",
+        "FlipFlopRightImageInnerDescription4": "Choose an existing app or create one, then submit the request.",
+        "FlipFlopRightImageInnerTitle5": "Wait for approval",
+        "FlipFlopRightImageInnerDescription5": "Some plans are approved at once. For the others we email you when a decision is made.",
+        "FlipFlopRightImageInnerTitle6": "Use your credentials",
+        "FlipFlopRightImageInnerDescription6": "Your keys are under My apps. Rotate or revoke them there at any time.",
+        "FlipFlopLeftImageTitle1": "About Example Corp",
+        "FlipFlopLeftImageDescription1": "Example Corp runs order and payment services for retailers in twelve countries. These APIs are the same ones our own products use.",
+        "FlipFlopLeftImageButtonLabel1": "About us",
+        "FlipFlopLeftImageButtonLink1": "/about-us",
+        "FeaturedProductsTitle": "Featured APIs",
+        "FeaturedProductsDescription": "The APIs most teams start with.",
+        "FeaturedProductsLinkLabel": "See all APIs",
+        "FeaturedProductsLink": "/portal/catalogue-products",
+        "BlogsTitle": "From the Example Corp team",
+        "BlogsDescription": "Release notes and guides.",
+        "BlogsLink": "/blog",
+        "BlogsLinkLabel": "All posts",
+        "PartnersTitle": "",
+        "PartnersDescription": ""
+      }
+    },
+    "/about-us": {
+      "title": "About Example Corp",
+      "blocks": {
+        "HeaderDescription": "Example Corp runs order and payment services for retailers in twelve countries.",
+        "NoImageSectionTitle": "Why we publish APIs",
+        "NoImageSectionDescription": "<p>Our customers asked to connect their own systems to ours. The APIs on this portal are the answer: documented, versioned and supported.</p>",
+        "FlipFlopRightImageTitle": "How we support you",
+        "FlipFlopRightImageDescription": "<p>Every API has an owner. Questions go to developers@example.com and are answered within one working day.</p>",
+        "FlipFlopLeftImageTitle": "Stability first",
+        "FlipFlopLeftImageDescription": "<p>We announce breaking changes six months ahead and keep the previous version running until the date we gave.</p>"
+      }
+    },
+    "/terms": {
+      "create": true,
+      "template": "flip_flop",
+      "title": "Terms of use",
+      "blocks": {
+        "HeaderDescription": "The terms that apply when you use Example Corp APIs.",
+        "NoImageSectionTitle": "Summary",
+        "NoImageSectionDescription": "<p>Use the APIs for your own products, keep your credentials private and stay within your plan's limits. The full text is available from developers@example.com.</p>"
+      }
+    }
+  },
+  "products": {
+    "Example Corp Shared Services": {
+      "display_name": "Reference Data API",
+      "description": "Countries, currencies and store locations used across Example Corp.",
+      "content": "<p>Look up the <strong>reference data</strong> every Example Corp integration needs: countries, currencies and store locations.</p>",
+      "featured": true,
+      "tags": ["reference-data"],
+      "preview": "images/reference-data.png"
+    }
+  },
+  "plans": {
+    "Example Corp Standard Plan": {
+      "display_name": "Standard",
+      "description": "60 requests a minute, 1,000 a day. Approved within one working day."
+    }
+  },
+  "catalogues": {
+    "Example Corp Public Catalogue": {"name": "Public APIs"}
+  },
+  "menus": {
+    "Primary": [
+      {"title": "APIs", "path": "/portal/catalogue-products"},
+      {"title": "About", "path": "/about-us"}
+    ],
+    "Footer": [
+      {"title": "Terms of use", "path": "/terms"}
+    ]
+  },
+  "email": {
+    "from": "developers@example.com",
+    "admin": "portal-admin@example.com",
+    "subjects": {
+      "reset_password": "Reset your Example Corp Developers password",
+      "access_approved": "Your access request was approved",
+      "access_rejected": "Your access request was declined",
+      "signup_request": "New developer waiting for approval",
+      "invite_admin": "You are invited to administer Example Corp Developers",
+      "invite_user": "You are invited to Example Corp Developers",
+      "account_activated": "Your Example Corp Developers account is active",
+      "account_deactivated": "Your Example Corp Developers account was deactivated",
+      "organisation_request": "New organisation waiting for approval",
+      "organisation_approved": "Your organisation was approved",
+      "organisation_rejected": "Your organisation request was declined",
+      "welcome_admin": "Welcome to Example Corp Developers",
+      "welcome_developer": "Welcome to Example Corp Developers"
+    }
+  }
+}

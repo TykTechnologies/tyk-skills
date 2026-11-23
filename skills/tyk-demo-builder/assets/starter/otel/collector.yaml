@@ -1,0 +1,47 @@
+receivers:
+  otlp:
+    protocols:
+      grpc: {}
+      http: {}
+  filelog:
+    include: [/var/log/demo/*.jsonl]
+    start_at: beginning
+    operators:
+      - type: json_parser
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      process: {}
+processors:
+  batch: {}
+connectors:
+  spanmetrics:
+    # Flush span-derived metrics promptly. The spanmetrics default is a minute, which made
+    # the first verification run after a cold start race the metrics scrape.
+    metrics_flush_interval: 5s
+exporters:
+  debug:
+    verbosity: detailed
+  otlp/tempo:
+    endpoint: tempo:4317
+    tls:
+      insecure: true
+  prometheus:
+    endpoint: 0.0.0.0:8889
+service:
+  telemetry:
+    metrics:
+      address: 0.0.0.0:8888
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug, otlp/tempo, spanmetrics]
+    metrics:
+      receivers: [otlp, hostmetrics, spanmetrics]
+      processors: [batch]
+      exporters: [debug, prometheus]
+    logs:
+      receivers: [filelog]
+      processors: [batch]
+      exporters: [debug]

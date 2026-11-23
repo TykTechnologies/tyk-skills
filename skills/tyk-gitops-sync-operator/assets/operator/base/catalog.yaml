@@ -1,0 +1,35 @@
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykOasApiDefinition
+metadata:
+  name: catalog
+spec:
+  tykOAS:
+    configmapRef:
+      name: catalog-oas
+      keyName: catalog-oas.json
+---
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: catalog-standard
+spec:
+  name: Catalog standard
+  state: active
+  active: true
+  rate: 60
+  per: 60
+  quota_max: -1
+  access_rights_array:
+    - name: catalog
+      kind: TykOasApiDefinition
+      versions: [Default]
+---
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykSession
+metadata:
+  name: partner-a
+spec:
+  type: token
+  alias: partner-a
+  policies:
+    - name: catalog-standard

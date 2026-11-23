@@ -1,0 +1,55 @@
+name: Neutral Tyk Sync delivery
+
+on:
+  pull_request:
+    paths:
+      - "apis/**"
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Delivery operation
+        required: true
+        type: choice
+        options: [validate, promote, rollback]
+      source_path:
+        description: Relative definitions or rollback-artifact path
+        required: true
+        default: apis
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate release definitions
+        run: ./ci/tyk-sync.sh validate "${{ inputs.source_path || 'apis' }}"
+
+  deliver:
+    if: github.event_name == 'workflow_dispatch' && inputs.operation != 'validate'
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: tyk-demo
+    env:
+      TYK_SYNC_DASHBOARD_URL: ${{ secrets.TYK_SYNC_DASHBOARD_URL }}
+      TYK_SYNC_SECRET: ${{ secrets.TYK_SYNC_SECRET }}
+      TYK_SYNC_ORG_ID: ${{ secrets.TYK_SYNC_ORG_ID }}
+      TYK_SYNC_PROMOTION_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      # Runs the tykio/tyk-sync image pinned by TYK_SYNC_VERSION in .env.example, so the runner
+      # needs Docker but no tyk-sync download.
+      - name: Promote or roll back
+        run: ./ci/tyk-sync.sh "${{ inputs.operation }}" "${{ inputs.source_path }}"
+        env:
+          TYK_SYNC_BIN: ./ci/tyk-sync-docker.sh
+      - name: Retain rollback and read-back evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tyk-sync-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .runtime/tyk-sync
+          if-no-files-found: error
+          retention-days: 14

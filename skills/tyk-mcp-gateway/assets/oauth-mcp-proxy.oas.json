@@ -1,0 +1,147 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Orders MCP (OAuth)",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "idpAuth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "__ISSUER__/protocol/openid-connect/auth",
+            "tokenUrl": "__ISSUER__/protocol/openid-connect/token",
+            "scopes": {
+              "orders-reader": "Read orders",
+              "orders-admin": "Change orders"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "jwtAuth": [],
+      "idpAuth": []
+    }
+  ],
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "orders-mcp-oauth",
+      "name": "Orders MCP (OAuth)",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "__MCP_SERVER_URL__"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/orders-mcp-oauth/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "stripAuthorizationData": false,
+        "securitySchemes": {
+          "jwtAuth": {
+            "enabled": true,
+            "header": {
+              "enabled": true,
+              "name": "Authorization"
+            },
+            "signingMethod": "rsa",
+            "identityBaseField": "sub",
+            "allowedIssuers": [
+              "__ISSUER__"
+            ],
+            "allowedAudiences": [
+              "tyk-gateway",
+              "orders-backend"
+            ],
+            "jwksURIs": [
+              {
+                "url": "__JWKS_URL__",
+                "cacheTimeout": "5m"
+              }
+            ],
+            "defaultPolicies": [
+              "__POLICY_ID__"
+            ]
+          },
+          "idpAuth": {
+            "enabled": true,
+            "protectedResourceMetadata": {
+              "enabled": true,
+              "resource": "__GATEWAY_URL__/orders-mcp-oauth/",
+              "authorizationServers": [
+                "__ISSUER__"
+              ]
+            },
+            "scopeCheck": {
+              "enabled": true,
+              "claimNames": [
+                "scope",
+                "roles"
+              ],
+              "scopeSource": "operation"
+            },
+            "tokenExchange": {
+              "enabled": true,
+              "providers": [
+                {
+                  "name": "keycloak",
+                  "issuers": [
+                    "__ISSUER__"
+                  ],
+                  "tokenEndpoint": "__TOKEN_ENDPOINT__",
+                  "clientAuth": {
+                    "method": "client_secret_basic",
+                    "clientId": "tyk-gateway",
+                    "clientSecret": "env://EXCHANGE_CLIENT_SECRET"
+                  },
+                  "defaultTarget": {
+                    "audience": "orders-backend"
+                  },
+                  "cache": {
+                    "enabled": true
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "trafficLogs": {
+          "enabled": true
+        }
+      },
+      "mcpTools": {
+        "create_user": {
+          "security": [
+            {
+              "idpAuth": [
+                "orders-admin"
+              ]
+            }
+          ],
+          "scopeCheck": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+# Observability lab: open source Tyk Gateway, Tyk Pump and an OpenTelemetry back end.
+# Copy this folder outside the plugin, create .env from .env.example, then:
+#   docker compose -p tyk-obs-lab up -d
+# Add Elasticsearch: docker compose -p tyk-obs-lab -f compose.yaml -f compose.elasticsearch.yaml up -d
+services:
+  redis:
+    image: redis:7.2-alpine
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  upstream:
+    image: mccutchen/go-httpbin:2.26.0
+
+  # The Gateway image runs as uid 65532. This makes its API-definition folder writable,
+  # so APIs created through the Gateway API (/tyk/apis/oas) are stored and survive restarts.
+  apps-init:
+    image: busybox:1.36
+    command: [chown, -R, "65532:65532", /apps]
+    volumes: [gateway-apps:/apps]
+
+  tyk-gateway:
+    image: tykio/tyk-gateway:${GATEWAY_VERSION:-v5.16.0}
+    hostname: tyk-gateway-lab
+    ports: ["127.0.0.1:${GATEWAY_PORT:-8080}:8080"]
+    environment:
+      TYK_GW_SECRET: ${SECRET:?set SECRET in .env}
+      TYK_GW_STORAGE_HOST: redis
+      # Analytics records for Tyk Pump. The image's own tyk.conf leaves this off.
+      TYK_GW_ENABLEANALYTICS: "true"
+      TYK_GW_ANALYTICSCONFIG_ENABLEDETAILEDRECORDING: "false"
+      # One access-log line per request on stdout.
+      TYK_GW_ACCESSLOGS_ENABLED: "true"
+      TYK_GW_LOGFORMAT: ${GW_LOG_FORMAT:-json}
+      # Traces.
+      TYK_GW_OPENTELEMETRY_TRACES_ENABLED: "true"
+      TYK_GW_OPENTELEMETRY_TRACES_EXPORTER: grpc
+      TYK_GW_OPENTELEMETRY_TRACES_ENDPOINT: otel-collector:4317
+      TYK_GW_OPENTELEMETRY_TRACES_RESOURCENAME: tyk-gateway
+      # Metrics. Leave APIMETRICS unset for the four default instruments.
+      TYK_GW_OPENTELEMETRY_METRICS_ENABLED: "true"
+      TYK_GW_OPENTELEMETRY_METRICS_EXPORTER: grpc
+      TYK_GW_OPENTELEMETRY_METRICS_ENDPOINT: otel-collector:4317
+      TYK_GW_OPENTELEMETRY_METRICS_RESOURCENAME: tyk-gateway
+      TYK_GW_OPENTELEMETRY_METRICS_EXPORTINTERVAL: "10"
+    # Custom metric instruments go in gateway-metrics.env (see .env.example). The file is
+    # optional: never set TYK_GW_OPENTELEMETRY_METRICS_APIMETRICS to an empty value.
+    env_file:
+      - path: ./gateway-metrics.env
+        required: false
+    volumes:
+      - gateway-apps:/opt/tyk-gateway/apps
+    depends_on:
+      redis: {condition: service_healthy}
+      apps-init: {condition: service_completed_successfully}
+
+  tyk-pump:
+    image: tykio/tyk-pump-docker-pub:${PUMP_VERSION:-v1.18.0}
+    environment:
+      # Ignore the image's own pump.conf, which defines MongoDB, Kafka and other pumps.
+      TYK_PMP_OMITCONFIGFILE: "true"
+      # No uptime-check data here; without this the uptime pump tries MongoDB and Pump exits.
+      TYK_PMP_DONTPURGEUPTIMEDATA: "true"
+      TYK_PMP_ANALYTICSSTORAGETYPE: redis
+      TYK_PMP_ANALYTICSSTORAGECONFIG_TYPE: redis
+      TYK_PMP_ANALYTICSSTORAGECONFIG_HOST: redis
+      TYK_PMP_ANALYTICSSTORAGECONFIG_PORT: "6379"
+      TYK_PMP_PURGEDELAY: "2"
+      TYK_PMP_HEALTHCHECKENDPOINTNAME: health
+      TYK_PMP_HEALTHCHECKENDPOINTPORT: "8083"
+      # One JSON line per request on the Pump's stdout.
+      TYK_PMP_PUMPS_STDOUT_TYPE: stdout
+      TYK_PMP_PUMPS_STDOUT_META_FORMAT: json
+      TYK_PMP_PUMPS_STDOUT_META_LOGFIELDNAME: analytics_record
+      # Per-request counters and latency for Prometheus to scrape.
+      TYK_PMP_PUMPS_PROMETHEUS_TYPE: prometheus
+      TYK_PMP_PUMPS_PROMETHEUS_META_ADDR: 0.0.0.0:9090
+      TYK_PMP_PUMPS_PROMETHEUS_META_PATH: /metrics
+      # One CSV file per hour.
+      TYK_PMP_PUMPS_CSV_TYPE: csv
+      TYK_PMP_PUMPS_CSV_META_CSVDIR: /tmp/analytics-csv
+    depends_on:
+      redis: {condition: service_healthy}
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:${OTELCOL_VERSION:-0.162.0}
+    command: [--config=/etc/otelcol/config.yaml]
+    volumes: [./otel-collector.yaml:/etc/otelcol/config.yaml:ro]
+
+  tempo:
+    image: grafana/tempo:${TEMPO_VERSION:-2.10.8}
+    command: [-config.file=/etc/tempo.yaml]
+    volumes: [./tempo.yaml:/etc/tempo.yaml:ro]
+    ports: ["127.0.0.1:${TEMPO_PORT:-3200}:3200"]
+
+  prometheus:
+    image: quay.io/prometheus/prometheus:${PROMETHEUS_VERSION:-v3.15.0}
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+      - --enable-feature=exemplar-storage
+    volumes: [./prometheus.yaml:/etc/prometheus/prometheus.yaml:ro]
+    ports: ["127.0.0.1:${PROMETHEUS_PORT:-9090}:9090"]
+
+  grafana:
+    image: grafana/grafana:${GRAFANA_VERSION:-13.3.0}
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in .env}
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports: ["127.0.0.1:${GRAFANA_PORT:-3000}:3000"]
+
+volumes:
+  gateway-apps: {}
+
+networks:
+  default:
+    name: ${LAB_NETWORK:-tyk-obs-lab}

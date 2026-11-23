@@ -1,0 +1,33 @@
+# Throwaway lab for testing rate limits and quotas on the open source Tyk Gateway.
+# One Gateway by default; `--profile two` adds a second Gateway on the same Redis.
+# Not for production or anything long-lived: use the tyk-deployment-planner skill for that.
+name: tyk-limits-lab
+
+x-gateway: &gateway
+  image: tykio/tyk-gateway:${TYK_GATEWAY_VERSION:?set TYK_GATEWAY_VERSION in .env}
+  environment:
+    TYK_GW_SECRET: ${TYK_GW_SECRET:?set TYK_GW_SECRET in .env}
+    # Limiter switches. Leave unset for the defaults; see references/limiters-and-counters.md.
+    TYK_GW_ENABLEREDISROLLINGLIMITER: ${ENABLE_REDIS_ROLLING_LIMITER:-false}
+    TYK_GW_ENABLESENTINELRATELIMITER: ${ENABLE_SENTINEL_RATE_LIMITER:-false}
+    TYK_GW_ENABLEFIXEDWINDOWRATELIMITER: ${ENABLE_FIXED_WINDOW_RATE_LIMITER:-false}
+    TYK_GW_DRLTHRESHOLD: ${DRL_THRESHOLD:-0}
+    TYK_GW_RATELIMITRESPONSEHEADERS: ${RATE_LIMIT_RESPONSE_HEADERS:-quotas}
+  volumes:
+    - ./tyk.conf:/opt/tyk-gateway/tyk.conf:ro
+    - ./apps:/opt/tyk-gateway/apps
+    - ./policies:/opt/tyk-gateway/policies
+  depends_on: [redis, upstream]
+
+services:
+  redis:
+    image: redis:7.2-alpine
+  upstream:
+    image: mccutchen/go-httpbin:2.25.0
+  tyk-gateway-1:
+    <<: *gateway
+    ports: ["127.0.0.1:${GATEWAY_1_PORT:-8080}:8080"]
+  tyk-gateway-2:
+    <<: *gateway
+    profiles: ["two"]
+    ports: ["127.0.0.1:${GATEWAY_2_PORT:-8081}:8080"]

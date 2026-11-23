@@ -1,0 +1,8 @@
+{
+  "file_list": ["middleware.py"],
+  "custom_middleware": {
+    "driver": "python",
+    "pre": [{"name": "PyPre"}],
+    "post": [{"name": "PyPost", "require_session": true}]
+  }
+}

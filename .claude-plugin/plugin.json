@@ -1,0 +1,35 @@
+{
+  "name": "tyk-skills",
+  "version": "0.1.0",
+  "description": "Evaluate and use Tyk with an AI coding agent: verified facts, Tyk OAS API definitions, rate limits and policies, GitOps delivery, MCP and AI gateways, Developer Portal branding, a working proof of concept, architecture diagrams, infrastructure sizing, production deployment and migration planning.",
+  "author": {
+    "name": "Tyk Technologies",
+    "url": "https://github.com/TykTechnologies/tyk-skills"
+  },
+  "homepage": "https://tyk.io/docs/",
+  "repository": "https://github.com/TykTechnologies/tyk-skills",
+  "license": "MPL-2.0",
+  "keywords": [
+    "tyk",
+    "api-gateway",
+    "api-management",
+    "ai-gateway",
+    "mcp",
+    "proof-of-concept",
+    "sizing",
+    "migration",
+    "rate-limiting",
+    "gitops",
+    "tyk-sync",
+    "tyk-operator",
+    "developer-portal",
+    "openapi",
+    "llm-gateway"
+  ],
+  "skills": "./skills/",
+  "supportUrl": "https://github.com/TykTechnologies/tyk-skills/issues",
+  "privacyPolicyUrl": "https://tyk.io/privacy-policy/",
+  "termsOfServiceUrl": "https://tyk.io/terms-conditions/",
+  "documentationUrl": "https://github.com/TykTechnologies/tyk-skills#readme",
+  "icon": "./assets/tyk-icon.png"
+}

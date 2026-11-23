@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Developer Portal Branding"
+  short_description: "Brand a running Tyk Developer Portal: theme, copy, menus, emails, checked page by page"
+  default_prompt: "Use $tyk-developer-portal-branding to brand the running Tyk Developer Portal with the organisation's own brand kit: build the theme from the Portal's default theme with the scripts, apply it and the copy through the admin API, brand the emails, and verify every page type before reporting."
+policy:
+  allow_implicit_invocation: true

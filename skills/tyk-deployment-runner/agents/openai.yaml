@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Deployment Runner"
+  short_description: "Start a planned Tyk deployment from tyk-install, bootstrap it and prove it works"
+  default_prompt: "Use $tyk-deployment-runner to apply the deployment plan from the tyk-install checkout: confirm the target, start the stack, bootstrap it, run tools/verify_deployment.sh with --stack or --namespace and a real route, then prove idempotency and persistence and report the versions actually running."
+policy:
+  allow_implicit_invocation: true

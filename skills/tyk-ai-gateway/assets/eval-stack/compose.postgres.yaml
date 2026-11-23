@@ -1,0 +1,30 @@
+# Optional override: keep the control plane's data in PostgreSQL instead of SQLite.
+#   docker compose -f compose.yaml -f compose.postgres.yaml up -d
+# The edge gateway keeps its own local SQLite either way.
+# POSTGRES_PASSWORD comes from .env, which ./make_secrets.sh writes.
+
+volumes:
+  postgres-data:
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: aistudio
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run ./make_secrets.sh first}
+      POSTGRES_DB: aistudio
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aistudio -d aistudio"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  studio:
+    environment:
+      DATABASE_TYPE: postgres
+      DATABASE_URL: postgres://aistudio:${POSTGRES_PASSWORD:?run ./make_secrets.sh first}@postgres:5432/aistudio?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy

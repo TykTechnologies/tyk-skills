@@ -1,0 +1,3323 @@
+{
+  "meta": {
+    "mode": "names-only",
+    "label": "renamed-newer",
+    "date": "2026-11-19",
+    "claude_version": "2.1.319 (Claude Code)",
+    "model": "claude-opus-5-5",
+    "plugin_dir": "temporary renamed copy",
+    "renames": {
+      "tyk-api-definitions-routing": "tyk-api-definitions-routing",
+      "tyk-websockets-streams-webhooks": "tyk-websockets-streams-webhooks"
+    },
+    "concurrency": 4,
+    "timeout_s": 180,
+    "wall_time_s": 188.5,
+    "router_prompt": "You are taking part in a skill-routing test. Treat the user's message as a real request. If one of your available skills is the right one for it, call the Skill tool once to load that skill and then stop: do not carry out the request, call no other tool and write at most one short sentence. If no available skill fits, call no tool and reply with the single word NONE.",
+    "command": [
+      "claude",
+      "-p",
+      "--setting-sources",
+      "project",
+      "--strict-mcp-config",
+      "--plugin-dir",
+      "<plugin-dir>",
+      "--no-session-persistence",
+      "--output-format",
+      "stream-json",
+      "--verbose",
+      "--permission-mode",
+      "dontAsk",
+      "--append-system-prompt",
+      "You are taking part in a skill-routing test. Treat the user's message as a real request. If one of your available skills is the right one for it, call the Skill tool once to load that skill and then stop: do not carry out the request, call no other tool and write at most one short sentence. If no available skill fits, call no tool and reply with the single word NONE.",
+      "--tools",
+      "Skill"
+    ]
+  },
+  "summary": {
+    "prompts": 120,
+    "correct": 116,
+    "positives_correct": 78,
+    "positives": 80,
+    "near_misses_correct": 38,
+    "near_misses": 40,
+    "errors": 0,
+    "cost_usd": 8.895,
+    "per_skill": {
+      "tyk-ai-gateway": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 1
+      },
+      "tyk-api-definitions-routing": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-api-governance": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-authentication": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-custom-plugins": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-demo-builder": {
+        "positives": 4,
+        "positives_correct": 3,
+        "near_misses": 2,
+        "near_misses_correct": 1,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-developer-portal-branding": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-developer-portal-setup": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-excalidraw-diagrams": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-facts": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-gitops-sync-operator": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-infra-sizing": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 1
+      },
+      "tyk-mcp-gateway": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-migration-planner": {
+        "positives": 4,
+        "positives_correct": 3,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-observability": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-poc-runbook": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 1
+      },
+      "tyk-rate-limits-keys-policies": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-websockets-streams-webhooks": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-troubleshooting": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 2,
+        "near_misses_pulled_in": 0,
+        "wrongly_chosen_elsewhere": 0
+      },
+      "tyk-upgrades": {
+        "positives": 4,
+        "positives_correct": 4,
+        "near_misses": 2,
+        "near_misses_correct": 1,
+        "near_misses_pulled_in": 1,
+        "wrongly_chosen_elsewhere": 0
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "ai-gateway-p1",
+      "skill": "tyk-ai-gateway",
+      "kind": "positive",
+      "expected": "tyk-ai-gateway",
+      "prompt": "We want one OpenAI-compatible endpoint in front of OpenAI, Anthropic and Azure OpenAI, with a separate key per internal app and token spend tracked per team. Can Tyk do that?",
+      "chosen": "tyk-ai-gateway",
+      "chosen_raw": "tyk-skills:tyk-ai-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-ai-gateway"
+      ],
+      "text": "I've loaded the Tyk AI Gateway (AI Studio) skill, which covers putting one OpenAI-compatible endpoint in front of several providers with a key per app and per-team spend tracking.",
+      "cost_usd": 0.0953542,
+      "duration_s": 7.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 156,
+        "cache_creation_input_tokens": 11305,
+        "cache_read_input_tokens": 8851
+      },
+      "chosen_canonical": "tyk-ai-gateway",
+      "correct": true
+    },
+    {
+      "id": "ai-gateway-p2",
+      "skill": "tyk-ai-gateway",
+      "kind": "positive",
+      "expected": "tyk-ai-gateway",
+      "prompt": "how do i put a monthly spend cap on LLM usage per app so one team can't burn the whole model bill",
+      "chosen": "tyk-ai-gateway",
+      "chosen_raw": "tyk-skills:tyk-ai-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-ai-gateway"
+      ],
+      "text": "I've loaded the Tyk AI Gateway skill, which covers per-app monthly budgets in Tyk AI Studio; note that budgets only block spending in the Enterprise Edition.",
+      "cost_usd": 0.0949272,
+      "duration_s": 6.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 149,
+        "cache_creation_input_tokens": 11270,
+        "cache_read_input_tokens": 8816
+      },
+      "chosen_canonical": "tyk-ai-gateway",
+      "correct": true
+    },
+    {
+      "id": "ai-gateway-p3",
+      "skill": "tyk-ai-gateway",
+      "kind": "positive",
+      "expected": "tyk-ai-gateway",
+      "prompt": "Set up Tyk AI Studio with Anthropic as the provider and fail over to Bedrock when it errors.",
+      "chosen": "tyk-ai-gateway",
+      "chosen_raw": "tyk-skills:tyk-ai-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-ai-gateway"
+      ],
+      "text": "I've loaded the Tyk AI Gateway skill. It covers setting up AI Studio with Anthropic as the main provider and failing over to Bedrock when Anthropic errors.",
+      "cost_usd": 0.0945164,
+      "duration_s": 10.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 126,
+        "cache_creation_input_tokens": 11276,
+        "cache_read_input_tokens": 8822
+      },
+      "chosen_canonical": "tyk-ai-gateway",
+      "correct": true
+    },
+    {
+      "id": "ai-gateway-p4",
+      "skill": "tyk-ai-gateway",
+      "kind": "positive",
+      "expected": "tyk-ai-gateway",
+      "prompt": "need to strip PII out of prompts before they reach the model provider, using Tyk's AI features",
+      "chosen": "tyk-ai-gateway",
+      "chosen_raw": "tyk-skills:tyk-ai-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-ai-gateway"
+      ],
+      "text": "I've loaded the Tyk AI Gateway (AI Studio) skill, which covers PII-stripping guardrails and filters, an Enterprise Edition feature.",
+      "cost_usd": 0.0947462,
+      "duration_s": 7.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 142,
+        "cache_creation_input_tokens": 11265,
+        "cache_read_input_tokens": 8811
+      },
+      "chosen_canonical": "tyk-ai-gateway",
+      "correct": true
+    },
+    {
+      "id": "ai-gateway-n1",
+      "skill": "tyk-ai-gateway",
+      "kind": "near_miss",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "Put our internal MCP server behind the Tyk Gateway with JWT auth and a rate limit on each tool.",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill, which covers putting your MCP server behind the Gateway with JWT auth and a rate limit on each tool.",
+      "cost_usd": 0.0812268,
+      "duration_s": 6.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 121,
+        "cache_creation_input_tokens": 9586,
+        "cache_read_input_tokens": 10474
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "ai-gateway-n2",
+      "skill": "tyk-ai-gateway",
+      "kind": "near_miss",
+      "expected": null,
+      "prompt": "Write a Python function that calls the OpenAI chat completions API and retries with backoff on 429.",
+      "chosen": null,
+      "chosen_raw": null,
+      "skills_called": [],
+      "text": "NONE",
+      "cost_usd": 0.0326288,
+      "duration_s": 4.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 2,
+        "output_tokens": 5,
+        "cache_creation_input_tokens": 3984,
+        "cache_read_input_tokens": 3244
+      },
+      "chosen_canonical": null,
+      "correct": true
+    },
+    {
+      "id": "api-definitions-p1",
+      "skill": "tyk-api-definitions-routing",
+      "kind": "positive",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "I imported our openapi.yaml into Tyk and every call to /v2/orders returns 404. The listen path is /orders/. What's wrong?",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I've loaded the Tyk API definitions and routing skill, which covers how a listen path decides which API a request reaches.",
+      "cost_usd": 0.07746539999999999,
+      "duration_s": 5.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 170,
+        "cache_creation_input_tokens": 8993,
+        "cache_read_input_tokens": 10487
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "api-definitions-p2",
+      "skill": "tyk-api-definitions-routing",
+      "kind": "positive",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "write me a Tyk OAS definition that proxies /payments to http://payments.internal:8080 and validates the POST body against the schema",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I've loaded the Tyk API definitions and routing skill to write a Tyk OAS definition that proxies `/payments` and validates POST bodies.",
+      "cost_usd": 0.0762642,
+      "duration_s": 5.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 138,
+        "cache_creation_input_tokens": 8923,
+        "cache_read_input_tokens": 10481
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "api-definitions-p3",
+      "skill": "tyk-api-definitions-routing",
+      "kind": "positive",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "How do I add a v2 of an existing API on the Tyk gateway without breaking the clients still on v1?",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I've loaded the Tyk API definitions and routing skill, which covers adding a v2 of an API while the original stays the v1.",
+      "cost_usd": 0.0760904,
+      "duration_s": 5.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 133,
+        "cache_creation_input_tokens": 8914,
+        "cache_read_input_tokens": 10472
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "api-definitions-p4",
+      "skill": "tyk-api-definitions-routing",
+      "kind": "positive",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "I put GET /users/{id} on the allow list and now /users/me gives 403. why?",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I've loaded the Tyk API definitions and routing skill, which covers how the allow list matches paths.",
+      "cost_usd": 0.081497,
+      "duration_s": 6.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 319,
+        "cache_creation_input_tokens": 9125,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "api-definitions-n1",
+      "skill": "tyk-api-definitions-routing",
+      "kind": "near_miss",
+      "expected": "tyk-rate-limits-keys-policies",
+      "prompt": "Give the mobile app's key 100 requests per minute on the orders API and a daily quota of 50k.",
+      "chosen": "tyk-rate-limits-keys-policies",
+      "chosen_raw": "tyk-skills:tyk-rate-limits-keys-policies",
+      "skills_called": [
+        "tyk-skills:tyk-rate-limits-keys-policies"
+      ],
+      "text": "I've loaded the Tyk rate limits, keys and policies skill for this request.",
+      "cost_usd": 0.0760988,
+      "duration_s": 5.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 97,
+        "cache_creation_input_tokens": 9005,
+        "cache_read_input_tokens": 10474
+      },
+      "chosen_canonical": "tyk-rate-limits-keys-policies",
+      "correct": true
+    },
+    {
+      "id": "api-definitions-n2",
+      "skill": "tyk-api-definitions-routing",
+      "kind": "near_miss",
+      "expected": "tyk-api-governance",
+      "prompt": "Make the build fail when someone pushes an API to Tyk that has no operation descriptions or uses plain http servers.",
+      "chosen": "tyk-api-governance",
+      "chosen_raw": "tyk-skills:tyk-api-governance",
+      "skills_called": [
+        "tyk-skills:tyk-api-governance"
+      ],
+      "text": "I've loaded the Tyk API Governance skill, which sets up a CI check that fails the build on APIs with missing operation descriptions or plain `http://` servers.",
+      "cost_usd": 0.0785958,
+      "duration_s": 6.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 137,
+        "cache_creation_input_tokens": 9217,
+        "cache_read_input_tokens": 10479
+      },
+      "chosen_canonical": "tyk-api-governance",
+      "correct": true
+    },
+    {
+      "id": "api-governance-p1",
+      "skill": "tyk-api-governance",
+      "kind": "positive",
+      "expected": "tyk-api-governance",
+      "prompt": "We need a ruleset that flags any API without a proper security scheme per OWASP, and a view of compliance across all our APIs in the Tyk Dashboard.",
+      "chosen": "tyk-api-governance",
+      "chosen_raw": "tyk-skills:tyk-api-governance",
+      "skills_called": [
+        "tyk-skills:tyk-api-governance"
+      ],
+      "text": "I've loaded the Tyk API Governance skill, which covers OWASP security-scheme rulesets and the compliance view across APIs in the Dashboard.",
+      "cost_usd": 0.0782378,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 115,
+        "cache_creation_input_tokens": 9227,
+        "cache_read_input_tokens": 10489
+      },
+      "chosen_canonical": "tyk-api-governance",
+      "correct": true
+    },
+    {
+      "id": "api-governance-p2",
+      "skill": "tyk-api-governance",
+      "kind": "positive",
+      "expected": "tyk-api-governance",
+      "prompt": "how do I write a custom spectral-style rule that checks the x-tyk-api-gateway extension, e.g. every API must have rate limiting on",
+      "chosen": "tyk-api-governance",
+      "chosen_raw": "tyk-skills:tyk-api-governance",
+      "skills_called": [
+        "tyk-skills:tyk-api-governance"
+      ],
+      "text": "I've loaded the Tyk API Governance skill, which covers writing custom Spectral rules against `x-tyk-api-gateway`, such as one that requires rate limiting on every API.",
+      "cost_usd": 0.0783932,
+      "duration_s": 6.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 9224,
+        "cache_read_input_tokens": 10486
+      },
+      "chosen_canonical": "tyk-api-governance",
+      "correct": true
+    },
+    {
+      "id": "api-governance-p3",
+      "skill": "tyk-api-governance",
+      "kind": "positive",
+      "expected": "tyk-api-governance",
+      "prompt": "Stop non-compliant API definitions from being applied to the cluster when they come in through the Tyk Operator.",
+      "chosen": "tyk-api-governance",
+      "chosen_raw": "tyk-skills:tyk-api-governance",
+      "skills_called": [
+        "tyk-skills:tyk-api-governance"
+      ],
+      "text": "I've loaded the Tyk API governance skill, which covers blocking non-compliant APIs at admission with a `TykRuleset` set to `action: block` in the Tyk Operator.",
+      "cost_usd": 0.08164659999999999,
+      "duration_s": 6.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 244,
+        "cache_creation_input_tokens": 9331,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-api-governance",
+      "correct": true
+    },
+    {
+      "id": "api-governance-p4",
+      "skill": "tyk-api-governance",
+      "kind": "positive",
+      "expected": "tyk-api-governance",
+      "prompt": "lint every API in our Tyk Dashboard against the company style guide and show which teams are failing",
+      "chosen": "tyk-api-governance",
+      "chosen_raw": "tyk-skills:tyk-api-governance",
+      "skills_called": [
+        "tyk-skills:tyk-api-governance"
+      ],
+      "text": "I loaded the Tyk API Governance skill, which covers linting Dashboard APIs against your style guide and reporting which teams are failing.",
+      "cost_usd": 0.07793739999999999,
+      "duration_s": 6.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 9205,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-api-governance",
+      "correct": true
+    },
+    {
+      "id": "api-governance-n1",
+      "skill": "tyk-api-governance",
+      "kind": "near_miss",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "Turn on request body validation from the OpenAPI schema for POST /orders in my Tyk API.",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I've loaded the Tyk API definitions skill, which covers turning on `validateRequest` for the POST /orders operation.",
+      "cost_usd": 0.07813020000000001,
+      "duration_s": 6.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 199,
+        "cache_creation_input_tokens": 9004,
+        "cache_read_input_tokens": 10471
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "api-governance-n2",
+      "skill": "tyk-api-governance",
+      "kind": "near_miss",
+      "expected": "tyk-gitops-sync-operator",
+      "prompt": "Promote our Tyk APIs from staging to production through a GitHub Actions pipeline.",
+      "chosen": "tyk-gitops-sync-operator",
+      "chosen_raw": "tyk-skills:tyk-gitops-sync-operator",
+      "skills_called": [
+        "tyk-skills:tyk-gitops-sync-operator"
+      ],
+      "text": "I loaded the Tyk GitOps skill, which covers promoting APIs from staging to production with Tyk Sync in GitHub Actions.",
+      "cost_usd": 0.077166,
+      "duration_s": 5.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 116,
+        "cache_creation_input_tokens": 9091,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-gitops-sync-operator",
+      "correct": true
+    },
+    {
+      "id": "authentication-p1",
+      "skill": "tyk-authentication",
+      "kind": "positive",
+      "expected": "tyk-authentication",
+      "prompt": "Protect my Tyk API with access tokens from Microsoft Entra ID and validate them against Entra's JWKS.",
+      "chosen": "tyk-authentication",
+      "chosen_raw": "tyk-skills:tyk-authentication",
+      "skills_called": [
+        "tyk-skills:tyk-authentication"
+      ],
+      "text": "I've loaded the Tyk authentication skill, which covers protecting a Tyk API with Entra ID access tokens validated against Entra's JWKS.",
+      "cost_usd": 0.07679520000000001,
+      "duration_s": 6.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 9052,
+        "cache_read_input_tokens": 10476
+      },
+      "chosen_canonical": "tyk-authentication",
+      "correct": true
+    },
+    {
+      "id": "authentication-p2",
+      "skill": "tyk-authentication",
+      "kind": "positive",
+      "expected": "tyk-authentication",
+      "prompt": "getting 'Authorization field missing' on every call even though I'm sending a bearer token. JWT auth on Tyk 5.16, what am I missing",
+      "chosen": "tyk-authentication",
+      "chosen_raw": "tyk-skills:tyk-authentication",
+      "skills_called": [
+        "tyk-skills:tyk-authentication"
+      ],
+      "text": "I loaded the Tyk authentication skill, which covers this JWT error; the likely cause is a missing `header` block (`{\"enabled\": true, \"name\": \"Authorization\"}`) in your JWT scheme.",
+      "cost_usd": 0.079258,
+      "duration_s": 7.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 202,
+        "cache_creation_input_tokens": 9137,
+        "cache_read_input_tokens": 10490
+      },
+      "chosen_canonical": "tyk-authentication",
+      "correct": true
+    },
+    {
+      "id": "authentication-p3",
+      "skill": "tyk-authentication",
+      "kind": "positive",
+      "expected": "tyk-authentication",
+      "prompt": "Require client certificates for one partner-facing API on the gateway, the others stay as they are.",
+      "chosen": "tyk-authentication",
+      "chosen_raw": "tyk-skills:tyk-authentication",
+      "skills_called": [
+        "tyk-skills:tyk-authentication"
+      ],
+      "text": "I've loaded the Tyk authentication skill, which covers requiring client certificates (mTLS) on just one API.",
+      "cost_usd": 0.077453,
+      "duration_s": 6.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 136,
+        "cache_creation_input_tokens": 9077,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-authentication",
+      "correct": true
+    },
+    {
+      "id": "authentication-p4",
+      "skill": "tyk-authentication",
+      "kind": "positive",
+      "expected": "tyk-authentication",
+      "prompt": "map oauth scopes in the token to different policies so the read scope only gets GETs",
+      "chosen": "tyk-authentication",
+      "chosen_raw": "tyk-skills:tyk-authentication",
+      "skills_called": [
+        "tyk-skills:tyk-authentication"
+      ],
+      "text": "I've loaded the Tyk authentication skill, which covers mapping JWT scopes to policies so the read scope only allows GET requests.",
+      "cost_usd": 0.079133,
+      "duration_s": 6.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 198,
+        "cache_creation_input_tokens": 9132,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-authentication",
+      "correct": true
+    },
+    {
+      "id": "authentication-n1",
+      "skill": "tyk-authentication",
+      "kind": "near_miss",
+      "expected": "tyk-custom-plugins",
+      "prompt": "Our partners sign requests with a home-grown scheme in a custom header; I need Go code in the gateway that verifies it.",
+      "chosen": "tyk-custom-plugins",
+      "chosen_raw": "tyk-skills:tyk-custom-plugins",
+      "skills_called": [
+        "tyk-skills:tyk-custom-plugins"
+      ],
+      "text": "I've loaded the Tyk custom plugins skill, which covers writing a Go custom authentication plugin to check your partners' signature header.",
+      "cost_usd": 0.0735314,
+      "duration_s": 6.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 187,
+        "cache_creation_input_tokens": 8459,
+        "cache_read_input_tokens": 10477
+      },
+      "chosen_canonical": "tyk-custom-plugins",
+      "correct": true
+    },
+    {
+      "id": "authentication-n2",
+      "skill": "tyk-authentication",
+      "kind": "near_miss",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "Add OAuth discovery to the MCP endpoint we run behind Tyk so desktop agents can sign users in.",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill, which covers setting up OAuth discovery (protected-resource metadata) on an MCP endpoint behind Tyk.",
+      "cost_usd": 0.0813514,
+      "duration_s": 6.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 126,
+        "cache_creation_input_tokens": 9589,
+        "cache_read_input_tokens": 10477
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "custom-plugins-p1",
+      "skill": "tyk-custom-plugins",
+      "kind": "positive",
+      "expected": "tyk-custom-plugins",
+      "prompt": "I need a Go plugin that computes a header from the request body and adds it before the request goes upstream.",
+      "chosen": "tyk-custom-plugins",
+      "chosen_raw": "tyk-skills:tyk-custom-plugins",
+      "skills_called": [
+        "tyk-skills:tyk-custom-plugins"
+      ],
+      "text": "I've loaded the Tyk custom plugins skill, which covers building and deploying a Go plugin that sets a header computed from the request body.",
+      "cost_usd": 0.071318,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 110,
+        "cache_creation_input_tokens": 8375,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-custom-plugins",
+      "correct": true
+    },
+    {
+      "id": "custom-plugins-p2",
+      "skill": "tyk-custom-plugins",
+      "kind": "positive",
+      "expected": "tyk-custom-plugins",
+      "prompt": "gateway log says 'plugin was built with a different version of package'. how do I build it properly?",
+      "chosen": "tyk-custom-plugins",
+      "chosen_raw": "tyk-skills:tyk-custom-plugins",
+      "skills_called": [
+        "tyk-skills:tyk-custom-plugins"
+      ],
+      "text": "I've loaded the Tyk custom plugins skill. That error usually means the plugin was built with a compiler image whose tag doesn't exactly match your Gateway's version.",
+      "cost_usd": 0.0720934,
+      "duration_s": 7.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 150,
+        "cache_creation_input_tokens": 8372,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-custom-plugins",
+      "correct": true
+    },
+    {
+      "id": "custom-plugins-p3",
+      "skill": "tyk-custom-plugins",
+      "kind": "positive",
+      "expected": "tyk-custom-plugins",
+      "prompt": "Return a mocked JSON response straight from the Tyk gateway with a small JavaScript function, no upstream at all.",
+      "chosen": "tyk-custom-plugins",
+      "chosen_raw": "tyk-skills:tyk-custom-plugins",
+      "skills_called": [
+        "tyk-skills:tyk-custom-plugins"
+      ],
+      "text": "I've loaded the Tyk custom plugins skill, which covers virtual endpoints: JavaScript functions that return a mocked JSON response straight from the gateway with no upstream.",
+      "cost_usd": 0.0762592,
+      "duration_s": 7.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 289,
+        "cache_creation_input_tokens": 8545,
+        "cache_read_input_tokens": 10476
+      },
+      "chosen_canonical": "tyk-custom-plugins",
+      "correct": true
+    },
+    {
+      "id": "custom-plugins-p4",
+      "skill": "tyk-custom-plugins",
+      "kind": "positive",
+      "expected": "tyk-custom-plugins",
+      "prompt": "How do we package and sign our Python middleware as a bundle so the gateways download it on their own?",
+      "chosen": "tyk-custom-plugins",
+      "chosen_raw": "tyk-skills:tyk-custom-plugins",
+      "skills_called": [
+        "tyk-skills:tyk-custom-plugins"
+      ],
+      "text": "I've loaded the Tyk custom plugins skill, which covers building, signing and serving bundles so gateways download your Python middleware themselves.",
+      "cost_usd": 0.0713006,
+      "duration_s": 7.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 112,
+        "cache_creation_input_tokens": 8368,
+        "cache_read_input_tokens": 10463
+      },
+      "chosen_canonical": "tyk-custom-plugins",
+      "correct": true
+    },
+    {
+      "id": "custom-plugins-n1",
+      "skill": "tyk-custom-plugins",
+      "kind": "near_miss",
+      "expected": "tyk-authentication",
+      "prompt": "turn on basic auth for the internal reporting API in Tyk",
+      "chosen": "tyk-authentication",
+      "chosen_raw": "tyk-skills:tyk-authentication",
+      "skills_called": [
+        "tyk-skills:tyk-authentication"
+      ],
+      "text": "I've loaded the Tyk authentication skill, which covers turning on Basic auth for the internal reporting API.",
+      "cost_usd": 0.076384,
+      "duration_s": 11.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 99,
+        "cache_creation_input_tokens": 9036,
+        "cache_read_input_tokens": 10460
+      },
+      "chosen_canonical": "tyk-authentication",
+      "correct": true
+    },
+    {
+      "id": "custom-plugins-n2",
+      "skill": "tyk-custom-plugins",
+      "kind": "near_miss",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "Rewrite /v1/customers/123 to /customers?id=123 before Tyk proxies it, configuration only, no code.",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I loaded the Tyk API definitions and routing skill, which covers setting up this rewrite through configuration alone.",
+      "cost_usd": 0.075596,
+      "duration_s": 6.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 105,
+        "cache_creation_input_tokens": 8922,
+        "cache_read_input_tokens": 10480
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "demo-builder-p1",
+      "skill": "tyk-demo-builder",
+      "kind": "positive",
+      "expected": "tyk-demo-builder",
+      "prompt": "Spin up a local Tyk demo with the Dashboard, the developer portal and two sample APIs secured with keys, I'm showing it to a prospect next week.",
+      "chosen": "tyk-demo-builder",
+      "chosen_raw": "tyk-skills:tyk-demo-builder",
+      "skills_called": [
+        "tyk-skills:tyk-demo-builder"
+      ],
+      "text": "I've loaded the Tyk demo builder skill to build a local stack with the Dashboard, the developer portal and two key-secured sample APIs.",
+      "cost_usd": 0.0723862,
+      "duration_s": 5.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 112,
+        "cache_creation_input_tokens": 8503,
+        "cache_read_input_tokens": 10491
+      },
+      "chosen_canonical": "tyk-demo-builder",
+      "correct": true
+    },
+    {
+      "id": "demo-builder-p2",
+      "skill": "tyk-demo-builder",
+      "kind": "positive",
+      "expected": "tyk-demo-builder",
+      "prompt": "build a docker compose Tyk stack from these three OpenAPI files with JWT auth and traces going to Jaeger",
+      "chosen": "tyk-demo-builder",
+      "chosen_raw": "tyk-skills:tyk-demo-builder",
+      "skills_called": [
+        "tyk-skills:tyk-demo-builder"
+      ],
+      "text": "I've loaded the Tyk demo builder skill, which builds the Compose stack from your OpenAPI files with the `rest,jwt,otel` modules.",
+      "cost_usd": 0.07235140000000001,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 116,
+        "cache_creation_input_tokens": 8489,
+        "cache_read_input_tokens": 10477
+      },
+      "chosen_canonical": "tyk-demo-builder",
+      "correct": true
+    },
+    {
+      "id": "demo-builder-p3",
+      "skill": "tyk-demo-builder",
+      "kind": "positive",
+      "expected": "tyk-demo-builder",
+      "prompt": "I've got the customer's requirements list. Create a runnable Tyk environment with a script that proves each requirement.",
+      "chosen": "tyk-poc-runbook",
+      "chosen_raw": "tyk-skills:tyk-poc-runbook",
+      "skills_called": [
+        "tyk-skills:tyk-poc-runbook"
+      ],
+      "text": "I've loaded the Tyk proof-of-concept runbook skill, which turns a requirements list into a plan, a runnable Tyk stack and per-requirement proofs; please share the customer's requirements list so I can start.",
+      "cost_usd": 0.0721266,
+      "duration_s": 7.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 368,
+        "cache_creation_input_tokens": 7831,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-poc-runbook",
+      "correct": false
+    },
+    {
+      "id": "demo-builder-p4",
+      "skill": "tyk-demo-builder",
+      "kind": "positive",
+      "expected": "tyk-demo-builder",
+      "prompt": "Need a throwaway self-managed Tyk setup on my laptop that shows per-key rate limits and the developer portal.",
+      "chosen": "tyk-demo-builder",
+      "chosen_raw": "tyk-skills:tyk-demo-builder",
+      "skills_called": [
+        "tyk-skills:tyk-demo-builder"
+      ],
+      "text": "I've loaded the Tyk demo builder skill. It sets up a throwaway Docker Compose bundle on your laptop that can show per-key rate limits and the developer portal.",
+      "cost_usd": 0.07245499999999999,
+      "duration_s": 5.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 122,
+        "cache_creation_input_tokens": 8487,
+        "cache_read_input_tokens": 10475
+      },
+      "chosen_canonical": "tyk-demo-builder",
+      "correct": true
+    },
+    {
+      "id": "demo-builder-n1",
+      "skill": "tyk-demo-builder",
+      "kind": "near_miss",
+      "expected": "tyk-poc-runbook",
+      "prompt": "We're running a four-week evaluation of Tyk against Kong. Draft the success criteria, the test plan and the go/no-go scorecard.",
+      "chosen": "tyk-poc-runbook",
+      "chosen_raw": "tyk-skills:tyk-poc-runbook",
+      "skills_called": [
+        "tyk-skills:tyk-poc-runbook"
+      ],
+      "text": "I've loaded the Tyk PoC runbook skill, which covers success criteria, the test plan and the scorecard for this Tyk-versus-Kong evaluation.",
+      "cost_usd": 0.0654534,
+      "duration_s": 6.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 121,
+        "cache_creation_input_tokens": 7614,
+        "cache_read_input_tokens": 10487
+      },
+      "chosen_canonical": "tyk-poc-runbook",
+      "correct": true
+    },
+    {
+      "id": "demo-builder-n2",
+      "skill": "tyk-demo-builder",
+      "kind": "near_miss",
+      "expected": null,
+      "prompt": "Install Tyk in production on our EKS cluster with Helm, highly available Redis and Postgres.",
+      "chosen": "tyk-infra-sizing",
+      "chosen_raw": "tyk-skills:tyk-infra-sizing",
+      "skills_called": [
+        "tyk-skills:tyk-infra-sizing"
+      ],
+      "text": "I loaded the Tyk infrastructure sizing skill, but it only plans node, Redis and Postgres sizing; the actual Helm install on EKS belongs to a separate `tyk-install` plugin that isn't available here.",
+      "cost_usd": 0.073562,
+      "duration_s": 8.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 439,
+        "cache_creation_input_tokens": 7833,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-infra-sizing",
+      "correct": false
+    },
+    {
+      "id": "developer-portal-branding-p1",
+      "skill": "tyk-developer-portal-branding",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-branding",
+      "prompt": "Make our Tyk developer portal look like the company website: our logo, our purple palette and our font.",
+      "chosen": "tyk-developer-portal-branding",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-branding",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-branding"
+      ],
+      "text": "I've loaded the Tyk Developer Portal branding skill, which covers adding your logo, purple palette and font to the portal.",
+      "cost_usd": 0.06805800000000001,
+      "duration_s": 6.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 7970,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-developer-portal-branding",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-branding-p2",
+      "skill": "tyk-developer-portal-branding",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-branding",
+      "prompt": "change the subject of the portal's sign-up email and the hero text on the portal home page",
+      "chosen": "tyk-developer-portal-branding",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-branding",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-branding"
+      ],
+      "text": "I've loaded the Tyk Developer Portal branding skill, which covers both the sign-up email subject and the home page hero text.",
+      "cost_usd": 0.06800880000000001,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 7964,
+        "cache_read_input_tokens": 10464
+      },
+      "chosen_canonical": "tyk-developer-portal-branding",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-branding-p3",
+      "skill": "tyk-developer-portal-branding",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-branding",
+      "prompt": "We upgraded the Tyk portal and our custom theme broke. How do I rebase it on the new default theme?",
+      "chosen": "tyk-developer-portal-branding",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-branding",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-branding"
+      ],
+      "text": "I've loaded the Tyk Developer Portal branding skill, which covers rebuilding a custom theme on top of the new release's default theme after an upgrade.",
+      "cost_usd": 0.0696232,
+      "duration_s": 5.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 166,
+        "cache_creation_input_tokens": 8023,
+        "cache_read_input_tokens": 10476
+      },
+      "chosen_canonical": "tyk-developer-portal-branding",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-branding-p4",
+      "skill": "tyk-developer-portal-branding",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-branding",
+      "prompt": "white-label the API developer portal for one of our resellers",
+      "chosen": "tyk-developer-portal-branding",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-branding",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-branding"
+      ],
+      "text": "I've loaded the Tyk Developer Portal branding skill, which covers white-labelling a portal for a reseller.",
+      "cost_usd": 0.067875,
+      "duration_s": 4.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 106,
+        "cache_creation_input_tokens": 7955,
+        "cache_read_input_tokens": 10455
+      },
+      "chosen_canonical": "tyk-developer-portal-branding",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-branding-n1",
+      "skill": "tyk-developer-portal-branding",
+      "kind": "near_miss",
+      "expected": "tyk-developer-portal-setup",
+      "prompt": "Publish our payments API in the Tyk developer portal catalogue with a free plan and a paid plan.",
+      "chosen": "tyk-developer-portal-setup",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-setup",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-setup"
+      ],
+      "text": "I've loaded the Tyk Developer Portal setup skill, which covers publishing the payments API to the catalogue with a free plan and a paid plan.",
+      "cost_usd": 0.07690659999999999,
+      "duration_s": 6.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 117,
+        "cache_creation_input_tokens": 9056,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-developer-portal-setup",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-branding-n2",
+      "skill": "tyk-developer-portal-branding",
+      "kind": "near_miss",
+      "expected": null,
+      "prompt": "Design a logo and a colour palette for our new API product brand.",
+      "chosen": null,
+      "chosen_raw": null,
+      "skills_called": [],
+      "text": "NONE",
+      "cost_usd": 0.0345168,
+      "duration_s": 4.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 2,
+        "output_tokens": 105,
+        "cache_creation_input_tokens": 3970,
+        "cache_read_input_tokens": 3244
+      },
+      "chosen_canonical": null,
+      "correct": true
+    },
+    {
+      "id": "developer-portal-setup-p1",
+      "skill": "tyk-developer-portal-setup",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-setup",
+      "prompt": "Developers sign up on our Tyk portal but their access requests never show up anywhere for approval.",
+      "chosen": "tyk-developer-portal-setup",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-setup",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-setup"
+      ],
+      "text": "I've loaded the Tyk Developer Portal setup skill, which covers sign-up review and approving access requests.",
+      "cost_usd": 0.0788142,
+      "duration_s": 6.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 182,
+        "cache_creation_input_tokens": 9132,
+        "cache_read_input_tokens": 10471
+      },
+      "chosen_canonical": "tyk-developer-portal-setup",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-setup-p2",
+      "skill": "tyk-developer-portal-setup",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-setup",
+      "prompt": "set up dynamic client registration in the Tyk portal with Keycloak so every app gets its own client id",
+      "chosen": "tyk-developer-portal-setup",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-setup",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-setup"
+      ],
+      "text": "I've loaded the Tyk Developer Portal setup skill, which covers setting up dynamic client registration (DCR) with Keycloak so each app gets its own client ID.",
+      "cost_usd": 0.07704659999999999,
+      "duration_s": 5.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 9056,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-developer-portal-setup",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-setup-p3",
+      "skill": "tyk-developer-portal-setup",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-setup",
+      "prompt": "Connect the developer portal to the Dashboard and publish two products, each with its own plans.",
+      "chosen": "tyk-developer-portal-setup",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-setup",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-setup"
+      ],
+      "text": "I loaded the Tyk Developer Portal setup skill, which covers this request: connecting the Portal to the Dashboard and publishing two products, each with its own plans.",
+      "cost_usd": 0.0769656,
+      "duration_s": 6.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 122,
+        "cache_creation_input_tokens": 9051,
+        "cache_read_input_tokens": 10468
+      },
+      "chosen_canonical": "tyk-developer-portal-setup",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-setup-p4",
+      "skill": "tyk-developer-portal-setup",
+      "kind": "positive",
+      "expected": "tyk-developer-portal-setup",
+      "prompt": "We're moving consumers to the Tyk portal and need to bring their existing API keys across.",
+      "chosen": "tyk-developer-portal-setup",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-setup",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-setup"
+      ],
+      "text": "I've loaded the Tyk Developer Portal setup skill, which has a reference on importing existing API keys into the portal so consumers keep them.",
+      "cost_usd": 0.0796056,
+      "duration_s": 6.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 214,
+        "cache_creation_input_tokens": 9151,
+        "cache_read_input_tokens": 10468
+      },
+      "chosen_canonical": "tyk-developer-portal-setup",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-setup-n1",
+      "skill": "tyk-developer-portal-setup",
+      "kind": "near_miss",
+      "expected": "tyk-developer-portal-branding",
+      "prompt": "change the portal colours and the links in its footer",
+      "chosen": "tyk-developer-portal-branding",
+      "chosen_raw": "tyk-skills:tyk-developer-portal-branding",
+      "skills_called": [
+        "tyk-skills:tyk-developer-portal-branding"
+      ],
+      "text": "I've loaded the Tyk Developer Portal branding skill, which covers changing the portal's colours and its footer links.",
+      "cost_usd": 0.06785859999999999,
+      "duration_s": 5.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 106,
+        "cache_creation_input_tokens": 7953,
+        "cache_read_input_tokens": 10453
+      },
+      "chosen_canonical": "tyk-developer-portal-branding",
+      "correct": true
+    },
+    {
+      "id": "developer-portal-setup-n2",
+      "skill": "tyk-developer-portal-setup",
+      "kind": "near_miss",
+      "expected": "tyk-rate-limits-keys-policies",
+      "prompt": "Create a Tyk policy that gives partner keys a 10k-per-day quota. Dashboard only, we don't use a portal.",
+      "chosen": "tyk-rate-limits-keys-policies",
+      "chosen_raw": "tyk-skills:tyk-rate-limits-keys-policies",
+      "skills_called": [
+        "tyk-skills:tyk-rate-limits-keys-policies"
+      ],
+      "text": "I've loaded the Tyk rate-limits, keys and policies skill, which covers creating this partner-quota policy through the Dashboard API.",
+      "cost_usd": 0.0765644,
+      "duration_s": 5.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 117,
+        "cache_creation_input_tokens": 9013,
+        "cache_read_input_tokens": 10482
+      },
+      "chosen_canonical": "tyk-rate-limits-keys-policies",
+      "correct": true
+    },
+    {
+      "id": "excalidraw-diagrams-p1",
+      "skill": "tyk-excalidraw-diagrams",
+      "kind": "positive",
+      "expected": "tyk-excalidraw-diagrams",
+      "prompt": "Draw our Tyk setup: control plane in eu-west-1, two data planes in the DMZ and the private zone, Redis next to each data plane.",
+      "chosen": "tyk-excalidraw-diagrams",
+      "chosen_raw": "tyk-skills:tyk-excalidraw-diagrams",
+      "skills_called": [
+        "tyk-skills:tyk-excalidraw-diagrams"
+      ],
+      "text": "I've loaded the Tyk Excalidraw diagrams skill to draw your control plane in eu-west-1 with the DMZ and private-zone data planes, each with its own Redis.",
+      "cost_usd": 0.06976940000000001,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 130,
+        "cache_creation_input_tokens": 8131,
+        "cache_read_input_tokens": 10487
+      },
+      "chosen_canonical": "tyk-excalidraw-diagrams",
+      "correct": true
+    },
+    {
+      "id": "excalidraw-diagrams-p2",
+      "skill": "tyk-excalidraw-diagrams",
+      "kind": "positive",
+      "expected": "tyk-excalidraw-diagrams",
+      "prompt": "I need an editable architecture diagram comparing single-region and multi-region Tyk for a slide.",
+      "chosen": "tyk-excalidraw-diagrams",
+      "chosen_raw": "tyk-skills:tyk-excalidraw-diagrams",
+      "skills_called": [
+        "tyk-skills:tyk-excalidraw-diagrams"
+      ],
+      "text": "I've loaded the Tyk Excalidraw diagrams skill, which will produce an editable `.excalidraw` file comparing the single-region and multi-region Tyk setups.",
+      "cost_usd": 0.06959000000000001,
+      "duration_s": 4.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 128,
+        "cache_creation_input_tokens": 8114,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-excalidraw-diagrams",
+      "correct": true
+    },
+    {
+      "id": "excalidraw-diagrams-p3",
+      "skill": "tyk-excalidraw-diagrams",
+      "kind": "positive",
+      "expected": "tyk-excalidraw-diagrams",
+      "prompt": "sketch the hybrid topology with Tyk Cloud as the control plane and our on-prem gateways, as a .excalidraw file",
+      "chosen": "tyk-excalidraw-diagrams",
+      "chosen_raw": "tyk-skills:tyk-excalidraw-diagrams",
+      "skills_called": [
+        "tyk-skills:tyk-excalidraw-diagrams"
+      ],
+      "text": "I've loaded the Tyk Excalidraw diagrams skill for this hybrid topology diagram.",
+      "cost_usd": 0.06923299999999999,
+      "duration_s": 6.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 104,
+        "cache_creation_input_tokens": 8129,
+        "cache_read_input_tokens": 10485
+      },
+      "chosen_canonical": "tyk-excalidraw-diagrams",
+      "correct": true
+    },
+    {
+      "id": "excalidraw-diagrams-p4",
+      "skill": "tyk-excalidraw-diagrams",
+      "kind": "positive",
+      "expected": "tyk-excalidraw-diagrams",
+      "prompt": "Make a picture of how MDCB pushes keys and policies out to the edge gateways.",
+      "chosen": "tyk-excalidraw-diagrams",
+      "chosen_raw": "tyk-skills:tyk-excalidraw-diagrams",
+      "skills_called": [
+        "tyk-skills:tyk-excalidraw-diagrams"
+      ],
+      "text": "I've loaded the Tyk Excalidraw diagram skill, which will produce an editable diagram of MDCB syncing keys and policies to the edge gateways.",
+      "cost_usd": 0.0694736,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 123,
+        "cache_creation_input_tokens": 8112,
+        "cache_read_input_tokens": 10468
+      },
+      "chosen_canonical": "tyk-excalidraw-diagrams",
+      "correct": true
+    },
+    {
+      "id": "excalidraw-diagrams-n1",
+      "skill": "tyk-excalidraw-diagrams",
+      "kind": "near_miss",
+      "expected": "tyk-infra-sizing",
+      "prompt": "How many gateway nodes and how much Redis do we need for 3,000 requests per second at peak across two regions?",
+      "chosen": "tyk-infra-sizing",
+      "chosen_raw": "tyk-skills:tyk-infra-sizing",
+      "skills_called": [
+        "tyk-skills:tyk-infra-sizing"
+      ],
+      "text": "I've loaded the Tyk infra-sizing skill to work out gateway nodes and Redis for 3,000 RPS peak across two regions.",
+      "cost_usd": 0.0651714,
+      "duration_s": 4.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 7599,
+        "cache_read_input_tokens": 10477
+      },
+      "chosen_canonical": "tyk-infra-sizing",
+      "correct": true
+    },
+    {
+      "id": "excalidraw-diagrams-n2",
+      "skill": "tyk-excalidraw-diagrams",
+      "kind": "near_miss",
+      "expected": null,
+      "prompt": "Draw a mermaid sequence diagram of the checkout service calling the payment service.",
+      "chosen": null,
+      "chosen_raw": null,
+      "skills_called": [],
+      "text": "NONE",
+      "cost_usd": 0.034444800000000005,
+      "duration_s": 4.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 2,
+        "output_tokens": 99,
+        "cache_creation_input_tokens": 3976,
+        "cache_read_input_tokens": 3244
+      },
+      "chosen_canonical": null,
+      "correct": true
+    },
+    {
+      "id": "facts-p1",
+      "skill": "tyk-facts",
+      "kind": "positive",
+      "expected": "tyk-facts",
+      "prompt": "Is the Tyk developer portal open source or do we need a licence for it?",
+      "chosen": "tyk-facts",
+      "chosen_raw": "tyk-skills:tyk-facts",
+      "skills_called": [
+        "tyk-skills:tyk-facts"
+      ],
+      "text": "I've loaded the Tyk facts skill so I can answer the Developer Portal licensing question from the vendor's own published wording.",
+      "cost_usd": 0.0645474,
+      "duration_s": 5.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 7494,
+        "cache_read_input_tokens": 10457
+      },
+      "chosen_canonical": "tyk-facts",
+      "correct": true
+    },
+    {
+      "id": "facts-p2",
+      "skill": "tyk-facts",
+      "kind": "positive",
+      "expected": "tyk-facts",
+      "prompt": "what's the latest Tyk gateway release and which docker image tag should I pin",
+      "chosen": "tyk-facts",
+      "chosen_raw": "tyk-skills:tyk-facts",
+      "skills_called": [
+        "tyk-skills:tyk-facts"
+      ],
+      "text": "I've loaded the Tyk facts skill, which can look up the current Gateway release tag directly from Docker Hub.",
+      "cost_usd": 0.06534519999999999,
+      "duration_s": 5.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 149,
+        "cache_creation_input_tokens": 7531,
+        "cache_read_input_tokens": 10466
+      },
+      "chosen_canonical": "tyk-facts",
+      "correct": true
+    },
+    {
+      "id": "facts-p3",
+      "skill": "tyk-facts",
+      "kind": "positive",
+      "expected": "tyk-facts",
+      "prompt": "How is Tyk priced, and how do I get a trial licence for the Dashboard?",
+      "chosen": "tyk-facts",
+      "chosen_raw": "tyk-skills:tyk-facts",
+      "skills_called": [
+        "tyk-skills:tyk-facts"
+      ],
+      "text": "I've loaded the Tyk facts skill. It covers Tyk's pricing model and how to get a trial licence for the Dashboard.",
+      "cost_usd": 0.0647814,
+      "duration_s": 6.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 140,
+        "cache_creation_input_tokens": 7483,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-facts",
+      "correct": true
+    },
+    {
+      "id": "facts-p4",
+      "skill": "tyk-facts",
+      "kind": "positive",
+      "expected": "tyk-facts",
+      "prompt": "Can Tyk run fully air-gapped? What deployment options are there?",
+      "chosen": "tyk-facts",
+      "chosen_raw": "tyk-skills:tyk-facts",
+      "skills_called": [
+        "tyk-skills:tyk-facts"
+      ],
+      "text": "I've loaded the Tyk facts skill, which covers air-gapped setups and the deployment options (Tyk Cloud, Hybrid, Self-Managed, open source only and MDCB).",
+      "cost_usd": 0.0644322,
+      "duration_s": 7.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 125,
+        "cache_creation_input_tokens": 7477,
+        "cache_read_input_tokens": 10461
+      },
+      "chosen_canonical": "tyk-facts",
+      "correct": true
+    },
+    {
+      "id": "facts-n1",
+      "skill": "tyk-facts",
+      "kind": "near_miss",
+      "expected": "tyk-upgrades",
+      "prompt": "We're on Tyk Gateway 5.3. What's the safe order to move the Dashboard, Pump and gateways to the current release?",
+      "chosen": "tyk-upgrades",
+      "chosen_raw": "tyk-skills:tyk-upgrades",
+      "skills_called": [
+        "tyk-skills:tyk-upgrades"
+      ],
+      "text": "I've loaded the Tyk upgrades skill, which covers the documented upgrade order and how to back up, verify and roll back when moving from 5.3 to the current release.",
+      "cost_usd": 0.07800779999999999,
+      "duration_s": 6.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 142,
+        "cache_creation_input_tokens": 9131,
+        "cache_read_input_tokens": 10479
+      },
+      "chosen_canonical": "tyk-upgrades",
+      "correct": true
+    },
+    {
+      "id": "facts-n2",
+      "skill": "tyk-facts",
+      "kind": "near_miss",
+      "expected": null,
+      "prompt": "What's the practical difference between REST and GraphQL for a public API?",
+      "chosen": null,
+      "chosen_raw": null,
+      "skills_called": [],
+      "text": "NONE",
+      "cost_usd": 0.033736800000000004,
+      "duration_s": 3.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 2,
+        "output_tokens": 64,
+        "cache_creation_input_tokens": 3975,
+        "cache_read_input_tokens": 3244
+      },
+      "chosen_canonical": null,
+      "correct": true
+    },
+    {
+      "id": "gitops-sync-operator-p1",
+      "skill": "tyk-gitops-sync-operator",
+      "kind": "positive",
+      "expected": "tyk-gitops-sync-operator",
+      "prompt": "We want every Tyk API and policy in git, applied by CI, and any drift put back automatically.",
+      "chosen": "tyk-gitops-sync-operator",
+      "chosen_raw": "tyk-skills:tyk-gitops-sync-operator",
+      "skills_called": [
+        "tyk-skills:tyk-gitops-sync-operator"
+      ],
+      "text": "I've loaded the Tyk GitOps skill, which covers this: keeping APIs and policies in git, applying them from CI, and putting drift back.",
+      "cost_usd": 0.077186,
+      "duration_s": 7.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 117,
+        "cache_creation_input_tokens": 9091,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-gitops-sync-operator",
+      "correct": true
+    },
+    {
+      "id": "gitops-sync-operator-p2",
+      "skill": "tyk-gitops-sync-operator",
+      "kind": "positive",
+      "expected": "tyk-gitops-sync-operator",
+      "prompt": "how do I dump the APIs from our dev Tyk and load them into prod",
+      "chosen": "tyk-gitops-sync-operator",
+      "chosen_raw": "tyk-skills:tyk-gitops-sync-operator",
+      "skills_called": [
+        "tyk-skills:tyk-gitops-sync-operator"
+      ],
+      "text": "I've loaded the Tyk GitOps skill, which covers exporting APIs from your dev Dashboard with Tyk Sync and promoting them to prod.",
+      "cost_usd": 0.07851640000000001,
+      "duration_s": 7.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 168,
+        "cache_creation_input_tokens": 9130,
+        "cache_read_input_tokens": 10462
+      },
+      "chosen_canonical": "tyk-gitops-sync-operator",
+      "correct": true
+    },
+    {
+      "id": "gitops-sync-operator-p3",
+      "skill": "tyk-gitops-sync-operator",
+      "kind": "positive",
+      "expected": "tyk-gitops-sync-operator",
+      "prompt": "Manage our Tyk APIs as Kubernetes custom resources and route with HTTPRoute.",
+      "chosen": "tyk-gitops-sync-operator",
+      "chosen_raw": "tyk-skills:tyk-gitops-sync-operator",
+      "skills_called": [
+        "tyk-skills:tyk-gitops-sync-operator"
+      ],
+      "text": "I've loaded the Tyk GitOps skill. It covers managing APIs as custom resources with Tyk Operator and routing them with `HTTPRoute`.",
+      "cost_usd": 0.07731060000000001,
+      "duration_s": 6.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 122,
+        "cache_creation_input_tokens": 9094,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-gitops-sync-operator",
+      "correct": true
+    },
+    {
+      "id": "gitops-sync-operator-p4",
+      "skill": "tyk-gitops-sync-operator",
+      "kind": "positive",
+      "expected": "tyk-gitops-sync-operator",
+      "prompt": "roll back yesterday's API change in Tyk through our pipeline",
+      "chosen": "tyk-gitops-sync-operator",
+      "chosen_raw": "tyk-skills:tyk-gitops-sync-operator",
+      "skills_called": [
+        "tyk-skills:tyk-gitops-sync-operator"
+      ],
+      "text": "I've loaded the Tyk GitOps skill for this; the plan is to `git revert` yesterday's commit, push it through the pipeline again, then check that the old config is back and existing keys still work.",
+      "cost_usd": 0.078564,
+      "duration_s": 5.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 180,
+        "cache_creation_input_tokens": 9106,
+        "cache_read_input_tokens": 10460
+      },
+      "chosen_canonical": "tyk-gitops-sync-operator",
+      "correct": true
+    },
+    {
+      "id": "gitops-sync-operator-n1",
+      "skill": "tyk-gitops-sync-operator",
+      "kind": "near_miss",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "The upstream URL in my Tyk OAS definition isn't taking effect. Which field should I set?",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I've loaded the Tyk API definitions and routing skill, which covers where the upstream URL belongs in a Tyk OAS definition.",
+      "cost_usd": 0.0756822,
+      "duration_s": 6.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 8913,
+        "cache_read_input_tokens": 10471
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "gitops-sync-operator-n2",
+      "skill": "tyk-gitops-sync-operator",
+      "kind": "near_miss",
+      "expected": "tyk-migration-planner",
+      "prompt": "We have 200 Kong services in decK files. How do we move them into Tyk as config as code?",
+      "chosen": "tyk-migration-planner",
+      "chosen_raw": "tyk-skills:tyk-migration-planner",
+      "skills_called": [
+        "tyk-skills:tyk-migration-planner"
+      ],
+      "text": "I've loaded the Tyk migration planner skill, which covers moving Kong decK services into Tyk as config as code.",
+      "cost_usd": 0.0815138,
+      "duration_s": 7.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 161,
+        "cache_creation_input_tokens": 9522,
+        "cache_read_input_tokens": 10469
+      },
+      "chosen_canonical": "tyk-migration-planner",
+      "correct": true
+    },
+    {
+      "id": "infra-sizing-p1",
+      "skill": "tyk-infra-sizing",
+      "kind": "positive",
+      "expected": "tyk-infra-sizing",
+      "prompt": "We expect 50 million requests a month, 2k rps at peak, analytics on. How many gateways do we need and how big should Redis be?",
+      "chosen": "tyk-infra-sizing",
+      "chosen_raw": "tyk-skills:tyk-infra-sizing",
+      "skills_called": [
+        "tyk-skills:tyk-infra-sizing"
+      ],
+      "text": "I've loaded the Tyk infrastructure sizing skill for this request: 50M requests a month, 2k RPS at peak, with analytics on.",
+      "cost_usd": 0.0651996,
+      "duration_s": 5.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 114,
+        "cache_creation_input_tokens": 7600,
+        "cache_read_input_tokens": 10478
+      },
+      "chosen_canonical": "tyk-infra-sizing",
+      "correct": true
+    },
+    {
+      "id": "infra-sizing-p2",
+      "skill": "tyk-infra-sizing",
+      "kind": "positive",
+      "expected": "tyk-infra-sizing",
+      "prompt": "estimate the AWS cost of self-managed Tyk on EKS versus ECS Fargate for three environments",
+      "chosen": "tyk-infra-sizing",
+      "chosen_raw": "tyk-skills:tyk-infra-sizing",
+      "skills_called": [
+        "tyk-skills:tyk-infra-sizing"
+      ],
+      "text": "I've loaded the Tyk infra-sizing skill for comparing EKS and ECS Fargate costs across your three environments.",
+      "cost_usd": 0.0650186,
+      "duration_s": 5.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 107,
+        "cache_creation_input_tokens": 7595,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-infra-sizing",
+      "correct": true
+    },
+    {
+      "id": "infra-sizing-p3",
+      "skill": "tyk-infra-sizing",
+      "kind": "positive",
+      "expected": "tyk-infra-sizing",
+      "prompt": "Size a two-datacentre on-prem Tyk with MDCB that still copes when one node is lost.",
+      "chosen": "tyk-infra-sizing",
+      "chosen_raw": "tyk-skills:tyk-infra-sizing",
+      "skills_called": [
+        "tyk-skills:tyk-infra-sizing"
+      ],
+      "text": "I've loaded the Tyk infrastructure sizing skill for this two-datacentre MDCB estate with an N-1 check.",
+      "cost_usd": 0.0650386,
+      "duration_s": 4.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 108,
+        "cache_creation_input_tokens": 7595,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-infra-sizing",
+      "correct": true
+    },
+    {
+      "id": "infra-sizing-p4",
+      "skill": "tyk-infra-sizing",
+      "kind": "positive",
+      "expected": "tyk-infra-sizing",
+      "prompt": "From the traffic numbers in this RFP, give me an infrastructure plan for Tyk.",
+      "chosen": "tyk-infra-sizing",
+      "chosen_raw": "tyk-skills:tyk-infra-sizing",
+      "skills_called": [
+        "tyk-skills:tyk-infra-sizing"
+      ],
+      "text": "I've loaded the Tyk infrastructure sizing skill, which turns the RFP's traffic figures into the infrastructure plan.",
+      "cost_usd": 0.0650458,
+      "duration_s": 5.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 110,
+        "cache_creation_input_tokens": 7591,
+        "cache_read_input_tokens": 10469
+      },
+      "chosen_canonical": "tyk-infra-sizing",
+      "correct": true
+    },
+    {
+      "id": "infra-sizing-n1",
+      "skill": "tyk-infra-sizing",
+      "kind": "near_miss",
+      "expected": "tyk-excalidraw-diagrams",
+      "prompt": "Draw the deployment we agreed: one control plane and two data planes. No numbers needed.",
+      "chosen": "tyk-excalidraw-diagrams",
+      "chosen_raw": "tyk-skills:tyk-excalidraw-diagrams",
+      "skills_called": [
+        "tyk-skills:tyk-excalidraw-diagrams"
+      ],
+      "text": "I've loaded the Tyk Excalidraw diagrams skill to draw the one-control-plane, two-data-plane layout.",
+      "cost_usd": 0.06921260000000001,
+      "duration_s": 5.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 112,
+        "cache_creation_input_tokens": 8107,
+        "cache_read_input_tokens": 10463
+      },
+      "chosen_canonical": "tyk-excalidraw-diagrams",
+      "correct": true
+    },
+    {
+      "id": "infra-sizing-n2",
+      "skill": "tyk-infra-sizing",
+      "kind": "near_miss",
+      "expected": "tyk-poc-runbook",
+      "prompt": "As part of our evaluation, prove under load that Tyk keeps p99 latency under 20 ms at 5k rps, and record the evidence.",
+      "chosen": "tyk-poc-runbook",
+      "chosen_raw": "tyk-skills:tyk-poc-runbook",
+      "skills_called": [
+        "tyk-skills:tyk-poc-runbook"
+      ],
+      "text": "I've loaded the Tyk PoC runbook, which covers this as criterion C4 (latency and throughput): the run happens on the intended hardware and the evidence is recorded per run.",
+      "cost_usd": 0.0680254,
+      "duration_s": 10.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 214,
+        "cache_creation_input_tokens": 7703,
+        "cache_read_input_tokens": 10487
+      },
+      "chosen_canonical": "tyk-poc-runbook",
+      "correct": true
+    },
+    {
+      "id": "mcp-gateway-p1",
+      "skill": "tyk-mcp-gateway",
+      "kind": "positive",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "Expose our existing REST orders API as MCP tools for agents, through Tyk.",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill, which covers exposing a REST API as MCP tools through Tyk.",
+      "cost_usd": 0.0809786,
+      "duration_s": 6.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 9585,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "mcp-gateway-p2",
+      "skill": "tyk-mcp-gateway",
+      "kind": "positive",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "put a remote MCP server behind the Tyk gateway and require API keys",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill for putting a remote MCP server behind Tyk with API key auth.",
+      "cost_usd": 0.0808766,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 108,
+        "cache_creation_input_tokens": 9575,
+        "cache_read_input_tokens": 10463
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "mcp-gateway-p3",
+      "skill": "tyk-mcp-gateway",
+      "kind": "positive",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "Limit which MCP tools each client may call, and rate limit tools/call per client.",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill, which covers per-client tool allowlists and rate limiting `tools/call` on an MCP proxy.",
+      "cost_usd": 0.0811084,
+      "duration_s": 5.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 120,
+        "cache_creation_input_tokens": 9574,
+        "cache_read_input_tokens": 10462
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "mcp-gateway-p4",
+      "skill": "tyk-mcp-gateway",
+      "kind": "positive",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "MCP clients need OAuth discovery and token exchange so the upstream sees the real user's identity. How on Tyk?",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill, which covers OAuth discovery, JWT validation and token exchange with Keycloak on Tyk.",
+      "cost_usd": 0.0812396,
+      "duration_s": 8.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 120,
+        "cache_creation_input_tokens": 9590,
+        "cache_read_input_tokens": 10478
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "mcp-gateway-n1",
+      "skill": "tyk-mcp-gateway",
+      "kind": "near_miss",
+      "expected": "tyk-ai-gateway",
+      "prompt": "Route our chat app's model calls through one gateway with a budget per team.",
+      "chosen": "tyk-ai-gateway",
+      "chosen_raw": "tyk-skills:tyk-ai-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-ai-gateway"
+      ],
+      "text": "I've loaded the Tyk AI Gateway skill, which covers this setup. Per-team budgets that actually block calls need the Enterprise Edition, not Community.",
+      "cost_usd": 0.0813558,
+      "duration_s": 8.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 120,
+        "cache_creation_input_tokens": 9605,
+        "cache_read_input_tokens": 10459
+      },
+      "chosen_canonical": "tyk-ai-gateway",
+      "correct": true
+    },
+    {
+      "id": "mcp-gateway-n2",
+      "skill": "tyk-mcp-gateway",
+      "kind": "near_miss",
+      "expected": "tyk-observability",
+      "prompt": "Export traces for our ordinary REST APIs on Tyk to Grafana Tempo.",
+      "chosen": "tyk-observability",
+      "chosen_raw": "tyk-skills:tyk-observability",
+      "skills_called": [
+        "tyk-skills:tyk-observability"
+      ],
+      "text": "I've loaded the Tyk observability skill, which covers sending Tyk Gateway traces to Grafana Tempo through OpenTelemetry.",
+      "cost_usd": 0.0739856,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 111,
+        "cache_creation_input_tokens": 8706,
+        "cache_read_input_tokens": 10468
+      },
+      "chosen_canonical": "tyk-observability",
+      "correct": true
+    },
+    {
+      "id": "migration-planner-p1",
+      "skill": "tyk-migration-planner",
+      "kind": "positive",
+      "expected": "tyk-migration-planner",
+      "prompt": "We're leaving Apigee. How do API products, developer apps and API proxies map onto Tyk?",
+      "chosen": "tyk-migration-planner",
+      "chosen_raw": "tyk-skills:tyk-migration-planner",
+      "skills_called": [
+        "tyk-skills:tyk-migration-planner"
+      ],
+      "text": "I've loaded the Tyk migration planner. It will map Apigee API proxies, API products and developer apps onto Tyk.",
+      "cost_usd": 0.0805098,
+      "duration_s": 4.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 134,
+        "cache_creation_input_tokens": 9464,
+        "cache_read_input_tokens": 10469
+      },
+      "chosen_canonical": "tyk-migration-planner",
+      "correct": true
+    },
+    {
+      "id": "migration-planner-p2",
+      "skill": "tyk-migration-planner",
+      "kind": "positive",
+      "expected": "tyk-migration-planner",
+      "prompt": "map each Kong plugin we use (rate-limiting, jwt, request-transformer) to what Tyk has",
+      "chosen": "tyk-migration-planner",
+      "chosen_raw": "tyk-skills:tyk-migration-planner",
+      "skills_called": [
+        "tyk-skills:tyk-migration-planner"
+      ],
+      "text": "I've loaded the Tyk migration planner skill so I can map your rate-limiting, jwt and request-transformer Kong plugins to their Tyk equivalents.",
+      "cost_usd": 0.0806826,
+      "duration_s": 5.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 141,
+        "cache_creation_input_tokens": 9468,
+        "cache_read_input_tokens": 10473
+      },
+      "chosen_canonical": "tyk-migration-planner",
+      "correct": true
+    },
+    {
+      "id": "migration-planner-p3",
+      "skill": "tyk-migration-planner",
+      "kind": "positive",
+      "expected": "tyk-migration-planner",
+      "prompt": "Plan the cut-over from Kong to Tyk so we keep our hostnames and our consumers' existing API keys.",
+      "chosen": "tyk-migration-planner",
+      "chosen_raw": "tyk-skills:tyk-migration-planner",
+      "skills_called": [
+        "tyk-skills:tyk-migration-planner"
+      ],
+      "text": "I've loaded the Tyk migration planner skill so I can plan your Kong-to-Tyk cut-over, keeping your hostnames and your consumers' existing API keys.",
+      "cost_usd": 0.0803682,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 122,
+        "cache_creation_input_tokens": 9476,
+        "cache_read_input_tokens": 10481
+      },
+      "chosen_canonical": "tyk-migration-planner",
+      "correct": true
+    },
+    {
+      "id": "migration-planner-p4",
+      "skill": "tyk-migration-planner",
+      "kind": "positive",
+      "expected": "tyk-migration-planner",
+      "prompt": "what does Tyk have that's like Portkey virtual keys and configs?",
+      "chosen": "tyk-ai-gateway",
+      "chosen_raw": "tyk-skills:tyk-ai-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-ai-gateway"
+      ],
+      "text": "I've loaded the Tyk AI Gateway skill, which covers AI Studio's Apps, LLM configs and failover, the closest Tyk equivalents to Portkey virtual keys and configs.",
+      "cost_usd": 0.0820522,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 154,
+        "cache_creation_input_tokens": 9607,
+        "cache_read_input_tokens": 10461
+      },
+      "chosen_canonical": "tyk-ai-gateway",
+      "correct": false
+    },
+    {
+      "id": "migration-planner-n1",
+      "skill": "tyk-migration-planner",
+      "kind": "near_miss",
+      "expected": "tyk-upgrades",
+      "prompt": "Move our Tyk 4.x installation to 5.x with as little downtime as possible.",
+      "chosen": "tyk-upgrades",
+      "chosen_raw": "tyk-skills:tyk-upgrades",
+      "skills_called": [
+        "tyk-skills:tyk-upgrades"
+      ],
+      "text": "I've loaded the Tyk upgrades skill, which covers a 4.x to 5.x move with as little downtime as possible.",
+      "cost_usd": 0.07907339999999999,
+      "duration_s": 5.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 173,
+        "cache_creation_input_tokens": 9187,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-upgrades",
+      "correct": true
+    },
+    {
+      "id": "migration-planner-n2",
+      "skill": "tyk-migration-planner",
+      "kind": "near_miss",
+      "expected": "tyk-gitops-sync-operator",
+      "prompt": "For a brand-new Tyk setup, should we drive config with tyk-sync or with the operator?",
+      "chosen": "tyk-gitops-sync-operator",
+      "chosen_raw": "tyk-skills:tyk-gitops-sync-operator",
+      "skills_called": [
+        "tyk-skills:tyk-gitops-sync-operator"
+      ],
+      "text": "I loaded the Tyk GitOps skill, which covers choosing between tyk-sync and the Operator.",
+      "cost_usd": 0.07693420000000001,
+      "duration_s": 5.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 104,
+        "cache_creation_input_tokens": 9092,
+        "cache_read_input_tokens": 10471
+      },
+      "chosen_canonical": "tyk-gitops-sync-operator",
+      "correct": true
+    },
+    {
+      "id": "observability-p1",
+      "skill": "tyk-observability",
+      "kind": "positive",
+      "expected": "tyk-observability",
+      "prompt": "Send Tyk gateway traces and metrics to our OpenTelemetry collector.",
+      "chosen": "tyk-observability",
+      "chosen_raw": "tyk-skills:tyk-observability",
+      "skills_called": [
+        "tyk-skills:tyk-observability"
+      ],
+      "text": "I loaded the Tyk observability skill, which covers sending Gateway traces and metrics to an OpenTelemetry collector.",
+      "cost_usd": 0.073821,
+      "duration_s": 6.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 104,
+        "cache_creation_input_tokens": 8703,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-observability",
+      "correct": true
+    },
+    {
+      "id": "observability-p2",
+      "skill": "tyk-observability",
+      "kind": "positive",
+      "expected": "tyk-observability",
+      "prompt": "configure pump to write analytics to Elasticsearch and also expose them to Prometheus",
+      "chosen": "tyk-observability",
+      "chosen_raw": "tyk-skills:tyk-observability",
+      "skills_called": [
+        "tyk-skills:tyk-observability"
+      ],
+      "text": "I've loaded the Tyk observability skill, which covers setting up Tyk Pump to send analytics to both Elasticsearch (version 7 or earlier) and Prometheus.",
+      "cost_usd": 0.0746574,
+      "duration_s": 6.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 145,
+        "cache_creation_input_tokens": 8705,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-observability",
+      "correct": true
+    },
+    {
+      "id": "observability-p3",
+      "skill": "tyk-observability",
+      "kind": "positive",
+      "expected": "tyk-observability",
+      "prompt": "I want request counts per customer in Prometheus so we can do chargeback.",
+      "chosen": "tyk-observability",
+      "chosen_raw": "tyk-skills:tyk-observability",
+      "skills_called": [
+        "tyk-skills:tyk-observability"
+      ],
+      "text": "I've loaded the Tyk observability skill, which covers per-customer request counters in Prometheus for chargeback.",
+      "cost_usd": 0.07368,
+      "duration_s": 6.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 99,
+        "cache_creation_input_tokens": 8698,
+        "cache_read_input_tokens": 10460
+      },
+      "chosen_canonical": "tyk-observability",
+      "correct": true
+    },
+    {
+      "id": "observability-p4",
+      "skill": "tyk-observability",
+      "kind": "positive",
+      "expected": "tyk-observability",
+      "prompt": "Give me a Grafana dashboard for Tyk latency and error rates.",
+      "chosen": "tyk-observability",
+      "chosen_raw": "tyk-skills:tyk-observability",
+      "skills_called": [
+        "tyk-skills:tyk-observability"
+      ],
+      "text": "I loaded the Tyk observability skill for your request. Per the routing test, I haven't built the dashboard yet.",
+      "cost_usd": 0.073721,
+      "duration_s": 4.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 99,
+        "cache_creation_input_tokens": 8703,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-observability",
+      "correct": true
+    },
+    {
+      "id": "observability-n1",
+      "skill": "tyk-observability",
+      "kind": "near_miss",
+      "expected": "tyk-troubleshooting",
+      "prompt": "Our Tyk gateway suddenly returns 500 on every API and we have no idea why.",
+      "chosen": "tyk-troubleshooting",
+      "chosen_raw": "tyk-skills:tyk-troubleshooting",
+      "skills_called": [
+        "tyk-skills:tyk-troubleshooting"
+      ],
+      "text": "I've loaded the Tyk troubleshooting skill for the 500 errors on every API.",
+      "cost_usd": 0.07543340000000001,
+      "duration_s": 4.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 95,
+        "cache_creation_input_tokens": 8927,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-troubleshooting",
+      "correct": true
+    },
+    {
+      "id": "observability-n2",
+      "skill": "tyk-observability",
+      "kind": "near_miss",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "Track how many calls each MCP tool gets through our Tyk MCP proxy.",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill. Per-tool call counts come from its observability reference: it uses analytics with the MCP aggregate pump and `enable_aggregate_lookups`.",
+      "cost_usd": 0.083925,
+      "duration_s": 6.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 224,
+        "cache_creation_input_tokens": 9666,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "poc-runbook-p1",
+      "skill": "tyk-poc-runbook",
+      "kind": "positive",
+      "expected": "tyk-poc-runbook",
+      "prompt": "Draft the acceptance criteria and test plan for a three-week Tyk proof of concept.",
+      "chosen": "tyk-poc-runbook",
+      "chosen_raw": "tyk-skills:tyk-poc-runbook",
+      "skills_called": [
+        "tyk-skills:tyk-poc-runbook"
+      ],
+      "text": "I've loaded the Tyk PoC runbook skill, which covers drafting the acceptance criteria and test plan for your three-week proof of concept.",
+      "cost_usd": 0.06515760000000001,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 114,
+        "cache_creation_input_tokens": 7595,
+        "cache_read_input_tokens": 10468
+      },
+      "chosen_canonical": "tyk-poc-runbook",
+      "correct": true
+    },
+    {
+      "id": "poc-runbook-p2",
+      "skill": "tyk-poc-runbook",
+      "kind": "positive",
+      "expected": "tyk-poc-runbook",
+      "prompt": "we're doing a bake-off between Tyk and Kong, build the scorecard and the tests",
+      "chosen": "tyk-poc-runbook",
+      "chosen_raw": "tyk-skills:tyk-poc-runbook",
+      "skills_called": [
+        "tyk-skills:tyk-poc-runbook"
+      ],
+      "text": "I've loaded the Tyk PoC runbook skill so we can plan the Tyk vs. Kong bake-off, including the scorecard and test criteria.",
+      "cost_usd": 0.0652258,
+      "duration_s": 6.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 117,
+        "cache_creation_input_tokens": 7596,
+        "cache_read_input_tokens": 10469
+      },
+      "chosen_canonical": "tyk-poc-runbook",
+      "correct": true
+    },
+    {
+      "id": "poc-runbook-p3",
+      "skill": "tyk-poc-runbook",
+      "kind": "positive",
+      "expected": "tyk-poc-runbook",
+      "prompt": "How do we show, as part of the evaluation, that rate limits stay accurate across three gateway replicas?",
+      "chosen": "tyk-poc-runbook",
+      "chosen_raw": "tyk-skills:tyk-poc-runbook",
+      "skills_called": [
+        "tyk-skills:tyk-poc-runbook"
+      ],
+      "text": "I've loaded the PoC runbook skill. Its criterion C2 covers checking that rate limits stay accurate across gateway replicas.",
+      "cost_usd": 0.06892200000000001,
+      "duration_s": 6.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 247,
+        "cache_creation_input_tokens": 7733,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-poc-runbook",
+      "correct": true
+    },
+    {
+      "id": "poc-runbook-p4",
+      "skill": "tyk-poc-runbook",
+      "kind": "positive",
+      "expected": "tyk-poc-runbook",
+      "prompt": "Write the go/no-go report for our gateway evaluation with evidence against each criterion.",
+      "chosen": "tyk-poc-runbook",
+      "chosen_raw": "tyk-skills:tyk-poc-runbook",
+      "skills_called": [
+        "tyk-skills:tyk-poc-runbook"
+      ],
+      "text": "I've loaded the Tyk PoC runbook skill, which sets out how to write the go/no-go report with evidence against each criterion.",
+      "cost_usd": 0.06650539999999999,
+      "duration_s": 5.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 161,
+        "cache_creation_input_tokens": 7646,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-poc-runbook",
+      "correct": true
+    },
+    {
+      "id": "poc-runbook-n1",
+      "skill": "tyk-poc-runbook",
+      "kind": "near_miss",
+      "expected": "tyk-demo-builder",
+      "prompt": "quick demo of Tyk JWT auth for a 30-minute call tomorrow",
+      "chosen": "tyk-demo-builder",
+      "chosen_raw": "tyk-skills:tyk-demo-builder",
+      "skills_called": [
+        "tyk-skills:tyk-demo-builder"
+      ],
+      "text": "I've loaded the Tyk demo builder skill, which can generate a local Docker Compose stack for a JWT auth demo for your call tomorrow.",
+      "cost_usd": 0.0722212,
+      "duration_s": 5.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 114,
+        "cache_creation_input_tokens": 8478,
+        "cache_read_input_tokens": 10466
+      },
+      "chosen_canonical": "tyk-demo-builder",
+      "correct": true
+    },
+    {
+      "id": "poc-runbook-n2",
+      "skill": "tyk-poc-runbook",
+      "kind": "near_miss",
+      "expected": "tyk-infra-sizing",
+      "prompt": "Based on the numbers we measured in the PoC, how many gateways do we need in production?",
+      "chosen": "tyk-infra-sizing",
+      "chosen_raw": "tyk-skills:tyk-infra-sizing",
+      "skills_called": [
+        "tyk-skills:tyk-infra-sizing"
+      ],
+      "text": "I've loaded the Tyk infrastructure sizing skill for this gateway-count question.",
+      "cost_usd": 0.06471299999999999,
+      "duration_s": 5.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 95,
+        "cache_creation_input_tokens": 7587,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-infra-sizing",
+      "correct": true
+    },
+    {
+      "id": "rate-limits-keys-policies-p1",
+      "skill": "tyk-rate-limits-keys-policies",
+      "kind": "positive",
+      "expected": "tyk-rate-limits-keys-policies",
+      "prompt": "Our gold partners should get 500 requests a minute and bronze ones 50 on the same Tyk API. How do I set that up?",
+      "chosen": "tyk-rate-limits-keys-policies",
+      "chosen_raw": "tyk-skills:tyk-rate-limits-keys-policies",
+      "skills_called": [
+        "tyk-skills:tyk-rate-limits-keys-policies"
+      ],
+      "text": "I've loaded the Tyk rate limits, keys and policies skill, which covers giving gold and bronze partners different limits on the same API.",
+      "cost_usd": 0.07649159999999999,
+      "duration_s": 5.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 115,
+        "cache_creation_input_tokens": 9009,
+        "cache_read_input_tokens": 10478
+      },
+      "chosen_canonical": "tyk-rate-limits-keys-policies",
+      "correct": true
+    },
+    {
+      "id": "rate-limits-keys-policies-p2",
+      "skill": "tyk-rate-limits-keys-policies",
+      "kind": "positive",
+      "expected": "tyk-rate-limits-keys-policies",
+      "prompt": "getting 'Quota exceeded' after 1000 calls but I set 10000. what's going on",
+      "chosen": "tyk-rate-limits-keys-policies",
+      "chosen_raw": "tyk-skills:tyk-rate-limits-keys-policies",
+      "skills_called": [
+        "tyk-skills:tyk-rate-limits-keys-policies"
+      ],
+      "text": "I've loaded the Tyk rate limits, keys and policies skill, since it covers quotas and how a policy's numbers end up on a key.",
+      "cost_usd": 0.0788574,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 203,
+        "cache_creation_input_tokens": 9085,
+        "cache_read_input_tokens": 10467
+      },
+      "chosen_canonical": "tyk-rate-limits-keys-policies",
+      "correct": true
+    },
+    {
+      "id": "rate-limits-keys-policies-p3",
+      "skill": "tyk-rate-limits-keys-policies",
+      "kind": "positive",
+      "expected": "tyk-rate-limits-keys-policies",
+      "prompt": "How is the rate limit counted when we run three Tyk gateways behind a load balancer?",
+      "chosen": "tyk-rate-limits-keys-policies",
+      "chosen_raw": "tyk-skills:tyk-rate-limits-keys-policies",
+      "skills_called": [
+        "tyk-skills:tyk-rate-limits-keys-policies"
+      ],
+      "text": "I loaded the Tyk rate limits, keys and policies skill, which covers how rate limits are counted across several Gateways.",
+      "cost_usd": 0.076305,
+      "duration_s": 6.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 111,
+        "cache_creation_input_tokens": 8996,
+        "cache_read_input_tokens": 10465
+      },
+      "chosen_canonical": "tyk-rate-limits-keys-policies",
+      "correct": true
+    },
+    {
+      "id": "rate-limits-keys-policies-p4",
+      "skill": "tyk-rate-limits-keys-policies",
+      "kind": "positive",
+      "expected": "tyk-rate-limits-keys-policies",
+      "prompt": "Create API keys for partners with a separate limit on POST /orders only.",
+      "chosen": "tyk-rate-limits-keys-policies",
+      "chosen_raw": "tyk-skills:tyk-rate-limits-keys-policies",
+      "skills_called": [
+        "tyk-skills:tyk-rate-limits-keys-policies"
+      ],
+      "text": "I've loaded the Tyk rate limits, keys and policies skill, which covers partner keys with a per-endpoint limit on POST /orders.",
+      "cost_usd": 0.0764122,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 118,
+        "cache_creation_input_tokens": 8992,
+        "cache_read_input_tokens": 10461
+      },
+      "chosen_canonical": "tyk-rate-limits-keys-policies",
+      "correct": true
+    },
+    {
+      "id": "rate-limits-keys-policies-n1",
+      "skill": "tyk-rate-limits-keys-policies",
+      "kind": "near_miss",
+      "expected": "tyk-authentication",
+      "prompt": "switch the Tyk API from auth tokens to JWT validation",
+      "chosen": "tyk-authentication",
+      "chosen_raw": "tyk-skills:tyk-authentication",
+      "skills_called": [
+        "tyk-skills:tyk-authentication"
+      ],
+      "text": "I loaded the Tyk authentication skill, which covers switching an API from auth tokens to JWT validation.",
+      "cost_usd": 0.07636399999999999,
+      "duration_s": 5.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 98,
+        "cache_creation_input_tokens": 9036,
+        "cache_read_input_tokens": 10460
+      },
+      "chosen_canonical": "tyk-authentication",
+      "correct": true
+    },
+    {
+      "id": "rate-limits-keys-policies-n2",
+      "skill": "tyk-rate-limits-keys-policies",
+      "kind": "near_miss",
+      "expected": "tyk-api-definitions-routing",
+      "prompt": "Add a new path /refunds to the payments API in Tyk with a different upstream.",
+      "chosen": "tyk-api-definitions-routing",
+      "chosen_raw": "tyk-skills:tyk-api-definitions-routing",
+      "skills_called": [
+        "tyk-skills:tyk-api-definitions-routing"
+      ],
+      "text": "I've loaded the Tyk API definitions and routing skill for adding the `/refunds` path with its own upstream.",
+      "cost_usd": 0.0754648,
+      "duration_s": 6.4,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 105,
+        "cache_creation_input_tokens": 8906,
+        "cache_read_input_tokens": 10464
+      },
+      "chosen_canonical": "tyk-api-definitions-routing",
+      "correct": true
+    },
+    {
+      "id": "streams-events-p1",
+      "skill": "tyk-websockets-streams-webhooks",
+      "kind": "positive",
+      "expected": "tyk-websockets-streams-webhooks",
+      "prompt": "Expose a Kafka topic to browser clients over Server-Sent Events through Tyk.",
+      "chosen": "tyk-websockets-streams-webhooks",
+      "chosen_raw": "tyk-skills:tyk-websockets-streams-webhooks",
+      "skills_called": [
+        "tyk-skills:tyk-websockets-streams-webhooks"
+      ],
+      "text": "I've loaded the Tyk streams skill, which covers serving a Kafka topic to browsers over Server-Sent Events.",
+      "cost_usd": 0.0749022,
+      "duration_s": 7.5,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 112,
+        "cache_creation_input_tokens": 8818,
+        "cache_read_input_tokens": 10471
+      },
+      "chosen_canonical": "tyk-websockets-streams-webhooks",
+      "correct": true
+    },
+    {
+      "id": "streams-events-p2",
+      "skill": "tyk-websockets-streams-webhooks",
+      "kind": "positive",
+      "expected": "tyk-websockets-streams-webhooks",
+      "prompt": "websocket connections through the tyk gateway drop after about 60 seconds",
+      "chosen": "tyk-websockets-streams-webhooks",
+      "chosen_raw": "tyk-skills:tyk-websockets-streams-webhooks",
+      "skills_called": [
+        "tyk-skills:tyk-websockets-streams-webhooks"
+      ],
+      "text": "I've loaded the Tyk WebSockets, streams and webhooks skill, which covers timeouts on long-lived connections through the gateway.",
+      "cost_usd": 0.07650799999999999,
+      "duration_s": 6.3,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 174,
+        "cache_creation_input_tokens": 8864,
+        "cache_read_input_tokens": 10460
+      },
+      "chosen_canonical": "tyk-websockets-streams-webhooks",
+      "correct": true
+    },
+    {
+      "id": "streams-events-p3",
+      "skill": "tyk-websockets-streams-webhooks",
+      "kind": "positive",
+      "expected": "tyk-websockets-streams-webhooks",
+      "prompt": "Post to our Microsoft Teams channel whenever a key hits its quota in Tyk.",
+      "chosen": "tyk-websockets-streams-webhooks",
+      "chosen_raw": "tyk-skills:tyk-websockets-streams-webhooks",
+      "skills_called": [
+        "tyk-skills:tyk-websockets-streams-webhooks"
+      ],
+      "text": "I've loaded the Tyk webhooks skill, which covers sending a webhook to Teams when a key hits its quota.",
+      "cost_usd": 0.0777216,
+      "duration_s": 6.1,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 213,
+        "cache_creation_input_tokens": 8918,
+        "cache_read_input_tokens": 10468
+      },
+      "chosen_canonical": "tyk-websockets-streams-webhooks",
+      "correct": true
+    },
+    {
+      "id": "streams-events-p4",
+      "skill": "tyk-websockets-streams-webhooks",
+      "kind": "positive",
+      "expected": "tyk-websockets-streams-webhooks",
+      "prompt": "We document our event APIs in AsyncAPI. Can Tyk serve them, and how?",
+      "chosen": "tyk-websockets-streams-webhooks",
+      "chosen_raw": "tyk-skills:tyk-websockets-streams-webhooks",
+      "skills_called": [
+        "tyk-skills:tyk-websockets-streams-webhooks"
+      ],
+      "text": "I loaded the Tyk streams, WebSockets and webhooks skill, which covers Tyk Streams and its AsyncAPI support.",
+      "cost_usd": 0.0764732,
+      "duration_s": 6.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 171,
+        "cache_creation_input_tokens": 8867,
+        "cache_read_input_tokens": 10466
+      },
+      "chosen_canonical": "tyk-websockets-streams-webhooks",
+      "correct": true
+    },
+    {
+      "id": "streams-events-n1",
+      "skill": "tyk-websockets-streams-webhooks",
+      "kind": "near_miss",
+      "expected": "tyk-rate-limits-keys-policies",
+      "prompt": "set a 100 per minute rate limit on the partner keys",
+      "chosen": "tyk-rate-limits-keys-policies",
+      "chosen_raw": "tyk-skills:tyk-rate-limits-keys-policies",
+      "skills_called": [
+        "tyk-skills:tyk-rate-limits-keys-policies"
+      ],
+      "text": "I've loaded the Tyk rate limits, keys and policies skill for setting the 100-requests-per-minute limit on the partner keys.",
+      "cost_usd": 0.0763558,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 116,
+        "cache_creation_input_tokens": 8990,
+        "cache_read_input_tokens": 10459
+      },
+      "chosen_canonical": "tyk-rate-limits-keys-policies",
+      "correct": true
+    },
+    {
+      "id": "streams-events-n2",
+      "skill": "tyk-websockets-streams-webhooks",
+      "kind": "near_miss",
+      "expected": "tyk-mcp-gateway",
+      "prompt": "Our MCP server speaks streamable HTTP with SSE. Put it behind Tyk.",
+      "chosen": "tyk-mcp-gateway",
+      "chosen_raw": "tyk-skills:tyk-mcp-gateway",
+      "skills_called": [
+        "tyk-skills:tyk-mcp-gateway"
+      ],
+      "text": "I've loaded the Tyk MCP Gateway skill, which covers putting a Streamable HTTP MCP server behind Tyk.",
+      "cost_usd": 0.081055,
+      "duration_s": 7.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 112,
+        "cache_creation_input_tokens": 9587,
+        "cache_read_input_tokens": 10475
+      },
+      "chosen_canonical": "tyk-mcp-gateway",
+      "correct": true
+    },
+    {
+      "id": "troubleshooting-p1",
+      "skill": "tyk-troubleshooting",
+      "kind": "positive",
+      "expected": "tyk-troubleshooting",
+      "prompt": "Tyk gateway starts but loads zero APIs, while the Dashboard shows all of them.",
+      "chosen": "tyk-troubleshooting",
+      "chosen_raw": "tyk-skills:tyk-troubleshooting",
+      "skills_called": [
+        "tyk-skills:tyk-troubleshooting"
+      ],
+      "text": "I loaded the Tyk troubleshooting skill, which covers a Gateway that starts but loads none of the APIs the Dashboard shows.",
+      "cost_usd": 0.0758344,
+      "duration_s": 5.2,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 8932,
+        "cache_read_input_tokens": 10472
+      },
+      "chosen_canonical": "tyk-troubleshooting",
+      "correct": true
+    },
+    {
+      "id": "troubleshooting-p2",
+      "skill": "tyk-troubleshooting",
+      "kind": "positive",
+      "expected": "tyk-troubleshooting",
+      "prompt": "everything returns 504 through Tyk but the upstream answers fine with curl",
+      "chosen": "tyk-troubleshooting",
+      "chosen_raw": "tyk-skills:tyk-troubleshooting",
+      "skills_called": [
+        "tyk-skills:tyk-troubleshooting"
+      ],
+      "text": "I've loaded the Tyk troubleshooting skill, which covers 504s that happen through Tyk while the upstream works fine with curl.",
+      "cost_usd": 0.075696,
+      "duration_s": 4.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 111,
+        "cache_creation_input_tokens": 8920,
+        "cache_read_input_tokens": 10460
+      },
+      "chosen_canonical": "tyk-troubleshooting",
+      "correct": true
+    },
+    {
+      "id": "troubleshooting-p3",
+      "skill": "tyk-troubleshooting",
+      "kind": "positive",
+      "expected": "tyk-troubleshooting",
+      "prompt": "The Dashboard says the licence is invalid after a restart.",
+      "chosen": "tyk-troubleshooting",
+      "chosen_raw": "tyk-skills:tyk-troubleshooting",
+      "skills_called": [
+        "tyk-skills:tyk-troubleshooting"
+      ],
+      "text": "I've loaded the Tyk troubleshooting skill so we can work out why the Dashboard reports an invalid licence after the restart.",
+      "cost_usd": 0.0756232,
+      "duration_s": 4.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 8916,
+        "cache_read_input_tokens": 10456
+      },
+      "chosen_canonical": "tyk-troubleshooting",
+      "correct": true
+    },
+    {
+      "id": "troubleshooting-p4",
+      "skill": "tyk-troubleshooting",
+      "kind": "positive",
+      "expected": "tyk-troubleshooting",
+      "prompt": "Collect a diagnostic bundle from our self-managed Tyk stack that I can send to support.",
+      "chosen": "tyk-troubleshooting",
+      "chosen_raw": "tyk-skills:tyk-troubleshooting",
+      "skills_called": [
+        "tyk-skills:tyk-troubleshooting"
+      ],
+      "text": "I've loaded the Tyk troubleshooting skill. It includes a diagnostic-bundle collector that strips secrets and produces a file you can send to support.",
+      "cost_usd": 0.07589800000000001,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 117,
+        "cache_creation_input_tokens": 8930,
+        "cache_read_input_tokens": 10470
+      },
+      "chosen_canonical": "tyk-troubleshooting",
+      "correct": true
+    },
+    {
+      "id": "troubleshooting-n1",
+      "skill": "tyk-troubleshooting",
+      "kind": "near_miss",
+      "expected": "tyk-observability",
+      "prompt": "Set up access logs and health-check monitoring for our Tyk gateways.",
+      "chosen": "tyk-observability",
+      "chosen_raw": "tyk-skills:tyk-observability",
+      "skills_called": [
+        "tyk-skills:tyk-observability"
+      ],
+      "text": "I've loaded the Tyk observability skill, which covers setting up access logs and health-check monitoring for your Tyk gateways.",
+      "cost_usd": 0.07422000000000001,
+      "duration_s": 5.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 126,
+        "cache_creation_input_tokens": 8698,
+        "cache_read_input_tokens": 10460
+      },
+      "chosen_canonical": "tyk-observability",
+      "correct": true
+    },
+    {
+      "id": "troubleshooting-n2",
+      "skill": "tyk-troubleshooting",
+      "kind": "near_miss",
+      "expected": "tyk-authentication",
+      "prompt": "Set up HMAC request signing on the partner API in Tyk.",
+      "chosen": "tyk-authentication",
+      "chosen_raw": "tyk-skills:tyk-authentication",
+      "skills_called": [
+        "tyk-skills:tyk-authentication"
+      ],
+      "text": "I've loaded the Tyk authentication skill, which covers HMAC request signing for the partner API.",
+      "cost_usd": 0.0762876,
+      "duration_s": 6.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 95,
+        "cache_creation_input_tokens": 9034,
+        "cache_read_input_tokens": 10458
+      },
+      "chosen_canonical": "tyk-authentication",
+      "correct": true
+    },
+    {
+      "id": "upgrades-p1",
+      "skill": "tyk-upgrades",
+      "kind": "positive",
+      "expected": "tyk-upgrades",
+      "prompt": "Upgrade Tyk from 5.3 LTS to the latest across Dashboard, gateways and Pump. What order, and what breaks?",
+      "chosen": "tyk-upgrades",
+      "chosen_raw": "tyk-skills:tyk-upgrades",
+      "skills_called": [
+        "tyk-skills:tyk-upgrades"
+      ],
+      "text": "I've loaded the Tyk upgrades skill, which covers upgrade order and breaking changes for Dashboard, Gateway and Pump.",
+      "cost_usd": 0.07787699999999999,
+      "duration_s": 5.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 133,
+        "cache_creation_input_tokens": 9137,
+        "cache_read_input_tokens": 10485
+      },
+      "chosen_canonical": "tyk-upgrades",
+      "correct": true
+    },
+    {
+      "id": "upgrades-p2",
+      "skill": "tyk-upgrades",
+      "kind": "positive",
+      "expected": "tyk-upgrades",
+      "prompt": "helm upgrade of the tyk-stack chart, how do I do it safely and roll back if it goes wrong",
+      "chosen": "tyk-upgrades",
+      "chosen_raw": "tyk-skills:tyk-upgrades",
+      "skills_called": [
+        "tyk-skills:tyk-upgrades"
+      ],
+      "text": "I've loaded the Tyk upgrades skill for your tyk-stack Helm upgrade and rollback.",
+      "cost_usd": 0.07759959999999999,
+      "duration_s": 5.8,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 122,
+        "cache_creation_input_tokens": 9130,
+        "cache_read_input_tokens": 10478
+      },
+      "chosen_canonical": "tyk-upgrades",
+      "correct": true
+    },
+    {
+      "id": "upgrades-p3",
+      "skill": "tyk-upgrades",
+      "kind": "positive",
+      "expected": "tyk-upgrades",
+      "prompt": "Patch our hybrid data planes to the newest gateway without downtime.",
+      "chosen": "tyk-upgrades",
+      "chosen_raw": "tyk-skills:tyk-upgrades",
+      "skills_called": [
+        "tyk-skills:tyk-upgrades"
+      ],
+      "text": "I've loaded the Tyk upgrades skill for the zero-downtime patch of your hybrid data plane Gateways.",
+      "cost_usd": 0.0771084,
+      "duration_s": 7.0,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 104,
+        "cache_creation_input_tokens": 9114,
+        "cache_read_input_tokens": 10462
+      },
+      "chosen_canonical": "tyk-upgrades",
+      "correct": true
+    },
+    {
+      "id": "upgrades-p4",
+      "skill": "tyk-upgrades",
+      "kind": "positive",
+      "expected": "tyk-upgrades",
+      "prompt": "Take a before-and-after snapshot of APIs, policies and keys around our Tyk upgrade so we can diff them.",
+      "chosen": "tyk-upgrades",
+      "chosen_raw": "tyk-skills:tyk-upgrades",
+      "skills_called": [
+        "tyk-skills:tyk-upgrades"
+      ],
+      "text": "I've loaded the Tyk upgrades skill, which includes a snapshot-and-diff script for capturing APIs, policies and keys before and after the upgrade.",
+      "cost_usd": 0.07790419999999999,
+      "duration_s": 5.9,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 136,
+        "cache_creation_input_tokens": 9133,
+        "cache_read_input_tokens": 10481
+      },
+      "chosen_canonical": "tyk-upgrades",
+      "correct": true
+    },
+    {
+      "id": "upgrades-n1",
+      "skill": "tyk-upgrades",
+      "kind": "near_miss",
+      "expected": "tyk-facts",
+      "prompt": "Which Tyk version should we standardise on? Is there a long-term support line?",
+      "chosen": "tyk-upgrades",
+      "chosen_raw": "tyk-skills:tyk-upgrades",
+      "skills_called": [
+        "tyk-skills:tyk-upgrades"
+      ],
+      "text": "I loaded the upgrades skill, but it says questions about versions and LTS lines belong to the `tyk-facts` skill, so that one should answer this.",
+      "cost_usd": 0.08458460000000001,
+      "duration_s": 8.7,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 403,
+        "cache_creation_input_tokens": 9301,
+        "cache_read_input_tokens": 10463
+      },
+      "chosen_canonical": "tyk-upgrades",
+      "correct": false
+    },
+    {
+      "id": "upgrades-n2",
+      "skill": "tyk-upgrades",
+      "kind": "near_miss",
+      "expected": "tyk-migration-planner",
+      "prompt": "Plan our move off Apigee Edge onto Tyk.",
+      "chosen": "tyk-migration-planner",
+      "chosen_raw": "tyk-skills:tyk-migration-planner",
+      "skills_called": [
+        "tyk-skills:tyk-migration-planner"
+      ],
+      "text": "I've loaded the Tyk migration planner skill, which I'll use to plan your move from Apigee Edge to Tyk.",
+      "cost_usd": 0.0798842,
+      "duration_s": 4.6,
+      "error": null,
+      "model": "claude-opus-5-5",
+      "plugin_skills_listed": 20,
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 106,
+        "cache_creation_input_tokens": 9456,
+        "cache_read_input_tokens": 10461
+      },
+      "chosen_canonical": "tyk-migration-planner",
+      "correct": true
+    }
+  ]
+}

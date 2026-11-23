@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk AI Gateway"
+  short_description: "Stand up and configure Tyk AI Studio as an AI gateway, with the Community versus Enterprise boundary"
+  default_prompt: "Use $tyk-ai-gateway to stand up Tyk AI Studio as an AI gateway and configure LLM providers, apps, the unified endpoint, failover and analytics through its admin API, proving each step with a real call and stating which features need Enterprise Edition."
+policy:
+  allow_implicit_invocation: true

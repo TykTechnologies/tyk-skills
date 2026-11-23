@@ -1,0 +1,9 @@
+services:
+  grpc-plugin:
+    build:
+      context: .
+    environment:
+      LISTEN_ADDR: ":5555"
+    expose:
+      - "5555"
+    restart: unless-stopped

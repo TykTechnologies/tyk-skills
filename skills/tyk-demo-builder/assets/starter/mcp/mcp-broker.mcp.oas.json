@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "__DISPLAY_NAME__ MCP Broker",
+    "version": "1.0.0",
+    "description": "A Tyk MCP proxy in front of a remote MCP server. The same proxy can broker an external MCP server inwards, exposing an internal one outwards, and exposing it for internal use: the direction is a matter of which listen path and policy a consumer is given, and the governance model is identical."
+  },
+  "servers": [
+    {
+      "url": "/demo/__SLUG__/mcp-broker"
+    }
+  ],
+  "security": [
+    {
+      "authToken": []
+    }
+  ],
+  "paths": {},
+  "components": {
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "x-demo-owner": "__SLUG__",
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "__SLUG__-mcp-broker",
+      "name": "__DISPLAY_NAME__ MCP Broker",
+      "state": {
+        "active": true,
+        "internal": false
+      }
+    },
+    "upstream": {
+      "url": "http://mcp-mock-server:7878"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/demo/__SLUG__/mcp-broker/",
+        "strip": true
+      },
+      "detailedTracing": {
+        "enabled": true
+      },
+      "authentication": {
+        "enabled": true,
+        "stripAuthorizationData": true,
+        "securitySchemes": {
+          "authToken": {
+            "enabled": true,
+            "header": {
+              "enabled": true,
+              "name": "Authorization"
+            }
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "contextVariables": {
+          "enabled": true
+        },
+        "trafficLogs": {
+          "enabled": true
+        }
+      },
+      "mcpTools": {
+        "delete_user": {
+          "block": {
+            "enabled": true
+          }
+        },
+        "create_user": {
+          "rateLimit": {
+            "enabled": true,
+            "rate": 1,
+            "per": "5s"
+          }
+        }
+      }
+    }
+  }
+}

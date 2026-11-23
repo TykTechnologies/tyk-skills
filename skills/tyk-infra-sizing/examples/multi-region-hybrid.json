@@ -1,0 +1,137 @@
+{
+  "organisation": "Example Organisation",
+  "prepared_by": "Example Organisation platform team",
+  "context": {
+    "summary": "API platform consolidating about 200 APIs from a legacy gateway onto Tyk, serving partners and internal consumers across three cloud regions and one on-premises data centre.",
+    "drivers": [
+      "Regional data residency",
+      "Partner onboarding through a developer portal",
+      "GitOps-managed configuration across environments"
+    ]
+  },
+  "traffic": {
+    "monthly_requests": 2000000000,
+    "peak_multiplier": 4.5,
+    "avg_request_kb": 2,
+    "avg_response_kb": 6,
+    "upstream_latency_ms": 120
+  },
+  "workload": {
+    "auth_profile": "auth-and-quota",
+    "active_api_keys": 25000,
+    "api_definitions": 220,
+    "policies": 150,
+    "request_log_retention_days": 3,
+    "aggregate_retention_days": 180,
+    "analytics_buffer_seconds": 300,
+    "developer_portal": "partner-facing",
+    "internet_egress_share": 0.4
+  },
+  "cloud": "aws",
+  "target": "kubernetes",
+  "environments": [
+    {
+      "name": "Production",
+      "posture": "production",
+      "resilience": "ha",
+      "data_planes": [
+        {
+          "name": "aws-us-east",
+          "label": "US East",
+          "cloud": "aws",
+          "region": "us",
+          "traffic_share": 0.4,
+          "hosts_control_plane": true
+        },
+        {
+          "name": "aws-eu-west",
+          "label": "EU West",
+          "cloud": "aws",
+          "region": "eu",
+          "traffic_share": 0.3
+        },
+        {
+          "name": "aws-ap-south",
+          "label": "AP South",
+          "cloud": "aws",
+          "region": "us",
+          "traffic_share": 0.15
+        },
+        {
+          "name": "dc-onprem",
+          "label": "On-prem DC",
+          "cloud": "on-prem",
+          "target": "vms",
+          "traffic_share": 0.15
+        }
+      ]
+    },
+    {
+      "name": "Staging",
+      "posture": "non-production",
+      "resilience": "ha",
+      "traffic": {
+        "fraction": 0.1
+      },
+      "data_planes": [
+        {
+          "name": "stg-us-east",
+          "label": "US East",
+          "cloud": "aws",
+          "region": "us",
+          "traffic_share": 0.5,
+          "hosts_control_plane": true
+        },
+        {
+          "name": "stg-eu-west",
+          "label": "EU West",
+          "cloud": "aws",
+          "region": "eu",
+          "traffic_share": 0.5
+        }
+      ],
+      "workload": {
+        "developer_portal": "internal",
+        "active_api_keys": 2000,
+        "aggregate_retention_days": 30,
+        "request_log_retention_days": 1
+      },
+      "description": "Pre-production with its own small key set and short retention, so it is not sized like production storage."
+    },
+    {
+      "name": "Development",
+      "posture": "non-production",
+      "resilience": "single-node",
+      "traffic": {
+        "peak_rps": 50
+      },
+      "control_plane": {
+        "mode": "shared",
+        "shared_with": "Staging"
+      },
+      "data_planes": [
+        {
+          "name": "dev",
+          "label": "Shared dev",
+          "cloud": "aws",
+          "region": "us"
+        }
+      ],
+      "workload": {
+        "active_api_keys": 500,
+        "aggregate_retention_days": 7,
+        "request_log_retention_days": 1
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Analytics disabled",
+      "environment": "Production",
+      "overrides": {
+        "analytics": "disabled"
+      },
+      "description": "No Pump and no Dashboard analytics. Gateway access logs feed an external observability platform instead."
+    }
+  ]
+}

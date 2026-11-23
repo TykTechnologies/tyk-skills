@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "js-auth",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "js-auth",
+      "orgId": "default",
+      "name": "js-auth",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/js-auth/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "custom": {
+          "enabled": true,
+          "config": {
+            "enabled": true,
+            "functionName": "partnerAuth",
+            "path": "/opt/tyk-gateway/plugins/js/auth.js"
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "pluginConfig": {
+          "driver": "javascript"
+        }
+      }
+    }
+  }
+}

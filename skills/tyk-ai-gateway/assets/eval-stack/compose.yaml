@@ -1,0 +1,100 @@
+# Tyk AI Studio evaluation stack: control plane (hub), one edge gateway and two
+# stand-in LLM backends. For evaluation on a workstation only. Install for
+# anything long-lived with the tyk-deployment-planner skill.
+#
+# Set the image tag first (both Tyk images run at one tag): look up the AI Studio
+# 2.3 tag on Docker Hub as step 1 of the tyk-ai-gateway skill does, and put it in
+# .env as AISTUDIO_TAG. There is no default.
+# Community Edition (no licence):
+#   ./make_secrets.sh && docker compose up -d
+# Enterprise Edition (a licence issued for AI Studio 2.3, read from TYK_AI_LICENSE
+# into secret.env; never printed):
+#   read -rs TYK_AI_LICENSE && export TYK_AI_LICENSE && ./make_secrets.sh --force
+#   STUDIO_IMAGE=tykio/tyk-ai-studio-ent EDGE_IMAGE=tykio/tyk-microgateway-ent docker compose up -d
+#
+# Ports (override in .env): ADMIN_PORT 8080, EMBEDDED_GATEWAY_PORT 9090,
+# EDGE_PORT 9091, STUB_ALPHA_PORT 9101, STUB_BETA_PORT 9102. Everything is
+# published on 127.0.0.1 only.
+#
+# The images are distroless and run as uid 65532, so the init service gives that
+# user the two data volumes before they start. The edge exits when it cannot
+# reach the control plane at start, so it relies on its restart policy until the
+# control plane's gRPC port is up.
+
+name: ${COMPOSE_PROJECT_NAME:-tyk-ai-eval}
+
+networks:
+  default:
+    name: ${COMPOSE_PROJECT_NAME:-tyk-ai-eval}-net
+
+volumes:
+  studio-data:
+  edge-data:
+
+services:
+  init-volumes:
+    image: busybox:1.36
+    command: ["sh", "-c", "chown -R 65532:65532 /studio /edge"]
+    volumes:
+      - studio-data:/studio
+      - edge-data:/edge
+
+  # Control plane: admin UI, admin API, AI Portal, embedded gateway (9090) and
+  # the gRPC server (9080) that edges register with.
+  studio:
+    image: ${STUDIO_IMAGE:-tykio/tyk-ai-studio}:${AISTUDIO_TAG:?look up the AI Studio 2.3 tag on Docker Hub (SKILL.md step 1) and set AISTUDIO_TAG in .env}
+    env_file:
+      - ./studio.env
+      - ./secret.env
+    environment:
+      SITE_URL: http://localhost:${ADMIN_PORT:-8080}
+      PROXY_URL: http://localhost:${EDGE_PORT:-9091}
+    volumes:
+      - studio-data:/data
+    ports:
+      - "127.0.0.1:${ADMIN_PORT:-8080}:8080"
+      - "127.0.0.1:${EMBEDDED_GATEWAY_PORT:-9090}:9090"
+    depends_on:
+      init-volumes:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  # Edge gateway (microgateway): the data plane. Applications call this.
+  edge:
+    image: ${EDGE_IMAGE:-tykio/tyk-microgateway}:${AISTUDIO_TAG:?look up the AI Studio 2.3 tag on Docker Hub (SKILL.md step 1) and set AISTUDIO_TAG in .env}
+    env_file:
+      - ./edge.env
+      - ./secret.env
+    volumes:
+      - edge-data:/data
+    ports:
+      - "127.0.0.1:${EDGE_PORT:-9091}:9091"
+    depends_on:
+      init-volumes:
+        condition: service_completed_successfully
+      studio:
+        condition: service_started
+    restart: unless-stopped
+
+  # Stand-in LLM backends. Each names itself in its answers.
+  llm-alpha:
+    image: python:3.12-alpine
+    environment:
+      STUB_NAME: alpha
+      STUB_MODELS: alpha-fast,alpha-deep
+    volumes:
+      - ./stub_llm.py:/srv/stub_llm.py:ro
+    command: ["python3", "/srv/stub_llm.py"]
+    ports:
+      - "127.0.0.1:${STUB_ALPHA_PORT:-9101}:8080"
+
+  llm-beta:
+    image: python:3.12-alpine
+    environment:
+      STUB_NAME: beta
+      STUB_MODELS: beta-fast,beta-deep
+    volumes:
+      - ./stub_llm.py:/srv/stub_llm.py:ro
+    command: ["python3", "/srv/stub_llm.py"]
+    ports:
+      - "127.0.0.1:${STUB_BETA_PORT:-9102}:8080"

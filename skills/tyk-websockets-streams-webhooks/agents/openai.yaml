@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk WebSockets, Streams and Webhooks"
+  short_description: "Proxy WebSocket and SSE, bridge Kafka with Tyk Streams, and wire Gateway event webhooks"
+  default_prompt: "Use $tyk-websockets-streams-webhooks to configure WebSocket and SSE proxying, Tyk Streams and Gateway event webhooks for the Tyk OAS API, check the definition with the bundled script, and prove the happy path, the failure responses, broker outages and webhook delivery against a running Gateway."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk API Governance"
+  short_description: "Set up Tyk Governance rulesets and enforce them in CI and Kubernetes admission"
+  default_prompt: "Use $tyk-api-governance to check the governance entitlement, link rulesets to API categories, read compliance results, gate pull requests with the Dashboard sandbox and vacuum, and block non-compliant APIs at Tyk Operator admission, proving each step on the running stack."
+policy:
+  allow_implicit_invocation: true

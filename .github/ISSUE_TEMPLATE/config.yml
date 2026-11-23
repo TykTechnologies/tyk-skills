@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://tyk.io/responsible-disclosure/
+    about: Never in a public issue. Email Tyk's security team as this page describes.
+  - name: Questions about Tyk itself
+    url: https://community.tyk.io/
+    about: Product questions that are not about these skills go to the Tyk community forum.
+  - name: Tyk documentation
+    url: https://tyk.io/docs/
+    about: The public documentation these skills cite.

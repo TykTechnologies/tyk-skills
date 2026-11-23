@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Troubleshooting"
+  short_description: "Find why a Tyk Gateway, Dashboard, Redis, Pump or Portal deployment is failing"
+  default_prompt: "Use $tyk-troubleshooting to find why the Tyk deployment is failing: read the failing response with its headers, check /hello, /ready and the loaded APIs on every Gateway, read the logs at the right level, run the bundled diagnostic script, confirm the cause with the decoder and prove the fix."
+policy:
+  allow_implicit_invocation: true

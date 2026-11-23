@@ -1,0 +1,43 @@
+stages: [validate, deliver]
+
+tyk-sync-validate:
+  stage: validate
+  image: alpine:3.20
+  before_script:
+    - apk add --no-cache bash jq
+  script:
+    - ./ci/tyk-sync.sh validate "${TYK_SYNC_SOURCE_PATH:-apis}"
+  rules:
+    - changes: [apis/**/*]
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+
+.tyk-sync-delivery:
+  stage: deliver
+  image: alpine:3.20
+  before_script:
+    - apk add --no-cache bash curl jq
+    - test -n "${TYK_SYNC_DOWNLOAD_URL}"
+    - curl --fail --location --silent --show-error "${TYK_SYNC_DOWNLOAD_URL}" --output tyk-sync
+    - chmod +x tyk-sync
+  variables:
+    TYK_SYNC_BIN: ./tyk-sync
+    TYK_SYNC_PROMOTION_ID: "${CI_PIPELINE_ID}-${CI_JOB_ID}"
+  artifacts:
+    when: always
+    paths: [.runtime/tyk-sync]
+    expire_in: 14 days
+  environment:
+    name: tyk-demo
+  when: manual
+  allow_failure: false
+
+tyk-sync-promote:
+  extends: .tyk-sync-delivery
+  script:
+    - ./ci/tyk-sync.sh promote "${TYK_SYNC_SOURCE_PATH:-apis}"
+
+tyk-sync-rollback:
+  extends: .tyk-sync-delivery
+  script:
+    - test -n "${TYK_SYNC_ROLLBACK_PATH}"
+    - ./ci/tyk-sync.sh rollback "${TYK_SYNC_ROLLBACK_PATH}"

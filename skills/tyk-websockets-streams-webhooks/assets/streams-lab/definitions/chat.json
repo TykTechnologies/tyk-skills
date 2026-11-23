@@ -1,0 +1,17 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Chat", "version": "1.0.0"},
+  "paths": {},
+  "components": {"securitySchemes": {"key": {"type": "apiKey", "in": "query", "name": "access_token"}}},
+  "security": [{"key": []}],
+  "x-tyk-api-gateway": {
+    "info": {"id": "chat", "orgId": "default", "name": "Chat", "state": {"active": true}},
+    "upstream": {"url": "http://ws-echo:8080"},
+    "server": {"listenPath": {"value": "/chat/", "strip": true},
+      "authentication": {"enabled": true, "stripAuthorizationData": true, "securitySchemes": {"key": {"enabled": true}}}},
+    "middleware": {"global": {
+      "contextVariables": {"enabled": true},
+      "transformRequestHeaders": {"enabled": true, "add": [{"name": "X-Request-Id", "value": "$tyk_context.request_id"}], "remove": ["X-Debug"]}
+    }}
+  }
+}

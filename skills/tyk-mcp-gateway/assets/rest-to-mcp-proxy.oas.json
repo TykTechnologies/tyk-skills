@@ -1,0 +1,85 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Orders as MCP",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "authToken": []
+    }
+  ],
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "orders-rest-mcp",
+      "name": "Orders as MCP",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "tyk://orders-api/mcp"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/orders-rest-mcp/",
+        "strip": true
+      },
+      "authentication": {
+        "enabled": true,
+        "stripAuthorizationData": true,
+        "securitySchemes": {
+          "authToken": {
+            "enabled": true,
+            "header": {
+              "enabled": true,
+              "name": "Authorization"
+            }
+          }
+        }
+      }
+    },
+    "middleware": {
+      "global": {
+        "trafficLogs": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "x-tyk-mcp-server": {
+    "primitives": [
+      {
+        "source": {
+          "operationId": "getOrder"
+        },
+        "name": "get_order",
+        "description": "Look up one order by its ID.",
+        "parameters": [
+          {
+            "param": "id",
+            "name": "order_id",
+            "description": "The order to look up."
+          }
+        ],
+        "allow": true
+      },
+      {
+        "source": {
+          "operationId": "listOrders"
+        },
+        "allow": true
+      }
+    ]
+  }
+}

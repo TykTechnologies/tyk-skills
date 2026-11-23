@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Excalidraw Diagrams"
+  short_description: "Draw Tyk architecture diagrams with composed native Excalidraw glyphs"
+  default_prompt: "Use $tyk-excalidraw-diagrams to draw an editable Excalidraw architecture diagram of the requested Tyk topology, using the composed native Excalidraw glyphs and Tyk house style."
+policy:
+  allow_implicit_invocation: true

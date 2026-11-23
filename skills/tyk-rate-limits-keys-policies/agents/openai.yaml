@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Rate Limits, Keys and Policies"
+  short_description: "Give each API consumer its own rate limit and quota on Tyk, and prove it"
+  default_prompt: "Use $tyk-rate-limits-keys-policies to give each API consumer its own rate limit and quota with Tyk keys and policies, say which limiter counts it with one and with several Gateways, and prove each limit with a burst."
+policy:
+  allow_implicit_invocation: true

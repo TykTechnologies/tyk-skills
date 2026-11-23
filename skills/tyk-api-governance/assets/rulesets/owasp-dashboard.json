@@ -1,0 +1,4 @@
+{
+  "extends": [["spectral:owasp", "all"]],
+  "rules": {"owasp-security-hosts-https-oas3": "warn"}
+}

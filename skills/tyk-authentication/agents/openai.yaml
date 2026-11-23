@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Authentication"
+  short_description: "Secure a Tyk API with the right client authentication and prove every failure response"
+  default_prompt: "Use $tyk-authentication to choose and configure client authentication for the Tyk OAS API, check the definition with the bundled script, and prove valid, missing, invalid and expired credentials, the caller's identity and policy, and revocation against a running Gateway."
+policy:
+  allow_implicit_invocation: true

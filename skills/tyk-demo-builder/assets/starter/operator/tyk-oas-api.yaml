@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: __SLUG__-operator-oas
+  namespace: default
+  labels:
+    demo.tyk.io/owner: platform
+    demo.tyk.io/team: api-platform
+data:
+  api.json: |-
+    {
+      "openapi": "3.0.3",
+      "info": {
+        "title": "__DISPLAY_NAME__ Operator API",
+        "version": "1.0.0"
+      },
+      "paths": {
+        "/health": {
+          "get": {
+            "operationId": "operatorHealth",
+            "responses": {
+              "200": {"description": "Healthy"}
+            }
+          }
+        }
+      },
+      "x-tyk-api-gateway": {
+        "info": {
+          "name": "__DISPLAY_NAME__ Operator API",
+          "state": {"active": true}
+        },
+        "upstream": {
+          "url": "http://__SLUG__-operator-upstream.default.svc.cluster.local:8080"
+        },
+        "server": {
+          "listenPath": {
+            "value": "/demo/__SLUG__/operator/",
+            "strip": true
+          }
+        }
+      }
+    }
+---
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykOasApiDefinition
+metadata:
+  name: __SLUG__-operator-api
+  namespace: default
+  labels:
+    demo.tyk.io/owner: platform
+    demo.tyk.io/team: api-platform
+  annotations:
+    demo.tyk.io/purpose: neutral-operator-proof
+spec:
+  contextRef:
+    name: __SLUG__-team-context
+    namespace: default
+  tykOAS:
+    configmapRef:
+      name: __SLUG__-operator-oas
+      namespace: default
+      keyName: api.json

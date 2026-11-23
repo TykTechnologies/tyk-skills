@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tyk Deployment Planner"
+  short_description: "Choose a Tyk deployment from tyk-install and write the plan before anything starts"
+  default_prompt: "Use $tyk-deployment-planner to work from a checkout of the tyk-install repository: resolve the request to one row of docs/topology-matrix.md, run tools/preflight.py, read the pinned versions from the files, audit the guidance profiles, prepare the OpenShift overlay if needed, and write deployment-plan.md outside tracked paths without starting anything."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,84 @@
+# Deliver Tyk configuration from Git with Tyk Sync.
+#
+# Repository layout this workflow expects:
+#   tyk/                  what `tyk-sync dump` wrote, .tyk.json included
+#   ci/check_sync_repo.py copied from this skill's scripts/
+#   ci/sync_drift.py      copied from this skill's scripts/
+#
+# Settings: an environment named "production" with the variable TYK_DASHBOARD_URL and the
+# secret TYK_DASHBOARD_API_KEY (the access key of a Dashboard user kept for this job).
+# The runner must be able to reach the Dashboard URL.
+name: Tyk configuration
+
+on:
+  pull_request:
+    paths: ["tyk/**", "ci/**"]
+  push:
+    branches: [main]
+    paths: ["tyk/**"]
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tyk-configuration
+  cancel-in-progress: false
+
+env:
+  TYK_SYNC_IMAGE: tykio/tyk-sync:v2.3.0
+  TYK_DIR: tyk
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the Tyk Sync directory
+        run: python3 ci/check_sync_repo.py "$TYK_DIR"
+
+  promote:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      TYK_DASHBOARD_URL: ${{ vars.TYK_DASHBOARD_URL }}
+      TYKGIT_DB_SECRET: ${{ secrets.TYK_DASHBOARD_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make the Dashboard match this commit
+        # `sync` creates, updates and deletes. Add --no-delete after `sync` when other
+        # tools also write APIs or policies to this organisation.
+        run: |
+          docker run --rm --user "$(id -u):$(id -g)" -e TYKGIT_DB_SECRET \
+            -v "$PWD/$TYK_DIR:/work:ro" "$TYK_SYNC_IMAGE" \
+            sync -d "$TYK_DASHBOARD_URL" -p /work
+      - name: Read the Dashboard back
+        run: |
+          mkdir -p "$RUNNER_TEMP/readback"
+          docker run --rm --user "$(id -u):$(id -g)" -e TYKGIT_DB_SECRET \
+            -v "$RUNNER_TEMP/readback:/work" "$TYK_SYNC_IMAGE" \
+            dump -d "$TYK_DASHBOARD_URL" -t /work
+      - name: Compare the Dashboard with this commit
+        run: python3 ci/sync_drift.py "$TYK_DIR" "$RUNNER_TEMP/readback"
+
+  drift:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      TYK_DASHBOARD_URL: ${{ vars.TYK_DASHBOARD_URL }}
+      TYKGIT_DB_SECRET: ${{ secrets.TYK_DASHBOARD_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read the Dashboard back
+        run: |
+          mkdir -p "$RUNNER_TEMP/readback"
+          docker run --rm --user "$(id -u):$(id -g)" -e TYKGIT_DB_SECRET \
+            -v "$RUNNER_TEMP/readback:/work" "$TYK_SYNC_IMAGE" \
+            dump -d "$TYK_DASHBOARD_URL" -t /work
+      - name: Fail when the Dashboard differs from main
+        run: python3 ci/sync_drift.py "$TYK_DIR" "$RUNNER_TEMP/readback"

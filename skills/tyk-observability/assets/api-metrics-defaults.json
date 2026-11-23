@@ -1,0 +1,98 @@
+[
+  {
+    "name": "http.server.request.duration",
+    "type": "histogram",
+    "description": "End-to-end request latency",
+    "histogram_source": "total",
+    "dimensions": [
+      {
+        "source": "metadata",
+        "key": "method",
+        "label": "http.request.method"
+      },
+      {
+        "source": "metadata",
+        "key": "response_code",
+        "label": "http.response.status_code"
+      },
+      {
+        "source": "metadata",
+        "key": "api_id",
+        "label": "tyk.api.id"
+      },
+      {
+        "source": "metadata",
+        "key": "response_flag",
+        "label": "tyk.response_flag"
+      }
+    ]
+  },
+  {
+    "name": "tyk.gateway.request.duration",
+    "type": "histogram",
+    "description": "Gateway processing time",
+    "histogram_source": "gateway",
+    "dimensions": [
+      {
+        "source": "metadata",
+        "key": "method",
+        "label": "http.request.method"
+      },
+      {
+        "source": "metadata",
+        "key": "api_id",
+        "label": "tyk.api.id"
+      },
+      {
+        "source": "metadata",
+        "key": "response_flag",
+        "label": "tyk.response_flag"
+      }
+    ]
+  },
+  {
+    "name": "tyk.upstream.request.duration",
+    "type": "histogram",
+    "description": "Upstream response time",
+    "histogram_source": "upstream",
+    "dimensions": [
+      {
+        "source": "metadata",
+        "key": "method",
+        "label": "http.request.method"
+      },
+      {
+        "source": "metadata",
+        "key": "api_id",
+        "label": "tyk.api.id"
+      },
+      {
+        "source": "metadata",
+        "key": "response_flag",
+        "label": "tyk.response_flag"
+      }
+    ]
+  },
+  {
+    "name": "tyk.api.requests.total",
+    "type": "counter",
+    "description": "Request count with identity dimensions",
+    "dimensions": [
+      {
+        "source": "metadata",
+        "key": "method",
+        "label": "http.request.method"
+      },
+      {
+        "source": "metadata",
+        "key": "response_code",
+        "label": "http.response.status_code"
+      },
+      {
+        "source": "metadata",
+        "key": "api_id",
+        "label": "tyk.api.id"
+      }
+    ]
+  }
+]

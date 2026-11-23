@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: apis-prod
+resources: [../../base, context.yaml]
+patches:
+  - target: {group: tyk.tyk.io, kind: TykOasApiDefinition}
+    patch: |-
+      - op: add
+        path: /spec/contextRef
+        value: {name: prod, namespace: apis-prod}
+  - target: {group: tyk.tyk.io, kind: SecurityPolicy}
+    patch: |-
+      - op: add
+        path: /spec/contextRef
+        value: {name: prod, namespace: apis-prod}
+      - op: replace
+        path: /spec/rate
+        value: 600
+  - target: {group: tyk.tyk.io, kind: TykSession}
+    patch: |-
+      - op: add
+        path: /spec/contextRef
+        value: {name: prod, namespace: apis-prod}

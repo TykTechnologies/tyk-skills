@@ -1,0 +1,4 @@
+FROM python:3.12-alpine
+RUN apk add --no-cache openssl
+COPY identity_service.py /app/identity_service.py
+CMD ["python", "/app/identity_service.py"]

@@ -1,0 +1,16 @@
+.env
+.runtime/
+**/evidence/bodies/
+generated/certs/
+generated/*.pem
+generated/*.key
+generated/*.crt
+plugins/**/build/
+*.so
+*.zip
+__pycache__/
+*.pyc
+secret.env
+companion/*/data/
+companion/*/admin.env
+migration/imported-keys.json

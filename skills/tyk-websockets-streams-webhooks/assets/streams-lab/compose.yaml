@@ -1,0 +1,59 @@
+# Throwaway lab for WebSocket and SSE proxying, Tyk Streams and Gateway webhooks.
+# tyk-gateway is the open source Gateway; tyk-gateway-ee is the Enterprise Edition build with
+# Tyk Streams switched on. They share Redis but load APIs from separate folders.
+# Not for production: use the tyk-deployment-planner skill.
+name: tyk-streams-lab
+
+services:
+  redis:
+    image: redis:7.2-alpine
+  kafka:
+    image: apache/kafka:${KAFKA_VERSION:-4.4.0}
+    hostname: kafka
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+  upstream:   # HTTP echo, and Server-Sent Events at /sse?count=N&duration=Ns
+    image: mccutchen/go-httpbin:2.25.0
+    environment:
+      MAX_DURATION: 10m   # default 10s would cut long SSE tests short
+  ws-echo:    # WebSocket echo with no time limit; send "headers" to see the upgrade request
+    image: python:3.12-alpine
+    command: ["sh", "-c", "pip install -q --no-cache-dir websockets==15.0.1 && python /srv/ws_echo.py"]
+    volumes: ["./ws_echo.py:/srv/ws_echo.py:ro"]
+  hooks:      # webhook receiver: GET /_received lists what arrived
+    image: python:3.12-alpine
+    command: ["python", "/srv/webhook_receiver.py", "--port", "9000"]
+    volumes: ["./webhook_receiver.py:/srv/webhook_receiver.py:ro"]
+    ports: ["127.0.0.1:${HOOKS_PORT:-9000}:9000"]
+  tyk-gateway:
+    image: tykio/tyk-gateway:${TYK_GATEWAY_VERSION:?set TYK_GATEWAY_VERSION in .env}
+    environment:
+      TYK_GW_SECRET: ${TYK_GW_SECRET:?set TYK_GW_SECRET in .env}
+    volumes:
+      - ./tyk.conf:/opt/tyk-gateway/tyk.conf:ro
+      - ./apps:/opt/tyk-gateway/apps
+      - ./policies:/opt/tyk-gateway/policies
+      - ./templates:/opt/tyk-gateway/templates/custom:ro
+    ports: ["127.0.0.1:${GATEWAY_PORT:-8080}:8080"]
+    depends_on: [redis, upstream, ws-echo, hooks]
+  tyk-gateway-ee:
+    image: tykio/tyk-gateway-ee:${TYK_GATEWAY_VERSION:?set TYK_GATEWAY_VERSION in .env}
+    environment:
+      TYK_GW_SECRET: ${TYK_GW_SECRET:?set TYK_GW_SECRET in .env}
+      TYK_GW_STREAMING_ENABLED: "true"
+    volumes:
+      - ./tyk.conf:/opt/tyk-gateway/tyk.conf:ro
+      - ./apps-ee:/opt/tyk-gateway/apps
+      - ./policies:/opt/tyk-gateway/policies
+      - ./templates:/opt/tyk-gateway/templates/custom:ro
+    ports: ["127.0.0.1:${GATEWAY_EE_PORT:-8081}:8080"]
+    depends_on: [redis, kafka, upstream, hooks]

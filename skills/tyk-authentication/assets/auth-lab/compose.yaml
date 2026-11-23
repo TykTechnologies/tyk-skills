@@ -1,0 +1,60 @@
+# Throwaway lab for client authentication on the open source Tyk Gateway.
+# Two Gateways share one Redis and one apps folder: tyk-gateway listens on HTTP,
+# tyk-gateway-tls on HTTPS (needed for client certificates). `--profile idp` adds
+# Keycloak and Ory Hydra as identity providers. Not for production: use the tyk-deployment-planner skill.
+name: tyk-auth-lab
+
+x-gateway: &gateway
+  image: tykio/tyk-gateway:${TYK_GATEWAY_VERSION:?set TYK_GATEWAY_VERSION in .env}
+  environment:
+    TYK_GW_SECRET: ${TYK_GW_SECRET:?set TYK_GW_SECRET in .env}
+  depends_on: [redis, upstream]
+
+services:
+  redis:
+    image: redis:7.2-alpine
+  upstream:
+    image: mccutchen/go-httpbin:2.25.0
+  jwks:   # serves ./jwks/jwks.json, a key set you control, at http://jwks:8000/jwks.json
+    image: python:3.12-alpine
+    command: ["python", "-m", "http.server", "8000", "--directory", "/srv"]
+    volumes: ["./jwks:/srv:ro"]
+  tyk-gateway:
+    <<: *gateway
+    volumes:
+      - ./tyk.conf:/opt/tyk-gateway/tyk.conf:ro
+      - ./apps:/opt/tyk-gateway/apps
+      - ./policies:/opt/tyk-gateway/policies
+      - ./middleware:/opt/tyk-gateway/middleware:ro
+    ports: ["127.0.0.1:${GATEWAY_PORT:-8080}:8080"]
+  tyk-gateway-tls:
+    <<: *gateway
+    volumes:
+      - ./tyk-tls.conf:/opt/tyk-gateway/tyk.conf:ro
+      - ./apps:/opt/tyk-gateway/apps
+      - ./policies:/opt/tyk-gateway/policies
+      - ./middleware:/opt/tyk-gateway/middleware:ro
+      - ./certs:/opt/certs:ro
+    ports: ["127.0.0.1:${GATEWAY_TLS_PORT:-8443}:8080"]
+  keycloak:
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION:-26.8.1}
+    command: ["start-dev", "--http-port=8080"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_ADMIN_PASSWORD:?set KC_ADMIN_PASSWORD in .env}
+      # Tokens carry this issuer whichever host fetched them; the Gateway still reaches
+      # Keycloak as http://keycloak:8080 for keys and introspection.
+      KC_HOSTNAME: http://localhost:${KEYCLOAK_PORT:-8180}
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "true"
+    ports: ["127.0.0.1:${KEYCLOAK_PORT:-8180}:8080"]
+    profiles: ["idp"]
+  hydra:
+    image: oryd/hydra:${HYDRA_VERSION:-v26.2.0}
+    command: ["serve", "all", "--dev"]
+    environment:
+      DSN: memory   # clients and keys are lost on every restart
+      SECRETS_SYSTEM: ${HYDRA_SYSTEM_SECRET:?set HYDRA_SYSTEM_SECRET in .env}
+      URLS_SELF_ISSUER: http://hydra:4444
+      LOG_LEVEL: warn
+    ports: ["127.0.0.1:${HYDRA_PUBLIC_PORT:-4444}:4444", "127.0.0.1:${HYDRA_ADMIN_PORT:-4445}:4445"]
+    profiles: ["idp"]

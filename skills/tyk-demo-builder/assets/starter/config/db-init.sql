@@ -1,0 +1,4 @@
+CREATE DATABASE tyk_dashboard;
+CREATE DATABASE portal;
+GRANT ALL PRIVILEGES ON DATABASE tyk_dashboard TO tykuser;
+GRANT ALL PRIVILEGES ON DATABASE portal TO tykuser;

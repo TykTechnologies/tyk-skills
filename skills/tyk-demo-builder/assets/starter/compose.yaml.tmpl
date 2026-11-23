@@ -1,0 +1,96 @@
+name: __SLUG__
+services:
+  tyk-redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  tyk-postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tykuser
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: tyk_analytics
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./config/db-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U tykuser -d tyk_analytics]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  tyk-dashboard:
+    image: tykio/tyk-dashboard:${DASHBOARD_VERSION}
+    restart: unless-stopped
+    ports: ["${BIND_ADDRESS:-127.0.0.1}:${DASHBOARD_PORT}:3000"]
+    env_file: [./config/dashboard.env]
+    environment:
+      TYK_DB_LICENSEKEY: ${TYK_LICENSE_KEY}
+      TYK_DB_ADMINSECRET: ${ADMIN_SECRET}
+      TYK_DB_NODESECRET: ${NODE_SECRET}
+      TYK_DB_TYKAPI_HOST: __GATEWAY_SCHEME__://tyk-gateway
+      TYK_DB_TYKAPI_SECRET: ${NODE_SECRET}
+      TYK_DB_STORAGE_MAIN_CONNECTIONSTRING: user=tykuser password=${POSTGRES_PASSWORD} host=tyk-postgres port=5432 database=tyk_dashboard sslmode=disable
+      TYK_DB_STORAGE_ANALYTICS_CONNECTIONSTRING: user=tykuser password=${POSTGRES_PASSWORD} host=tyk-postgres port=5432 database=tyk_analytics sslmode=disable
+    depends_on:
+      tyk-redis: {condition: service_healthy}
+      tyk-postgres: {condition: service_healthy}
+
+  tyk-gateway:
+    image: tykio/tyk-gateway-ee:${GATEWAY_VERSION}
+    # The Dashboard's node list ("Nodes & licenses", GET /api/system/nodes) shows a gateway
+    # by hostname only, so give it a readable one instead of a container id.
+    hostname: __GATEWAY_HOSTNAME__
+    restart: unless-stopped
+    ports: ["${BIND_ADDRESS:-127.0.0.1}:${GATEWAY_PORT}:8080"]
+    env_file: [./config/gateway.env]
+    environment:
+      TYK_GW_SECRET: ${NODE_SECRET}
+      TYK_GW_NODESECRET: ${NODE_SECRET}
+__GATEWAY_MODULE_ENV__
+    volumes:
+__GATEWAY_TLS_VOLUME__
+__GATEWAY_MODULE_VOLUMES__
+      - ./plugins:/opt/tyk-gateway/plugins:ro
+    depends_on:
+      tyk-dashboard: {condition: service_started}
+      tyk-redis: {condition: service_healthy}
+__GATEWAY_MODULE_DEPENDS__
+
+  tyk-pump:
+    image: tykio/tyk-pump-docker-pub:${PUMP_VERSION}
+    restart: unless-stopped
+    env_file: [./config/pump.env]
+    environment:
+      TYK_PMP_PUMPS_SQL_META_CONNECTIONSTRING: host=tyk-postgres port=5432 dbname=tyk_analytics user=tykuser password=${POSTGRES_PASSWORD} sslmode=disable
+      TYK_PMP_PUMPS_SQLAGGREGATE_META_CONNECTIONSTRING: host=tyk-postgres port=5432 dbname=tyk_analytics user=tykuser password=${POSTGRES_PASSWORD} sslmode=disable
+      TYK_PMP_UPTIMEPUMPCONFIG_UPTIMETYPE: sql
+      TYK_PMP_UPTIMEPUMPCONFIG_TYPE: postgres
+      TYK_PMP_UPTIMEPUMPCONFIG_CONNECTIONSTRING: host=tyk-postgres port=5432 dbname=tyk_analytics user=tykuser password=${POSTGRES_PASSWORD} sslmode=disable
+    depends_on:
+      tyk-redis: {condition: service_healthy}
+      tyk-postgres: {condition: service_healthy}
+
+  demo-upstream:
+    image: python:3.12-alpine
+    restart: unless-stopped
+    ports: ["${BIND_ADDRESS:-127.0.0.1}:${UPSTREAM_PORT}:8080"]
+    volumes:
+      - ./upstreams/http_api.py:/app/server.py:ro
+      - ./apis:/app/apis:ro
+      - demo-logs:/var/log/demo
+    command: [python, /app/server.py]
+__OPTIONAL_SERVICES__
+
+volumes:
+  redis-data: {}
+  postgres-data: {}
+  identity-data: {}
+  demo-logs: {}

@@ -1,0 +1,38 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "bundle-js",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "x-tyk-api-gateway": {
+    "info": {
+      "id": "bundle-js",
+      "orgId": "default",
+      "name": "bundle-js",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://upstream:8080"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/bundle-js/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "global": {
+        "pluginConfig": {
+          "driver": "javascript",
+          "bundle": {
+            "enabled": true,
+            "path": "js-v1.zip"
+          }
+        }
+      }
+    }
+  }
+}

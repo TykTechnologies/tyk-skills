@@ -1,0 +1,27 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Alerts", "version": "1.0.0"},
+  "paths": {},
+  "components": {"securitySchemes": {"key": {"type": "apiKey", "in": "header", "name": "Authorization"}}},
+  "security": [{"key": []}],
+  "x-tyk-api-gateway": {
+    "info": {"id": "alerts", "orgId": "default", "name": "Alerts", "state": {"active": true}},
+    "upstream": {"url": "http://upstream:8080"},
+    "server": {
+      "listenPath": {"value": "/alerts/", "strip": true},
+      "authentication": {"enabled": true, "stripAuthorizationData": true, "securitySchemes": {"key": {"enabled": true}}},
+      "eventHandlers": [
+        {"enabled": true, "trigger": "RatelimitExceeded", "type": "webhook", "name": "rate-limit",
+         "url": "http://hooks:9000/tyk/ratelimit", "method": "POST", "cooldownPeriod": "1s",
+         "bodyTemplate": "custom/event.json", "headers": [{"name": "X-Hook-Source", "value": "tyk"}]},
+        {"enabled": true, "trigger": "QuotaExceeded", "type": "webhook", "name": "quota",
+         "url": "http://hooks:9000/tyk/quota", "method": "POST", "cooldownPeriod": "1s", "bodyTemplate": "custom/event.json"},
+        {"enabled": true, "trigger": "AuthFailure", "type": "webhook", "name": "auth-failure",
+         "url": "http://hooks:9000/tyk/auth", "method": "POST", "cooldownPeriod": "1s", "bodyTemplate": "custom/event.json"},
+        {"enabled": true, "trigger": "KeyExpired", "type": "webhook", "name": "key-expired",
+         "url": "http://hooks:9000/tyk/expired", "method": "POST", "cooldownPeriod": "1s", "bodyTemplate": "custom/event.json"},
+        {"enabled": true, "trigger": "AuthFailure", "type": "log", "name": "auth-failure-log", "logPrefix": "auth-failure"}
+      ]
+    }
+  }
+}
