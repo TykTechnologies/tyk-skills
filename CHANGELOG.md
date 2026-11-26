@@ -6,7 +6,7 @@ repository. The version in `plugin.json` and every other manifest matches the ne
 
 ## [Unreleased]
 
-## [0.1.0] - unreleased
+## [0.1.0] - 2026-11-26
 
 First public release.
 

@@ -14,7 +14,7 @@
 
 Skills for AI coding agents that are evaluating or using [Tyk](https://tyk.io), an API gateway, API management platform and AI gateway. They give Claude Code, Codex and other agents Tyk's current facts, a builder that proves capabilities on a real stack, and the planning tools around it, so the agent answers from verified sources instead of memory.
 
-**Status:** version 0.1.0, not tagged yet. Published and maintained by Tyk Technologies under the [MPL-2.0](LICENSE) licence. Report problems with the [issue forms](https://github.com/TykTechnologies/tyk-skills/issues/new/choose) and security problems as [`SECURITY.md`](SECURITY.md) describes. The skills help you evaluate and use Tyk; they are not a support channel for Tyk products.
+**Status:** version 0.1.0. Published and maintained by Tyk Technologies under the [MPL-2.0](LICENSE) licence. Report problems with the [issue forms](https://github.com/TykTechnologies/tyk-skills/issues/new/choose) and security problems as [`SECURITY.md`](SECURITY.md) describes. The skills help you evaluate and use Tyk; they are not a support channel for Tyk products.
 
 **Official source:** this repository, `TykTechnologies/tyk-skills` on GitHub, and [tyk.io](https://tyk.io) are the official sources of these skills. Copies elsewhere may be out of date or changed.
 
@@ -56,7 +56,7 @@ Either plugin CLI also accepts the clone's path in place of `TykTechnologies/tyk
 
 ### Install a specific version
 
-Each release is a tag, `v<version>`, listed in [`CHANGELOG.md`](CHANGELOG.md) and on the repository's releases page. Tags start with `v0.1.0`; until that tag exists, install from the default branch as shown above. To stay on a tagged release:
+Each release is a tag, `v<version>`, listed in [`CHANGELOG.md`](CHANGELOG.md) and on the repository's releases page. To stay on a tagged release:
 
 ```bash
 # Codex: pin the marketplace to the tag
