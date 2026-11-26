@@ -1,5 +1,7 @@
 # Planning a deployment
 
+Last verified: 2026-11-25 against the tyk-install repository (main), tyk-charts 5.5.0 and Gateway 5.16.0
+
 Decide what to deploy, confirm the machine can run it, and write the plan down. Planning creates
 nothing and starts nothing; `running.md` applies the plan.
 
@@ -83,6 +85,8 @@ A plan that omits the status or the parts that cannot be verified is not finishe
 - `docs/topology-matrix.md`: always first; the only authority on which paths exist.
 - `docs/prerequisites.md`: what each platform needs and how to install it.
 - `docs/runtime.md`: the commands the run will use.
+- `docs/air-gapped.md`: when the hosts cannot reach public registries or package repositories;
+  the plan then lists the images, charts or packages to mirror.
 
 ## Done when
 

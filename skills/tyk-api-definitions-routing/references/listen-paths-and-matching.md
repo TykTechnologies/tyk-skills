@@ -21,7 +21,7 @@ paths.
 - In the Gateway's code all three default to `false`.
 - The `tyk.conf` inside the Docker images `tykio/tyk-gateway:v5.16.0` and
   `tykio/tyk-gateway-ee:v5.16.0` sets all three to `true`. The Helm chart `tyk-gateway`
-  (tyk-charts 5.3.0) sets all three to `true` in its default values.
+  (tyk-charts 5.5.0) sets all three to `true` in its default values.
 - A Gateway started with your own `tyk.conf` that leaves the block out, or a package install
   with an older file, runs with all three `false`.
 

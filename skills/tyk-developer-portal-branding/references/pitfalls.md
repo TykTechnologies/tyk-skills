@@ -45,8 +45,8 @@ release's default theme from a throwaway Portal of that version instead
 ## 3. Unpinned API reference renderers can break without any change on your side
 
 The default theme loads Redoc as `https://cdn.redoc.ly/redoc/latest/...`, the AsyncAPI viewer as
-`@asyncapi/react-component@latest` and Stoplight Elements with no version. Redoc 3.2.0
-was published on 2026-11-19 and `latest` serves it; with the Redoc renderer selected the API
+`@asyncapi/react-component@latest` and Stoplight Elements with no version. Redoc `latest`
+serves 3.2.0 or later; with that build and the Redoc renderer selected the API
 reference page stays empty and the console shows `Uncaught SyntaxError: Cannot use 'import.meta'
 outside a module`. The build pins Redoc to v2.5.4, the AsyncAPI viewer to 3.2.3 and Stoplight
 Elements to 9.0.29; with those pins all three render on 1.20.0, and Redoc and Stoplight Elements

@@ -21,6 +21,7 @@ caption.
 - [ ] Nothing quotes or identifies private code, a customer, a licence, a credential or a key.
 - [ ] References I changed carry an updated `Last verified:` line.
 - [ ] A new skill is registered in `scripts/validate_repository.py`, `scripts/install-skill.sh`, the README skills table and `CHANGELOG.md`.
+- [ ] A new skill adds four positive and two near-miss prompts to `evals/routing/prompts.jsonl`.
 - [ ] If I changed the version or description in `plugin.json`, I ran `python3 scripts/sync_manifests.py`.
 
 ```text

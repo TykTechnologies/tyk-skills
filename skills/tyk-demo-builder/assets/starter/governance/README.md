@@ -164,7 +164,7 @@ say `namespace: default`, so applying them unrendered puts the objects in the wr
 namespace whenever `TYK_OPERATOR_NAMESPACE` is set.
 
 - Requires `tyk-operator` **v1.5.0 or later**, the release that added `TykRuleset`; the
-  hard block was proved on v1.6.0 with Dashboard and Gateway 5.16.0. The generator refuses a
+  hard block works with v1.6.0 and Dashboard and Gateway 5.16.0. The generator refuses a
   lower `--operator-version` when `governance` and `operator` are selected together.
 - `action: block` is Operator-only and is stored as `warn` on the Dashboard.
 - Enforcement is a validating admission webhook on `TykOasApiDefinition` create and update
@@ -187,6 +187,6 @@ namespace whenever `TYK_OPERATOR_NAMESPACE` is set.
 ## Ruleset Shape
 
 The generated rules use literal messages and self-contained rules. On Dashboard 5.16.0 a rule
-message of `{{description}}` came back verbatim rather than interpolated, and
+message of `{{description}}` is returned verbatim rather than interpolated, and
 `extends: [["spectral:oas", "off"]]` plus a one-rule severity override found no errors in a
 spec that breaks that rule. Write each custom rule out in full.

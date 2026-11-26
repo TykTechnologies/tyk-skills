@@ -31,6 +31,13 @@ SKILLS=(
   tyk-upgrades
   tyk-deployment
 )
+# Skills that earlier versions of this repository installed. A link to one of them is removed
+# only when it is a symlink into this clone.
+REMOVED_SKILLS=(
+  tyk-deployment-planner
+  tyk-deployment-runner
+  tyk-production-readiness
+)
 
 usage() {
   cat <<'EOF'
@@ -67,6 +74,28 @@ else
   ENGINES=("$resolved")
 fi
 
+resolve_path() {
+  python3 - "$1" <<'PY'
+from pathlib import Path
+import sys
+print(Path(sys.argv[1]).resolve())
+PY
+}
+
+remove_stale_links() {
+  local root=$1 name target current repo
+  repo=$(resolve_path "$REPO_ROOT")
+  for name in "${REMOVED_SKILLS[@]}"; do
+    target="$root/$name"
+    [[ -L "$target" ]] || continue
+    current=$(resolve_path "$target")
+    if [[ "$current" == "$repo/"* ]]; then
+      rm -- "$target"
+      printf 'Removed link to a skill this repository no longer ships: %s\n' "$target"
+    fi
+  done
+}
+
 install_one() {
   local root=$1 name=$2
   local source="$REPO_ROOT/skills/$name"
@@ -76,12 +105,7 @@ install_one() {
   [[ -f "$source/SKILL.md" ]] || { printf 'Bundled skill is incomplete: %s\n' "$source" >&2; return 1; }
 
   if [[ -L "$target" ]]; then
-    current=$(python3 - "$target" <<'PY'
-from pathlib import Path
-import sys
-print(Path(sys.argv[1]).resolve())
-PY
-)
+    current=$(resolve_path "$target")
     if [[ "$current" == "$source" && "$MODE" == symlink ]]; then
       printf 'Skill already linked: %s\n' "$target"
       return 0
@@ -116,6 +140,7 @@ for engine in "${ENGINES[@]}"; do
   root=$(engine_skills_root "$engine")
   printf 'Installing skills for %s: %s\n' "$engine" "$root"
   mkdir -p "$root"
+  remove_stale_links "$root"
   for skill in "${SKILLS[@]}"; do
     install_one "$root" "$skill"
   done

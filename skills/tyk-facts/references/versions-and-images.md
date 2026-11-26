@@ -1,18 +1,18 @@
 # Versions and images
 
-Last verified: 2026-11-19 against Docker Hub tags, GitHub tags and releases, the Tyk Helm chart repository and the Tyk release notes
+Last verified: 2026-11-25 against Docker Hub tags, GitHub tags and releases, the Tyk Helm chart repository and the Tyk release notes
 
 Never write a version as "the latest" from memory. Resolve it with the commands below, then
-say which source you used and when. The tags in the "Example" column were the newest strict
-`vX.Y.Z` tags in each release line on 2026-11-19 and are examples only.
+say which source you used and when. The tags in the "Example" column are the newest strict
+`vX.Y.Z` tags in each release line as of the date in the header and are examples only.
 
 ## Components
 
-| Component | Docker Hub image | Licence | Example as of 2026-11-19 | Release notes |
+| Component | Docker Hub image | Licence | Example as of 2026-11-25 | Release notes |
 | --- | --- | --- | --- | --- |
-| Tyk Gateway (open source build) | `tykio/tyk-gateway` | MPL 2.0 | `v5.16.0` | https://tyk.io/docs/developer-support/release-notes/gateway |
-| Tyk Gateway Enterprise Edition build | `tykio/tyk-gateway-ee` | Licensed (`ee` features) | `v5.16.0` | https://tyk.io/docs/developer-support/release-notes/gateway |
-| Tyk Dashboard | `tykio/tyk-dashboard` | Licensed | `v5.16.0` | https://tyk.io/docs/developer-support/release-notes/dashboard |
+| Tyk Gateway (open source build) | `tykio/tyk-gateway` | MPL 2.0 | `v5.16.3` | https://tyk.io/docs/developer-support/release-notes/gateway |
+| Tyk Gateway Enterprise Edition build | `tykio/tyk-gateway-ee` | Licensed (`ee` features) | `v5.16.3` | https://tyk.io/docs/developer-support/release-notes/gateway |
+| Tyk Dashboard | `tykio/tyk-dashboard` | Licensed | `v5.16.3` | https://tyk.io/docs/developer-support/release-notes/dashboard |
 | Tyk Pump | `tykio/tyk-pump-docker-pub` | MPL 2.0 | `v1.18.0` | https://tyk.io/docs/developer-support/release-notes/pump |
 | Tyk Developer Portal | `tykio/portal` | Licensed | `v1.20.1` (the release notes list 1.20.0 as the newest) | https://tyk.io/docs/developer-support/release-notes/portal |
 | MDCB | `tykio/tyk-mdcb-docker` | Licensed | `v2.14.0` | https://tyk.io/docs/developer-support/release-notes/mdcb |
@@ -40,7 +40,7 @@ Every paid customer runs the Enterprise Edition gateway build (`licensing-and-pa
 ## Resolve the latest stable tag
 
 Docker Hub tells you whether an image tag exists. It is not a release list. Anonymous tag
-listing stops after 1,000 tags (`tykio/tyk-gateway` had 2,965 on 2026-11-19), so "the newest
+listing stops after 1,000 tags (`tykio/tyk-gateway` has about 3,000), so "the newest
 tag on the first page" can miss a release. Resolve in two steps:
 
 1. Take the release line (for example `5.16`) from the component's release notes page in the
@@ -74,8 +74,8 @@ exists() {
   printf '%s' "$meta" | jq -r '"\(.name): " + ([.images[].architecture] | unique | join(", "))'
 }
 
-newest tyk-gateway 5.16      # for example v5.16.0
-exists tyk-gateway v5.16.0   # for example v5.16.0: amd64, arm64, s390x
+newest tyk-gateway 5.16      # for example v5.16.3
+exists tyk-gateway v5.16.3   # for example v5.16.3: amd64, arm64, s390x
 ```
 
 Without `jq`:
@@ -103,8 +103,8 @@ EOF
 Resolve the AI Studio tag with this lookup, not with `newest`. It lists the 2.3 tags of one
 image, skips unstable builds and prints the highest by version order (a plain `vX.Y.Z` tag
 ranks above any tag with a suffix). Use the exact tag it prints. The control plane and the Edge
-Gateway run at the same tag, and on 2026-11-19 all four AI Studio images carried the same 2.3
-tag.
+Gateway run at the same tag, and all four AI Studio images are published with the same 2.3
+tags.
 
 ```sh
 repo=tyk-ai-studio   # or tyk-ai-studio-ent, tyk-microgateway, tyk-microgateway-ent
@@ -117,9 +117,9 @@ it is one. The newest tag is also not automatically the right one: check it agai
 "Compatibility Matrix For Tyk Components" in the Gateway release notes for the release you
 deploy, and against the support channel the user needs (latest or long-term support).
 
-Public source repositories: use tags, not the "Latest release" badge. On 2026-11-19 the GitHub
-release objects lagged the tags for some repositories (`tyk-pump` showed `v1.16.0` as its
-"latest" release while the `v1.18.0` tag existed). Check tags with:
+Public source repositories: use tags, not the "Latest release" badge. The GitHub release
+objects lag the tags for some repositories (`tyk-pump` shows `v1.16.0` as its "latest" release
+while the `v1.18.0` tag exists). Check tags with:
 
 ```sh
 for r in tyk tyk-pump ai-studio; do
@@ -136,8 +136,8 @@ named `deprecated`; the Operator release notes say Operator is closed source fro
 Sync release notes say Sync is closed source from v2.0. Resolve those two from Docker Hub and the
 release notes only.
 
-Helm charts: resolve from the chart repository, not from GitHub releases (on 2026-11-19 the
-GitHub "latest" release was `5.4.0` while the chart repository served `5.5.0`):
+Helm charts: resolve from the chart repository, not from GitHub releases (the GitHub "latest"
+release is `5.4.0` while the chart repository serves `5.5.0`):
 
 ```sh
 helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/ && helm repo update
@@ -151,8 +151,8 @@ helm show values tyk-helm/tyk-stack | grep -A3 'repository: tykio/tyk-gateway'
   say "Tyk Helm Charts are configured to install the LTS version of Tyk Gateway. You will need to
   modify them to install v5.16.0" (https://tyk.io/docs/developer-support/release-notes/gateway),
   and the chart 5.5.0 notes say it "installs the most recent Tyk LTS release 5.13.5"
-  (https://tyk.io/docs/developer-support/release-notes/helm-chart). On 2026-11-19,
-  `helm show values tyk-helm/tyk-stack` (chart 5.5.0) defaulted the gateway to
+  (https://tyk.io/docs/developer-support/release-notes/helm-chart). For chart 5.5.0,
+  `helm show values tyk-helm/tyk-stack` defaults the gateway to
   `tykio/tyk-gateway-ee:v5.13.5`. Read the values of the chart version you install, and set the
   image tags explicitly.
 - **5.16.0 and Portal 1.20.0 carry breaking changes; read them before pinning.** The Gateway
@@ -170,17 +170,26 @@ helm show values tyk-helm/tyk-stack | grep -A3 'repository: tykio/tyk-gateway'
   notes carry the same rule for the Dashboard API). The Portal 1.20.0 notes
   (https://tyk.io/docs/developer-support/release-notes/portal) make "the SMTP password and the
   OAuth 2.0 provider registration access token" write-only: "The API no longer returns their
-  stored values". Checked 2026-11-19.
+  stored values".
+- **5.16.3 adds two more breaking changes** (Gateway 5.16.3 release notes, "Breaking Changes").
+  APIs that authenticate JWTs through the Identity Provider Registry now need the token's `iss`
+  claim to match the issuer configured for the Identity Provider; tokens without it are rejected
+  and Identity Providers with no issuer are ignored (`allow_unsafe_idp_missing_issuer: true` in
+  both Gateway and Dashboard restores the old behaviour, not recommended). The 404 message for a
+  key list with hashed key listing disabled now reads `Hashed key listing is disabled in the
+  Gateway config: set enable_hashed_keys_listing to true in tyk.conf (or
+  TYK_GW_ENABLEHASHEDKEYSLISTING)`; status code and format are unchanged.
 - **The `tyk-install` repository pins versions and updates them by automation.** Its public
-  history shows recurring `chore: sync component versions` commits by `github-actions[bot]`
-  (most recent 2026-10-28, checked 2026-11-19). On 2026-11-19 `docker/self-managed/.env.example`
-  pinned Gateway and Dashboard `v5.16.0`, Pump `v1.18.0` and Portal `v1.20.0` (one patch behind
-  Docker Hub's `v1.20.1`), and `docker/ai-studio/.env.example` pinned AI Studio `v2.2.2`
+  history shows recurring `chore: sync component versions` commits by `github-actions[bot]`,
+  and its pins can trail Docker Hub: `docker/self-managed/.env.example` pins Gateway and
+  Dashboard `v5.16.0` and Portal `v1.20.0` while Docker Hub serves `v5.16.3` and `v1.20.1`, and
+  `docker/ai-studio/.env.example` pins AI Studio `v2.2.2`
   (https://github.com/TykTechnologies/tyk-install). Read the `.env.example` you deploy from and
   set the tags you resolved; do not assume.
-- **Gateway and Dashboard versions move together.** Both shipped 5.13.0, 5.14.0, 5.15.0 and
-  5.16.0 as matched releases (5.16.1 release candidates of both were on Docker Hub on
-  2026-11-19) (compare the release-notes pages above). Running them at the same
+- **Gateway and Dashboard versions move together.** They ship as matched releases: both
+  shipped 5.13.0, 5.14.0, 5.15.0, 5.16.0 and 5.16.3 (compare the release-notes pages above).
+  5.16.1 and 5.16.2 have no stable image tags; the 5.16 line went from `v5.16.0` to `v5.16.3`.
+  Running them at the same
   version is the safe default. For an upgrade, follow the upgrade notes and the compatibility
   matrix for the exact source and target versions; this note does not say which mixed versions
   are supported. The Gateway release notes carry a "Compatibility Matrix For Tyk Components" table with
@@ -192,16 +201,16 @@ helm show values tyk-helm/tyk-stack | grep -A3 'repository: tykio/tyk-gateway'
   states a fixed cadence; do not promise one.
 - **Long-term support.** https://tyk.io/docs/developer-support/release-types/long-term-support
   describes LTS for Gateway and Dashboard: 12 months of full support with maintenance releases
-  "every eight weeks", then 12 months of maintenance support. On 2026-11-19 it says "Our current
-  long term support release is 5.13 LTS". The Gateway release notes add: "Only the most recent
+  "every eight weeks", then 12 months of maintenance support. It says "Our current long term
+  support release is 5.13 LTS". The Gateway release notes add: "Only the most recent
   Tyk Gateway release and the most recent on the Long Term Support (LTS) branch are
   supported". A non-LTS minor "reaches its End-of-Life (EOL) as soon as
   the next minor version is released". The Operator and Sync release notes each say "Only the
   most recent ... release is supported".
 - **Docs versions.** "Unversioned URLs ... are the latest release" and `https://tyk.io/docs/5.13/`
-  prefixes the LTS docs (https://tyk.io/docs/llms.txt). On 2026-11-19 that index still named
-  v5.15 as the latest release while the release notes listed 5.16.0; trust the release notes for
-  the version. Prefer the docs for the version in use.
+  prefixes the LTS docs (https://tyk.io/docs/llms.txt). That index still names v5.15 as the
+  latest release while the release notes list 5.16; trust the release notes for the version.
+  Prefer the docs for the version in use.
 
 ## Resolve live, then quote
 
@@ -210,10 +219,10 @@ helm show values tyk-helm/tyk-stack | grep -A3 'repository: tykio/tyk-gateway'
   Gateway and HTTPRoute resources (with Tyk Dashboard), alongside Tyk's own custom resources
   (CRDs) for APIs and security policies" (https://tyk.io/docs/developer-support/release-notes/operator
   and https://tyk.io/docs/apim; guide: https://tyk.io/docs/product-stack/tyk-operator/gateway-api/overview).
-  The Gateway 5.16.0 compatibility matrix recommends Operator v1.6.0 and Helm chart v5.5.0; on
-  2026-11-19 both existed (`tykio/tyk-operator:v1.6.0`, chart `5.5.0`). Resolve the exact
+  The Gateway 5.16.0 compatibility matrix recommends Operator v1.6.0 and Helm chart v5.5.0;
+  both are published (`tykio/tyk-operator:v1.6.0`, chart `5.5.0`). Resolve the exact
   Operator tag from Docker Hub and the chart version from the Helm repository with the commands
   above before writing either into a manifest.
 - **MDCB image.** The MDCB image is `tykio/tyk-mdcb-docker`, as the MDCB release notes name it.
-  Its Docker Hub description still read "MDCB Docker Image (internal use)" on 2026-11-19; ignore
-  the label and use the image.
+  Its Docker Hub description reads "MDCB Docker Image (internal use)"; ignore the label and use
+  the image.

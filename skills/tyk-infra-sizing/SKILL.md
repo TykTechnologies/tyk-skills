@@ -13,9 +13,12 @@ document by hand; change the brief and rerun.
 
 What it needs: Python 3. The engine and the Markdown report use the standard
 library only; the diagrams need Pillow (`requirements-diagrams.txt` at the plugin root) and the
-`tyk-excalidraw-diagrams` skill, beside this one or installed. A DOCX is rendered only when the optional
-`tyk-docx-theme` skill and `python-docx` are installed. Which Tyk components need a licence is
-the `tyk-facts` skill's subject; this skill sizes infrastructure and states no price for Tyk.
+`tyk-excalidraw-diagrams` skill, beside this one or installed. The Markdown report is the
+deliverable; if the user needs DOCX, they can convert it with their own document tooling. When a
+DOCX renderer skill is installed beside this one, the build script also writes and validates a
+DOCX, and a failed validation stops the run. Which
+Tyk components need a licence is the `tyk-facts` skill's subject; this skill sizes
+infrastructure and states no price for Tyk.
 
 ## Ask first
 
@@ -64,10 +67,10 @@ labelled "Assumed" in the report and becomes an open question.
    `sizing-result.json`, `sizing-summary.md`, `sizing-content.json`, `sizing-report.md` (the
    production topology embedded), and one `.excalidraw` file and PNG per environment. It exits
    2 with `brief error:` and writes nothing when the brief is invalid.
-5. **Look at the output.** Read each diagram PNG (and the DOCX preview pages, if rendered)
-   with an image viewer or the Read tool: overlapping labels and clipped cells are invisible in
-   JSON. Hand edits to a diagram follow the `tyk-excalidraw-diagrams` skill.
-6. **Deliver** `sizing-report.md` (or the DOCX), the `.excalidraw` files and PNGs. Keep
+5. **Look at the output.** Read each diagram PNG with an image viewer or the Read tool:
+   overlapping labels and clipped cells are invisible in JSON. Hand edits to a diagram follow
+   the `tyk-excalidraw-diagrams` skill.
+6. **Deliver** `sizing-report.md`, the `.excalidraw` files and PNGs. Keep
    `sizing-result.json` and `sizing-summary.md` as the working record. Turn the open questions
    into a short list for whoever owns each answer, and rerun as answers arrive.
 

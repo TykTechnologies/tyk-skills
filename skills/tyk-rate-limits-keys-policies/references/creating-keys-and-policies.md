@@ -143,7 +143,7 @@ Other key calls:
 | `PUT /tyk/keys/<key>?suppress_reset=1` | Updates the key and keeps the quota counter |
 | `POST /tyk/keys/<custom id>` | Creates a key with your own value. The response shows `"key":"default<custom id>"`; the client sends the bare custom id |
 | `DELETE /tyk/keys/<key>` | `{"key":"…","status":"ok","action":"deleted"}`. Requests keep passing for up to 10 seconds (the Gateway's key cache), then get 403 |
-| `GET /tyk/keys` with `hash_keys: true` | HTTP 404 `Hashed key listing is disabled in config (enable_hashed_keys_listing)` |
+| `GET /tyk/keys` with `hash_keys: true` | HTTP 404 `Hashed key listing is disabled in config (enable_hashed_keys_listing)`; from 5.16.3 `Hashed key listing is disabled in the Gateway config: set enable_hashed_keys_listing to true in tyk.conf (or TYK_GW_ENABLEHASHEDKEYSLISTING)` |
 
 To move a key to another plan, `PUT` it with the new `apply_policies`. The new limits applied
 after the 10-second key cache expired.

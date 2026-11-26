@@ -1,5 +1,7 @@
 # Production readiness review
 
+Last verified: 2026-11-25 against the tyk-install repository (main), tyk-charts 5.5.0 and Gateway 5.16.0
+
 Report what a Tyk configuration should change before it carries real traffic, and hand back the
 edits. Works on any configuration the user already has, including one never deployed with this
 skill. `tools/profiles.py` and the `docker/`, `kubernetes/` and `baremetal/` paths are relative to

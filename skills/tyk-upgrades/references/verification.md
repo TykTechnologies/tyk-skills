@@ -79,9 +79,11 @@ A changed value prints old and new, for example
 ### Two things the snapshot needs
 
 - **Key listing (optional).** With hashed keys (the default), the Dashboard key list fails until the
-  Gateway allows hashed key listing. The Gateway answers
-  `{"status":"error","message":"Hashed key listing is disabled in config (enable_hashed_keys_listing)"}`
-  and the Dashboard `404 {"Status":"Error","Message":"Could not retrieve keys","Meta":null}`.
+  Gateway allows hashed key listing. Before 5.16.3 the Gateway answers
+  `{"status":"error","message":"Hashed key listing is disabled in config (enable_hashed_keys_listing)"}`;
+  from 5.16.3 the message reads `Hashed key listing is disabled in the Gateway config: set
+  enable_hashed_keys_listing to true in tyk.conf (or TYK_GW_ENABLEHASHEDKEYSLISTING)`.
+  The Dashboard answers `404 {"Status":"Error","Message":"Could not retrieve keys","Meta":null}`.
   Setting `enable_hashed_keys_listing: true` (`TYK_GW_ENABLEHASHEDKEYSLISTING=true`) on the
   Gateway makes `GET /api/keys/detailed/?p=-1` return the key hashes. Without it the snapshot
   records the error and the other sections. The setting only serves the snapshot: skip the key

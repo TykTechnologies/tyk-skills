@@ -20,8 +20,8 @@ What a remote MCP proxy does with a server that streams:
 | `POST /mcp`, server answers `application/json` | Passed through unchanged |
 | `POST /mcp tools/call`, server answers `text/event-stream` with three progress events one second apart, then the result | Events reach the client at 0.04 s, 1.04 s, 2.04 s and 3.04 s: streamed, not buffered |
 | `GET /mcp` with `Mcp-Session-Id` (server-to-client stream) | Events arrive one second apart; the stream closes when the server closes it |
-| `DELETE /mcp` with `Mcp-Session-Id` | Forwarded to the server; its 200 came back |
-| `notifications/initialized` | 202 from the server came back |
+| `DELETE /mcp` with `Mcp-Session-Id` | Forwarded to the server; the server's 200 reaches the client |
+| `notifications/initialized` | The server's 202 reaches the client |
 
 A REST-to-MCP proxy answers `POST` with plain JSON only. `GET` with no session returns
 `405 Method Not Allowed` with `Allow: POST`.

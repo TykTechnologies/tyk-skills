@@ -1,6 +1,6 @@
 interface:
   display_name: "Tyk Infrastructure Sizing"
   short_description: "Size self-managed Tyk and produce the sizing report and diagram"
-  default_prompt: "Use $tyk-infra-sizing to size the requested Tyk deployment from the supplied inputs and produce the sizing pack: calculation, Markdown report and Excalidraw topology, plus a DOCX when the optional tyk-docx-theme skill is installed."
+  default_prompt: "Use $tyk-infra-sizing to size the requested Tyk deployment from the supplied inputs and produce the sizing pack: calculation, Markdown report and Excalidraw topology."
 policy:
   allow_implicit_invocation: true
