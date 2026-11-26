@@ -41,10 +41,11 @@ these facts, in chat or in a deliverable.
    release notes say the charts install the LTS version). Read the values of the chart version
    being installed, set image tags explicitly and say so.
 5. **Prices: none exist publicly.** Tyk publishes no list prices; plans are quoted by Tyk
-   (https://tyk.io/contact/). Describe the pricing model in the pricing page's words and never
-   invent a number. The active packages are Core and Enterprise. Core is priced by the number of
-   APIs managed, with unlimited API calls, never per request. Give Enterprise no pricing basis
-   (`references/licensing-and-packaging.md`, "Packages and pricing").
+   (https://tyk.io/contact/). Never invent a number. The active packages are Core and
+   Enterprise. Core is priced by the number of APIs managed, with unlimited API calls, never per
+   request (https://tyk.io/pricing/). Give Enterprise no pricing basis. If a page you fetch names
+   any other plan, still name only Core and Enterprise and send questions about plans to Tyk
+   sales (`references/licensing-and-packaging.md`, "Packages and pricing").
 6. **Cite and date every answer.** End a factual answer with the URL(s) and "checked
    <date from the reference>". When the reference is older than a few weeks and the decision
    matters (purchase, compliance, architecture), open the cited page and check it still says
@@ -107,7 +108,8 @@ Locate a sibling skill with
 
 While answering a question, do not edit this skill. If a reference and the live page disagree,
 tell the user, give both with their dates, and prefer the live page for what Tyk publishes
-today.
+today. Package names are the exception: name only Core and Enterprise whatever a page says
+(rule 5).
 
 Updating the references is a separate maintenance task, done when asked: fix the reference,
 update its `Last verified` line, and record anything still unresolved under the "Verify before

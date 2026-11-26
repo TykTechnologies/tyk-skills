@@ -29,7 +29,7 @@ git clone --depth 1 https://github.com/TykTechnologies/tyk-install <dir>
 | Tyk Operator | Kubernetes controller reconciling Tyk resources | "Operator license" | `kubernetes/standalone-operator/` | https://tyk.io/docs/tyk-stack/tyk-operator/installing-tyk-operator |
 | AI Studio | AI Studio, Edge Gateway, PostgreSQL | "none for Community Edition, AI license for Enterprise Edition" | `docker/ai-studio/`, `kubernetes/helm-ai-studio/` | https://tyk.io/docs/ai-management/ai-studio/installation/overview |
 | Tyk Cloud | Fully managed SaaS | Tyk Cloud account | none (hosted) | https://tyk.io/docs/tyk-cloud |
-| Air-gapped | Self-Managed or open source with no access to public registries | as for the topology chosen | mirror the images of the chosen path; see the docs guide | https://tyk.io/docs/api-management/air-gapped-deployment |
+| Air-gapped | Self-Managed or open source with no access to public registries | as for the topology chosen | mirror the images or packages of the chosen path; see the docs guide, and `docs/air-gapped.md` in tyk-install for each path | https://tyk.io/docs/api-management/air-gapped-deployment |
 
 Notes, each from the cited source:
 
@@ -55,8 +55,10 @@ Notes, each from the cited source:
 - Air-gapped: the guide covers "Kubernetes (Helm) — Mirroring container images and packaging Helm
   charts for offline installation" and "Bare Metal / VMs (Linux packages) — Creating a local
   mirror of Tyk's PackageCloud repositories"
-  (https://tyk.io/docs/api-management/air-gapped-deployment). Self-Managed: "There is no calling
-  home, and there are no usage limits" (https://tyk.io/docs/tyk-self-managed).
+  (https://tyk.io/docs/api-management/air-gapped-deployment). Self-Managed: the docs say "There
+  is no calling home, and there are no usage limits" (https://tyk.io/docs/tyk-self-managed). Depending
+  on the licence, the Dashboard can still send usage telemetry to Tyk by default; set `TYK_DB_DISABLETELEMETRY=true` to
+  switch it off (https://tyk.io/docs/tyk-dashboard/configuration).
 - The Self-Managed install methods on the product page: "Docker, Linux packages, Kubernetes Helm
   charts, Chef or Puppet, including air-gapped environments" (https://tyk.io/llms.txt, entry for
   https://tyk.io/self-managed/).
@@ -103,32 +105,30 @@ folder. This section describes `tykio/tyk-gateway:v5.16.0` with Redis, file-base
   MCP proxy definition is stored the same way with `<id>-mcp.json` as its companion
   (https://github.com/TykTechnologies/tyk/blob/v5.16.0/gateway/api_definition.go).
 - **Produce the pair with the Gateway API.** `POST /tyk/apis/oas` with the OpenAPI document
-  answered `{"key":"orders","status":"ok","action":"added"}`; after `GET /tyk/reload/group` the
-  `apps` folder held `orders.json` and `orders-oas.json` (the mount must be writable).
+  returns `{"key":"orders","status":"ok","action":"added"}`; after `GET /tyk/reload/group` the
+  `apps` folder holds `orders.json` and `orders-oas.json` (the mount must be writable).
 - **The wrapper is generated, not hand-written.** A stub wrapper with only ids, `org_id` and
-  `"is_oas": true` next to a valid `-oas.json` was skipped at reload, with the log lines
-  `Listen path is empty` and `Spec not valid, skipped!`; the API answered `404`. A bare OpenAPI
-  file with no `x-tyk-api-gateway` loaded nothing either.
-- **Keys.** `POST /tyk/keys` with `rate` and `per` and `access_rights` keyed by API id created a
-  key. With `rate: 3, per: 60` the fourth call got `429 {"error": "Rate Limit Exceeded"}`. A
+  `"is_oas": true` next to a valid `-oas.json` is skipped at reload, with the log lines
+  `Listen path is empty` and `Spec not valid, skipped!`, and the API answers `404`. A bare
+  OpenAPI file with no `x-tyk-api-gateway` loads nothing either.
+- **Keys.** `POST /tyk/keys` with `rate` and `per` and `access_rights` keyed by API id creates a
+  key. With `rate: 3, per: 60` the fourth call gets `429 {"error": "Rate Limit Exceeded"}`. A
   per-operation limit in the OAS document
   (`x-tyk-api-gateway.middleware.operations.<operationId>.rateLimit` with `"rate": 2, "per": "1m"`)
-  answered the third call with `429 {"error": "API Rate Limit Exceeded"}`. A call with no key got
+  answers the third call with `429 {"error": "API Rate Limit Exceeded"}`. A call with no key gets
   `401 {"error": "Authorization field missing"}`.
 - **File-based policies are looked up per organisation.** The policy's `org_id`, the key
-  request's `org_id` and the API's `x-tyk-api-gateway.info.orgId` must all match (here
-  `default`). A key request with another `org_id` and `apply_policies` got
+  request's `org_id` and the API's `x-tyk-api-gateway.info.orgId` must all match (for example
+  `default`). A key request with another `org_id` and `apply_policies` gets
   `{"status":"error","message":"Failed to create key, ensure security settings are correct."}` and
-  the log `policy not found: "ten-per-minute"`. With matching key and policy but an API that had
-  no `orgId`, the same error came back and the log said `attempting to apply policy from different
-  organisation to key, skipping`. With all three set to `default`, the key was created and a
-  10 requests per 60 seconds policy gave ten `200` and then `429`.
+  the log `policy not found: "ten-per-minute"`. With matching key and policy but an API with no
+  `orgId`, the request gets the same error and the log says `attempting to apply policy from
+  different organisation to key, skipping`. With all three set to `default`, the key is created
+  and a 10 requests per 60 seconds policy gives ten `200` and then `429`.
 
 The public tyk-install repository has a repeatable equivalent of part of this: its `docker/oss`
 stack ships a keyed example pair, a 10 requests per minute policy and `scripts/keyed-poc.sh`, and
 its CI job "OSS Gateway, keyed API and rate limit" checks a keyed API, ten `200` then two `429`,
 and an OAS import that writes the `apps/` file pair
-(https://github.com/TykTechnologies/tyk-install/blob/main/.github/workflows/test-oss.yml; a
-passing run: https://github.com/TykTechnologies/tyk-install/actions/runs/41236609072,
-2026-10-31). The job runs on pull requests that change `docker/oss`, so cite a specific passing
-run, not the workflow file.
+(https://github.com/TykTechnologies/tyk-install/blob/main/.github/workflows/test-oss.yml). The
+job runs on pull requests that change `docker/oss`.

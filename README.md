@@ -14,7 +14,7 @@
 
 Skills for AI coding agents that are evaluating or using [Tyk](https://tyk.io), an API gateway, API management platform and AI gateway. They give Claude Code, Codex and other agents Tyk's current facts, a builder that proves capabilities on a real stack, and the planning tools around it, so the agent answers from verified sources instead of memory.
 
-**Status:** version 0.1.0, the first public release. Published and maintained by Tyk Technologies under the [MPL-2.0](LICENSE) licence. Report problems with the [issue forms](https://github.com/TykTechnologies/tyk-skills/issues/new/choose) and security problems as [`SECURITY.md`](SECURITY.md) describes. The skills help you evaluate and use Tyk; they are not a support channel for Tyk products.
+**Status:** version 0.1.0. Published and maintained by Tyk Technologies under the [MPL-2.0](LICENSE) licence. Report problems with the [issue forms](https://github.com/TykTechnologies/tyk-skills/issues/new/choose) and security problems as [`SECURITY.md`](SECURITY.md) describes. The skills help you evaluate and use Tyk; they are not a support channel for Tyk products.
 
 **Official source:** this repository, `TykTechnologies/tyk-skills` on GitHub, and [tyk.io](https://tyk.io) are the official sources of these skills. Copies elsewhere may be out of date or changed.
 
@@ -56,7 +56,7 @@ Either plugin CLI also accepts the clone's path in place of `TykTechnologies/tyk
 
 ### Install a specific version
 
-Each release is a tag, `v<version>`, listed in [`CHANGELOG.md`](CHANGELOG.md) and on the repository's releases page. To stay on one:
+Each release is a tag, `v<version>`, listed in [`CHANGELOG.md`](CHANGELOG.md) and on the repository's releases page. To stay on a tagged release:
 
 ```bash
 # Codex: pin the marketplace to the tag
@@ -81,6 +81,8 @@ Read the [`CHANGELOG.md`](CHANGELOG.md) entry before updating.
 
 ## Skills
 
+New to Tyk? Start with a factual question (`tyk-facts`), then build a demo (`tyk-demo-builder`); installing for real is `tyk-deployment`.
+
 | Skill | Use it when | What you get |
 | --- | --- | --- |
 | `tyk-facts` | Any factual question: what is open source and what needs a licence, pricing model, trial path, versions and images, deployment options | Answers quoted from Tyk's current wording with the date it was last reviewed, and the commands to re-resolve versions live |
@@ -93,12 +95,12 @@ Read the [`CHANGELOG.md`](CHANGELOG.md) entry before updating.
 | `tyk-rate-limits-keys-policies` | Each partner, team or plan needs its own rate limit and quota, or a limit test gives odd counts | Keys and policies for the open source Gateway and the Dashboard, which limiter counts with one Gateway and with several, and a burst test |
 | `tyk-gitops-sync-operator` | You want Tyk configuration in Git and delivered by CI, with promotion, drift correction and rollback | A choice between Tyk Sync, Tyk Operator and plain files, a working CI job, and the deletion and drift behaviour of each |
 | `tyk-mcp-gateway` | You are putting MCP servers behind Tyk Gateway or turning a REST API into MCP tools | MCP proxy definitions, authentication including OAuth discovery and token exchange, per-tool access and limits, and the edition each part needs |
-| `tyk-ai-gateway` | You need an AI gateway: one endpoint for several LLM providers, per-app keys, failover, cost tracking | Tyk AI Studio set up through its admin API, with a stub LLM for testing and the Community versus Enterprise boundary as observed |
+| `tyk-ai-gateway` | You need an AI gateway: one endpoint for several LLM providers, per-app keys, failover, cost tracking | Tyk AI Studio set up through its admin API, with a stub LLM for testing and what the Community and Enterprise editions each do |
 | `tyk-developer-portal-branding` | The Tyk Developer Portal has to carry an organisation's brand, end to end | A theme built from a brand kit by script, every page type and email checked, and a list of what cannot be branded |
 | `tyk-developer-portal-setup` | Developers need to find your APIs in the Tyk Developer Portal, sign up, request access and get credentials | The Portal connected to the Dashboard, products and plans from policies, catalogues and audiences, apps, credentials and dynamic client registration, proved with a real API call |
 | `tyk-authentication` | You are choosing or fixing how clients authenticate: tokens, Basic, HMAC, JWT with an identity provider, OAuth, mutual TLS, or several methods at once | Each method set up in a Tyk OAS definition, the exact responses for missing, invalid and expired credentials, and the traps |
 | `tyk-observability` | You want Tyk traffic in your own tracing, metrics and logging tools, or in the Dashboard | Native OpenTelemetry traces and metrics, Tyk Pump back ends, access logs, per-consumer attribution, and a Grafana dashboard |
-| `tyk-troubleshooting` | A Tyk deployment returns errors you cannot explain, or something stopped working | A symptom-to-cause decoder built from reproduced failures, and a script that collects a redacted diagnostic bundle |
+| `tyk-troubleshooting` | A Tyk deployment returns errors you cannot explain, or something stopped working | A symptom-to-cause decoder and a script that collects a redacted diagnostic bundle |
 | `tyk-custom-plugins` | Configuration is not enough and you need custom code in the Gateway | Go, JavaScript, Python and gRPC plugins and plugin bundles, each proved with a working example, and where each hooks in |
 | `tyk-websockets-streams-webhooks` | You are proxying WebSocket or Server-Sent Events, bridging to Kafka with Tyk Streams, or reacting to Gateway events with webhooks | Streams definitions, real-time proxying settings, event handlers and webhook payloads, and what a client sees when a broker is down |
 | `tyk-api-governance` | You want API design rules enforced on Tyk APIs, in the Dashboard, in CI or at Kubernetes admission | Rulesets, warn versus block, CI linting with the same rules, and the Operator admission check |
@@ -145,7 +147,7 @@ Skills are instructions and scripts that your agent runs with your permissions. 
 
 - **Checked before it is written.** Every statement in a skill was checked on a running Tyk stack or against a public documentation page before it went in, and anything that could not be checked is left out. The skills state each fact plainly, scoped to the version it holds for, with a link to the public page that backs it; they do not narrate how a fact was checked. Where the product and its documentation differ, the skill says both. Licensed components whose code is not public are described only by their observed behaviour and their public documentation; no private code is quoted or identified. Licensing and packaging wording is quoted from [tyk.io/llms.txt](https://tyk.io/llms.txt), the [pricing page](https://tyk.io/pricing/) and the [Editions page](https://tyk.io/docs/apim).
 - **Dated.** Reference files that record facts or dated findings carry a `Last verified:` line with the versions and date they were checked against. Versions are resolved live from Docker Hub and the release notes, never written down as "latest". Where two public sources disagree, the skills say so.
-- **Re-verifying.** Updating references is a separate maintenance task: check the reference against the page or release it names, fix it, and update its `Last verified:` line. `skills/tyk-facts/references/licensing-and-packaging.md` lists the exact steps for the licensing block. Treat a conflict between a reference and the live stack or the documentation as a bug in the reference.
+- **Re-verifying.** Updating references is a separate maintenance task: check the reference against the page or release it names, fix it, and update its `Last verified:` line. The "Keeping this skill current" section of [`skills/tyk-facts/SKILL.md`](skills/tyk-facts/SKILL.md) describes how. Treat a conflict between a reference and the live stack or the documentation as a bug in the reference.
 
 ## Repository layout
 
@@ -156,6 +158,8 @@ Skills are instructions and scripts that your agent runs with your permissions. 
 ├── .codex-plugin/, .agents/    Codex plugin and marketplace manifests
 ├── skills/<name>/              SKILL.md, references/, scripts/, agents/openai.yaml
 ├── scripts/                    install, demo launcher, manifest sync, validation
+├── evals/                      skill-routing evals and results
+├── assets/                     logos used by the README and manifests
 ├── .github/                    CI and release workflows, issue forms
 ├── AGENTS.md                   the contract the skills follow
 ├── .claude/CLAUDE.md           Claude Code notes for contributors

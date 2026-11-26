@@ -126,6 +126,7 @@ description: <what the skill does, in one sentence>. Use when <the requests and 
   `scripts/install-skill.sh`.
 - Add a row to the skills table in `README.md` and an entry under the next version in
   `CHANGELOG.md`.
+- Add four positive and two near-miss prompts to `evals/routing/prompts.jsonl`.
 
 ## Validate
 

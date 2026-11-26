@@ -83,8 +83,8 @@ Which Endpoints Are Tracked").
 
 A Hybrid Pump next to the data-plane Gateways sends records or aggregates to MDCB (see
 https://tyk.io/docs/api-management/dashboard-analytics/data-plane-pump). Its `aggregated`
-setting is `false` by default, but the `tyk-data-plane` Helm chart 5.3.0 sets it to `true`
-([`values.yaml`, `enableAggregateAnalytics: true`](https://github.com/TykTechnologies/tyk-charts/blob/v5.3.0/tyk-data-plane/values.yaml));
+setting is `false` by default, but the `tyk-data-plane` Helm chart 5.5.0 sets it to `true`
+(`enableAggregateAnalytics: true` in `helm show values tyk-helm/tyk-data-plane --version 5.5.0`);
 with aggregates only, the Log Browser has no rows from that data plane. For how to deploy it, use the `tyk-deployment` skill.
 
 ## Usage reporting to Tyk

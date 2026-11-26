@@ -109,8 +109,8 @@ Gateway API support needs the Dashboard. Also:
 - "Tyk Operator 1.6 adds Kubernetes Gateway API support: you can route traffic through your Tyk
   Gateways with the standard GatewayClass, Gateway and HTTPRoute resources (with Tyk Dashboard)"
   (https://tyk.io/docs/apim). Operator 1.6.0 was released on 6 November 2026
-  (https://tyk.io/docs/developer-support/release-notes/operator), and `v1.6.0` was the newest
-  strict tag of `tykio/tyk-operator` on Docker Hub on 2026-11-19; resolve it live with
+  (https://tyk.io/docs/developer-support/release-notes/operator), and `v1.6.0` is the newest
+  strict tag of `tykio/tyk-operator` on Docker Hub; resolve it live with
   `versions-and-images.md`. The `tyk-gitops-sync-operator` skill covers using it.
 - Custom resources include `TykOasApiDefinition`, `SecurityPolicy`, `TykStreamsApiDefinition`
   and `TykMcpProxyDefinition` (https://tyk.io/docs/api-management/automations/operator,
@@ -194,7 +194,7 @@ quote includes is commercial: ask Tyk sales (`licensing-and-packaging.md`, MDCB 
 ## Verify before quoting
 
 1. **Is REST API to MCP (OpenAPI to MCP) open source? Settled: no.** The Editions page
-   (https://tyk.io/docs/apim, checked 2026-11-19) answers in its FAQ "Is the Tyk MCP Gateway Open
+   (https://tyk.io/docs/apim) answers in its FAQ "Is the Tyk MCP Gateway Open
    Source?": "Yes, for MCP proxies to a remote MCP server. A REST API to MCP proxy, upstream OAuth
    and token exchange need the Enterprise Edition." The same page's "MCP Gateway" table and
    https://tyk.io/docs/ai-management/mcps/api-to-mcp (Availability "Enterprise", since v5.15.0)

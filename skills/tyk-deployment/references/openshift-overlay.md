@@ -1,5 +1,7 @@
 # OpenShift overlay
 
+Last verified: 2026-11-25 against the tyk-install repository (main), tyk-charts 5.5.0 and Gateway 5.16.0
+
 Used by planning (an OpenShift target) and by a readiness review (a request for the overlay).
 Paths are relative to the tyk-install checkout; write generated overlays where `SKILL.md`,
 "Where generated files go", says, never into a tracked path.

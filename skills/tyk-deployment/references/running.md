@@ -1,5 +1,7 @@
 # Running a deployment
 
+Last verified: 2026-11-25 against the tyk-install repository (main), tyk-charts 5.5.0 and Gateway 5.16.0
+
 Apply a deployment and prove it works. Start from the plan (`planning.md`); without one, resolve
 the target to exactly one row of `docs/topology-matrix.md` and confirm it with the user before
 starting anything.

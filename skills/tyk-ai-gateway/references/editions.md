@@ -12,6 +12,9 @@ lapses are not in this skill. Use the `tyk-facts` skill. The Community Edition s
 public: https://github.com/TykTechnologies/ai-studio. The public feature comparison is on the
 overview page: https://tyk.io/docs/ai-management/ai-studio/overview.
 
+Some AI Studio error messages tell the reader to visit https://tyk.io/ai-studio/pricing. That
+URL returns `404`; send people to https://tyk.io/pricing/ instead.
+
 ## Which edition is running
 
 ```bash

@@ -578,8 +578,8 @@ def supports_governance_operator(operator_version: str) -> bool:
     """True when the target Tyk Operator ships the TykRuleset CRD and its admission webhook.
 
     The Operator release notes list both as added in v1.5.0. A pre-release sorts below its
-    release, so v1.5.0-rcN is refused while v1.6.0-rcN passes. The module was last proved
-    on v1.6.0, the generator's default.
+    release, so v1.5.0-rcN is refused while v1.6.0-rcN passes. The module works with
+    v1.6.0, the generator's default.
     """
     match = re.fullmatch(r"v?(\d+)\.(\d+)\.(\d+)(?:-rc(\d+))?", operator_version or "")
     if not match:
@@ -2294,7 +2294,7 @@ Read `governance/README.md` for the full detail.
             text += """
 `operator/tyk-ruleset.yaml` adds the only hard block that exists: a `TykRuleset` with
 `action: block`, enforced by the Operator admission webhook on `TykOasApiDefinition`
-create and update. It needs `tyk-operator` v1.5.0 or later (proved on v1.6.0) and
+create and update. It needs `tyk-operator` v1.5.0 or later and
 is bypassed by edits to the referenced OAS ConfigMap. After `./operator/apply-operator.sh`,
 run `./operator/verify-governance.sh`: it applies the ruleset, proves a compliant API is
 admitted and a non-compliant one is denied, and records `GOV-003`.

@@ -52,8 +52,8 @@ cost and time) and a Markdown table next to it. Useful options:
   the plugin manifests and every `SKILL.md` to a temporary folder, renames there and runs against the
   copy; results stay keyed by the current names. The working tree is never changed.
 
-A full 120-prompt run takes about three minutes. The CLI reported $8.80 to $8.90 for a names-only run
-and $12.95 for a descriptions run on 2026-11-19.
+A full 138-prompt run takes about four minutes. On 2026-11-19 the CLI reported $8.80 to $8.90 for a
+names-only run and $12.95 for a descriptions run of the earlier 120-prompt set.
 
 ### Latest results (2026-11-23): deployment skills merged
 
