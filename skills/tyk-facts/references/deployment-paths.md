@@ -38,9 +38,12 @@ Notes, each from the cited source:
 - An optional observability overlay (OpenTelemetry Collector, Prometheus, Alertmanager, Tempo,
   Loki, Grafana) exists for Self-Managed and Hybrid: `docker/observability/`, `kubernetes/observability/`
   (tyk-install README).
-- Bare metal: "rpm/deb packages with systemd, no containers" (tyk-install README), for Gateway,
-  Dashboard and Pump only; the topology matrix (`docs/topology-matrix.md`) verifies the Gateway
-  path end to end and marks Dashboard and Pump on bare metal `bundled` (artifacts exist).
+- Bare metal: rpm/deb packages with systemd, no containers (tyk-install `baremetal/`), for every
+  packaged component: Gateway, Dashboard, Pump, MDCB (control-plane side), Developer Portal and
+  Tyk Sync; single sign-on uses the Identity Broker built into the Dashboard and Portal. The
+  topology matrix (`docs/topology-matrix.md`) verifies the Gateway path end to end and marks the
+  others `bundled` (artifacts exist). A data-plane or hybrid Gateway, AI Studio and Tyk Operator
+  have no bare-metal path.
 - MDCB: it serves its RPC service on port 9091 by default; when the control plane is unavailable
   the data planes "will continue to handle API requests, rejecting only new authorization tokens
   created on other Gateways"; the Synchroniser, which pushes keys, certificates and OAuth clients

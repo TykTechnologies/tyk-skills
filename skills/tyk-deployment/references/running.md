@@ -48,7 +48,8 @@ Order matters: Redis and PostgreSQL ready before the Dashboard, the Dashboard be
 and an MDCB control plane before any data plane. The Compose files encode this with healthchecks
 and `depends_on`; on Kubernetes wait with `kubectl wait --for=condition=ready`, and install Redis
 and PostgreSQL first with the commands each `kubernetes/*/README.md` gives. Bare metal follows
-`baremetal/README.md`; it covers Gateway, Dashboard and Pump only.
+`baremetal/README.md`, which lists the packaged components `install.sh --components` takes; a
+data-plane or hybrid Gateway, AI Studio and Tyk Operator have no bare-metal path.
 
 ## Evidence
 
