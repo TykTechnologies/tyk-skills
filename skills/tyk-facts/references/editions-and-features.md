@@ -198,10 +198,9 @@ quote includes is commercial: ask Tyk sales (`licensing-and-packaging.md`, MDCB 
    Source?": "Yes, for MCP proxies to a remote MCP server. A REST API to MCP proxy, upstream OAuth
    and token exchange need the Enterprise Edition." The same page's "MCP Gateway" table and
    https://tyk.io/docs/ai-management/mcps/api-to-mcp (Availability "Enterprise", since v5.15.0)
-   agree. Marketing pages (https://tyk.io/tyk-mcp-vs-kong-mcp/, https://tyk.io/tyk-mcp-vs-apigee-mcp/,
-   both saying "Tyk's MCP support lives in the open source gateway under MPL 2.0", and the
-   "Comparisons" part of https://tyk.io/llms.txt) still say API-to-MCP is in the open source
-   Gateway; they are out of date, so quote the Editions page. Not the gateway feature: the
+   agree. Some older tyk.io comparison pages, and the "Comparisons" part of
+   https://tyk.io/llms.txt, still say API-to-MCP is in the open source Gateway; quote the
+   Editions page instead. Not the gateway feature: the
    separate MIT-licensed command-line tool https://github.com/TykTechnologies/api-to-mcp turns an
    OpenAPI spec into a standalone MCP server with "no gateway-level authentication, access
    control, or observability of its own" (https://tyk.io/docs/ai-management/mcp-gateway/faq).
