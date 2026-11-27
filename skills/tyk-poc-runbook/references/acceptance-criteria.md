@@ -29,7 +29,7 @@ no hand edits in a UI, and that a bad change can be rolled back the same way.
   Operator is licensed.
 - Which to use, and how to run either one: the `tyk-gitops-sync-operator` skill (it also has a
   script that compares a Dashboard dump with the repository, for step 3 below). Mapping from
-  Kong's decK and Ingress Controller: the `tyk-migration-planner` skill.
+  another gateway's declarative tools: the `tyk-migration-planner` skill.
 
 **Builder modules.** `tyk-sync` (`SYNC-001`: after the latest delivery run, the Dashboard
 read-back holds every API id in `apis/` and each still answers in the Dashboard) plus `cicd`

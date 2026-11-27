@@ -185,3 +185,5 @@ To report a wrong fact, use the "Wrong fact" issue form with the skill and refer
 ## Licence
 
 [MPL-2.0](LICENSE).
+
+Kong, Apigee and Portkey are trademarks of their respective owners. They are named only where the `tyk-migration-planner` skill maps their concepts to Tyk.
